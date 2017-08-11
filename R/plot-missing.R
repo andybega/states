@@ -30,17 +30,20 @@ mssng_mat_base <- function(x, data, space, time, time_unit, statelist = "none") 
   if (statelist %in% c("GW", "COW")) {
     # set ss type GW or COW
     ccname <- ifelse(statelist=="GW", "gwcode", "cowcode")
-    target <- state_panel(min(full_mat$date), max(full_mat$date), by = time_unit, useGW = (statelist=="GW"))
+    target <- state_panel(min(full_mat[, time]), max(full_mat[, time]), by = time_unit, useGW = (statelist=="GW"))
     target$id <- NULL
     target$.statelist <- 1
-    target[, ccname] <- as.integer(as.character(target[, ccname]))
-    colnames(target) <- c(space, time, ".statelist")
+    target[, ccname]  <- as.integer(as.character(target[, ccname]))
+    colnames(target)  <- c(space, time, ".statelist")
+
     full_mat[, space] <- as.integer(as.character(full_mat[, space]))
-    full_mat <- left_join(full_mat, target)
+    full_mat          <- dplyr::left_join(full_mat, target, by = c(space, time))
+
     full_mat$.statelist <- ifelse(is.na(full_mat$.statelist), "non-independent", "independent state")
+    lvls        <- as.vector(outer(c("Complete", "Missing values", "No observation"), c("independent state", "non-independent"), paste, sep = ", "))
     full_mat$.z <- paste(full_mat$.mssng, full_mat$.statelist, sep = ", ")
-    lvls <- as.vector(outer(c("Complete", "Missing values", "No observation"), c("independent state", "non-independent"), paste, sep = ", "))
     full_mat$.z <- factor(full_mat$.z, levels = lvls)
+
     full_mat[, space] <- factor(full_mat[, space], levels = rev(sort(unique(full_mat[, space]))))
   } else {
     full_mat$.z <- full_mat$.mssng
@@ -89,15 +92,20 @@ mssng_mat <- function(x, data, space, time, time_unit, statelist = "none") {
 #' # To check all variables:
 #' # plot_missing(setdiff(colnames(df), "space", "time"), ...)
 #'
+#' @importFrom grDevices hcl
 #' @export
 plot_missing <- function(x, data, space, time, time_unit,
                          statelist = c("none", "GW", "COW")) {
+  if (!statelist %in% c("none", "GW", "COW")) {
+    stop(sprintf("'%s' is not a valid option for 'statelist', use 'none', 'GW', or 'COW'",
+         statelist))
+  }
+
   mm <- mssng_mat(x, data, space, time, time_unit, statelist)
 
-
-  p <- ggplot2::ggplot(mm, aes_string(x = time, y = space, fill = ".z")) +
-    geom_tile() +
-    scale_x_date(expand = c(0, 0))
+  p <- ggplot2::ggplot(mm, ggplot2::aes_string(x = time, y = space, fill = ".z")) +
+    ggplot2::geom_tile() +
+    ggplot2::scale_x_date(expand = c(0, 0))
 
   if (statelist %in% c("GW", "COW")) {
     checkSS_flag <- TRUE
@@ -112,11 +120,12 @@ plot_missing <- function(x, data, space, time, time_unit,
                       "No observation"   = hcl(15, l=97, c=0))
   }
 
-  p <- ggplot2::ggplot(mm, aes_string(x = time, y = space, fill = ".fill")) +
-    geom_tile() +
-    scale_x_date(expand=c(0, 0)) +
-    scale_fill_manual("", drop = FALSE, values = fill_values) +
-    guides(fill = guide_legend(ncol = 2)) + theme(legend.position = "bottom")
+  p <- ggplot2::ggplot(mm, ggplot2::aes_string(x = time, y = space, fill = ".fill")) +
+    ggplot2::geom_tile() +
+    ggplot2::scale_x_date(expand=c(0, 0)) +
+    ggplot2::scale_fill_manual("", drop = FALSE, values = fill_values) +
+    ggplot2::guides(fill = ggplot2::guide_legend(ncol = 2)) +
+    ggplot2::theme(legend.position = "bottom")
   p
 }
 

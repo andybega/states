@@ -13,4 +13,8 @@ LazyData: true
 Imports:
     dplyr
 RoxygenNote: 6.0.1
-Suggests: testthat
+Suggests:
+    testthat,
+    WDI,
+    countrycode,
+    ggplot2

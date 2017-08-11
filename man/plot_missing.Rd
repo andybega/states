@@ -18,7 +18,7 @@ in a data frame use something like.}
 \item{time}{Name of time identifier}
 
 \item{time_unit}{Temporal resolution character string, e.g. "year" or "month".
-See details in \code{\link{base::seq.Date}}.}
+See details in \code{\link[base]{seq.Date}}.}
 
 \item{statelist}{Check not only missing values, but presence or absence of
 observations against a list of independent states?}
