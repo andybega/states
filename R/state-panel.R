@@ -82,3 +82,20 @@ state_panel <- function(start_date, end_date, by = "month", useGW=TRUE) {
 }
 
 
+#' Detect date format
+#'
+#' @param x Input string or integer
+#'
+detect_date_format <- function(x) {
+  x <- as.character(x)
+  if (grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$", x)) {
+    date_format <- "ymd"
+  } else if (grepl("^[0-9]{4}-[0-9]{2}$", x)) {
+    date_format <- "ym"
+  } else if (grepl("^[0-9]{4}$", x)) {
+    date_format <- "y"
+  } else {
+    stop(sprintf("Could not parse date format for %s", x))
+  }
+  date_format
+}
