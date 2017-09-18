@@ -12,6 +12,8 @@ vignette: >
 ```{r}
 knitr::opts_chunk$set(echo = TRUE)
 
+library("states")
+
 data("cowstates")
 data("gwstates")
 

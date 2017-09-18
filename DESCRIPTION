@@ -15,8 +15,6 @@ Imports:
 RoxygenNote: 6.0.1
 Suggests:
     testthat,
-    WDI,
-    countrycode,
     ggplot2,
     stringr,
     knitr,

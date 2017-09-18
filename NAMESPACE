@@ -2,6 +2,7 @@
 
 export(mssng_mat)
 export(plot_missing)
+export(sfind)
 export(state_panel)
 importFrom(grDevices,hcl)
 importFrom(stats,complete.cases)

@@ -75,8 +75,8 @@
 #'
 #' @export
 sfind <- function(x, list = "both") {
-  data("gwstates")
-  data("cowstates")
+  gwstates  <- states::gwstates
+  cowstates <- states::cowstates
 
   colnames(gwstates)[1]  <- "ccode"
   colnames(gwstates)[2]  <- "code3c"
