@@ -17,4 +17,8 @@ Suggests:
     testthat,
     WDI,
     countrycode,
-    ggplot2
+    ggplot2,
+    stringr,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

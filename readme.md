@@ -38,7 +38,22 @@ Correlates of War Project. 2017. "State System Membership List, v2016." Online, 
 
 ### TODO
 
-- plot_missing to visualize missing data
+- change state_panel to recognize date resolutions, e.g. "2017-05" implies monthly data
+  - use broad matching, i.e. for "2017" match any state that existed at any point
+    in 2017, more specific matching can in most cases be done by specifying more predise dates, e.g. "2017-12-31" to match at end of year
+  - year: first, last are unambiguous, no issues
+  - day: no ambiguity
+  - month: first and middle are clear, last day of month is not
+  - other formats? week, quarter?
+
+state_panel(2011, 2013) shoud make annual data, include South Sudan
+state_panel("2011-07", "2012-07") should make monthly data, include SS
+state_panel("2011-07", "2012-07", last_day = TRUE) monthly data, no SS
+state_panel("2011", "2012", last_day = TRUE) monthly data 2011-01:2012-12
+state_panel("2011-07", "2012-07", last_day = TRUE) monthly data 2011-07:2012-07
+state_panel("2011-07-01", "2012-07-01", last_day = TRUE) monthly data, 2011-07:2012-07, no SS
+
+- add something that gives overview of G&W/COW differences for when coding between by hand
 
 Later:
 

@@ -59,3 +59,47 @@
 #' data(cowstates)
 #' head(cowstates)
 "cowstates"
+
+
+
+#' Lookup country codes or names
+#'
+#' Helper to look up state list entries by country code or name
+#'
+#' @param x The search string or number.
+#' @param list Which state list to search. Only G&W at this point.
+#'
+#' @examples
+#' sfind(325)
+#' sfind("Algeria")
+#'
+#' @export
+sfind <- function(x, list = "both") {
+  data("gwstates")
+  data("cowstates")
+
+  colnames(gwstates)[1]  <- "ccode"
+  colnames(gwstates)[2]  <- "code3c"
+  colnames(cowstates)[1] <- "ccode"
+  colnames(cowstates)[2] <- "code3c"
+
+  slist <- rbind(
+    cbind(list = "G&W", gwstates),
+    cbind(list = "COW", cowstates, microstate = NA)
+  )
+  slist$search_string <- paste0(slist$code3c, ";", slist$country_name)
+
+  requireNamespace("stringr", quietly = TRUE)
+
+  if (list != "both") {
+    slist <- slist[slist$list==list, ]
+  }
+
+  if (is.numeric(x)) {
+    res <- slist[slist$ccode==x, ]
+  } else {
+    res <- slist[stringr::str_detect(slist$search_string, x), ]
+  }
+  res$search_string <- NULL
+  res
+}
