@@ -67,7 +67,7 @@
 #' Helper to look up state list entries by country code or name
 #'
 #' @param x The search string or number.
-#' @param list Which state list to search. Only G&W at this point.
+#' @param list Which state list to search (both, G&W, or COW only)
 #'
 #' @examples
 #' sfind(325)

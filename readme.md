@@ -2,7 +2,7 @@
 
 Create country-year data templates. This is all in a very bare-bones state currently.
 
-This package does two things:
+What the package does:
 
 1. It contains the Gleditsch and Ward (G&W) as well as the Correlates of War (COW) state system membership lists. 
     ```r
@@ -12,6 +12,12 @@ This package does two things:
 2. You can use it to build a country-year template that matches either the COW or G&W state lists. 
     ```r
     foo <- state_panel(as.Date("1991-01-01"), as.Date("2010-01-01"), by = "year")
+    ```
+3. For manual coding, search the state lists with `sfind()`:
+    ```r
+    sfind("Myanmar")
+    sfind("Myanmar", "G&W")
+    sfind("Myanmar", "COW")
     ```
 
 ## Install
