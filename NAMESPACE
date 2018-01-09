@@ -2,7 +2,10 @@
 
 export(mssng_mat)
 export(plot_missing)
+export(sfind)
 export(state_panel)
+import(dplyr)
+import(lubridate)
 importFrom(grDevices,hcl)
 importFrom(stats,complete.cases)
 importFrom(utils,data)

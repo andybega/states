@@ -1,6 +1,6 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Country code differences to look out for"
+author: "Andreas Beger"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -9,65 +9,71 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library("states")
+library("magrittr")
+library("dplyr")
+```
+
+Notes on common country code differences when comparing and merging different data sources. 
+
+## Between COW and G&W lists
+
 ```{r}
-knitr::opts_chunk$set(echo = TRUE)
 
 data("cowstates")
 data("gwstates")
 
+```
+
+How many COW country names are in G&W country names?
+
+```{r}
 table(cowstates$country_name %in% gwstates$country_name)
+```
+
+How many G&W country names are in COW country names?
+
+```{r}
 table(gwstates$country_name %in% cowstates$country)
 ```
 
+There is more apparent overlap when we focus on country codes:
 
-- Re-united Germany: COW uses 255 for Germany after reunification, G&W uses 260.
+```{r}
+cowstates %>% filter(!cowcode %in% gwstates$gwcode) %>%
+  knitr::kable(caption = "Country codes in COW but not in G&W")
+
+gwstates %>% filter(!gwcode %in% cowstates$cowcode) %>%
+  knitr::kable(caption = "Country codes in G&W but not in COW")
+```
+
+
+This is deceiving however. There are several country codes that refer to different countries in COW and G&W. Also, which code is retained for states after a split or merge is different in several cases. 
+
+- Germany after 1991 unification: COW uses 255, G&W continues 260
 - Yemen: COW has 678 for Yemen from 1926 to 1990, then 679 after unification; G&W uses 678 throughout, but independence is earlier. 
+- Kiribati: 970 in G&W, 946 in COW
+- Nauru: 971 in G&W, 970 in COW
+- Tuvalu: 973 in G&W, 947 in COW
+- Tonga: 972 in G&W, 955 in COW
 
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+## G&W and WDI
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+Some example code for converting WDI data to G&W:
 
-## Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+```r
+WDI(...) %>%
+  mutate(gwcode = countrycode(iso2c, "iso2c", "cown")) %>%
+  mutate(gwcode = case_when(
+           iso2c=="RS" ~ 340L,
+           iso2c=="XK" ~ 347L,
+           iso2c=="SS" ~ 626L,
+           gwcode==255L & year >= 1949 ~ 260L,
+           gwcode==679L ~ 678L,
+           TRUE ~ gwcode
+         ))
 ```
-
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
