@@ -3,9 +3,9 @@
 
 .gitignore
 .git
-
 .Rhistory
 .Rbuildignore
-
 dev.R
 readme.md
+^docs$
+dev

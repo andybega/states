@@ -1,9 +1,9 @@
 Package: states
 Type: Package
 Title: State Panel Data
-Version: 0.1.0
-Author: person("Andreas", "Beger", role = c("cre", "aut"), email =
-    "adbeger@gmail.com")
+Version: 0.2.0
+Authors@R: person("Andreas", "Beger", role = c("cre", "aut"), email =
+    "adbeger@gmail.com", comment = c(ORCID = "0000-0003-1883-3169"))
 Maintainer: Andreas Beger <adbeger@gmail.com>
 Description: Create and manage panel data consisting of independent states in
     the international system.
