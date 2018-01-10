@@ -1,6 +1,9 @@
 # states
 
-Create country-year data templates. This is all in a very bare-bones state currently.
+[![CRAN versions](http://www.r-pkg.org/badges/version/states)](http://www.r-pkg.org/badges/version/states))
+[![Travis-CI Build Status](https://travis-ci.org/andybega/states.svg?branch=master)](https://travis-ci.org/andybega/states)
+
+Create country-year/month/day panels consistend with the COW or Gleditsch & Ward lists of independent states. 
 
 What the package does:
 
@@ -9,20 +12,14 @@ What the package does:
     data(gwstates)
     data(cowstates)
     ```
-    Search them with `sfind`:
+    Search them with `sfind`, this can be helpful for manual coding:
     ```r
     sfind(260)
     sfind("German")
     ```
 2. You can use it to build a country-year template that matches either the COW or G&W state lists. 
     ```r
-    foo <- state_panel(as.Date("1991-01-01"), as.Date("2010-01-01"), by = "year")
-    ```
-3. For manual coding, search the state lists with `sfind()`:
-    ```r
-    sfind("Myanmar")
-    sfind("Myanmar", "G&W")
-    sfind("Myanmar", "COW")
+    countries <- state_panel("1991-01-01", "2010-01-01", by = "year")
     ```
 
 ## Install

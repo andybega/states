@@ -70,9 +70,14 @@
 #' @param list Which state list to search (both, G&W, or COW only)
 #'
 #' @examples
+#' # Works with either integer or strings
 #' sfind(325)
+#' sfind("ALG")
 #' sfind("Algeria")
 #'
+#' # Search strings are treated as regular expressions (see stringr::str_detect)
+#' sfind("Germany")
+#' sfind("German")
 #' @export
 sfind <- function(x, list = "both") {
   gwstates  <- states::gwstates
@@ -89,7 +94,10 @@ sfind <- function(x, list = "both") {
   )
   slist$search_string <- paste0(slist$code3c, ";", slist$country_name)
 
-  requireNamespace("stringr", quietly = TRUE)
+  if (!requireNamespace("stringr", quietly = TRUE)) {
+    stop("stringr needed for this function to work. Please install it.",
+         call. = FALSE)
+  }
 
   if (list != "both") {
     slist <- slist[slist$list==list, ]

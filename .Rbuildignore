@@ -9,3 +9,4 @@ dev.R
 readme.md
 ^docs$
 dev
+^\.travis\.yml$

@@ -35,6 +35,22 @@ or loses independence during a time period specified in the by option:
 }
 \examples{
 gwlist  <- state_panel("1991-01-01", "2015-01-01", by = "year", useGW = TRUE)
+head(gwlist, 3)
 cowlist <- state_panel("1991-01-01", "2015-01-01", by = "year", useGW = FALSE)
+head(cowlist, 3)
+
+# Partials
+# Focus on South Sudan--is there a record for 2011, first year of indendence?
+data(gwstates)
+dplyr::filter(gwstates, gwcode==626)
+# No 2011 because SSD was not indpendent on January 1st 2011
+x <- state_panel("2011-01-01", "2013-01-01", by = "year", partial = "exact")
+dplyr::filter(x, gwcode==626)
+# Includes 2011 because 12-31 date is used for filtering
+x <- state_panel("2011-12-31", "2013-12-31", by = "year", partial = "exact")
+dplyr::filter(x, gwcode==626)
+# Includes 2011 because partial = "any"
+x <- state_panel("2011-01-01", "2013-01-01", by = "year", partial = "any")
+dplyr::filter(x, gwcode==626)
 
 }

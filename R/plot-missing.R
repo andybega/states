@@ -9,6 +9,7 @@
 #' @param statelist Check not only missing values, but presence or absence of
 #'     observations against a list of independent states?
 #'
+#' @importFrom dplyr left_join
 mssng_mat_base <- function(x, data, space, time, time_unit, statelist = "none") {
   if (!is.factor(data[, space])) data[, space] <- as.factor(data[, space])
   space_range <- unique(data[, space])
@@ -101,6 +102,11 @@ plot_missing <- function(x, data, space, time, time_unit,
          statelist))
   }
 
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {
+    stop("ggplot2 needed for this function to work. Please install it.",
+         call. = FALSE)
+  }
+
   mm <- mssng_mat(x, data, space, time, time_unit, statelist)
 
   p <- ggplot2::ggplot(mm, ggplot2::aes_string(x = time, y = space, fill = ".z")) +
@@ -115,9 +121,9 @@ plot_missing <- function(x, data, space, time, time_unit,
                      "No observation, independent state"   = hcl(15, 100, 85), "No observation, non-independent"   = hcl(15, 0, 97))
   } else {
     mm$.fill <- mm$.z
-    fill_values <-  c("Complete" = hcl(195, l=65, c=100),
-                      "Missing values"  = hcl(15, l=65, c=100),
-                      "No observation"   = hcl(15, l=97, c=0))
+    fill_values <-  c("Complete"         = grDevices::hcl(195, l=65, c=100),
+                      "Missing values"   = grDevices::hcl(15, l=65, c=100),
+                      "No observation"   = grDevices::hcl(15, l=97, c=0))
   }
 
   p <- ggplot2::ggplot(mm, ggplot2::aes_string(x = time, y = space, fill = ".fill")) +

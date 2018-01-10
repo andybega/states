@@ -13,7 +13,6 @@ vignette: >
 knitr::opts_chunk$set(echo = FALSE)
 
 library("states")
-library("magrittr")
 library("dplyr")
 ```
 

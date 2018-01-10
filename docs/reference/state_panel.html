@@ -68,7 +68,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/differences-gw-cow.html">Vignette Title</a>
+      <a href="../articles/differences-gw-cow.html">Country code differences to look out for</a>
     </li>
   </ul>
 </li>
@@ -97,7 +97,7 @@
     <p>Create panel data consisting of independent states in the international system.</p>
     
 
-    <pre class="usage"><span class='fu'>state_panel</span>(<span class='no'>start</span>, <span class='no'>end</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"middle"</span>, <span class='kw'>useGW</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>state_panel</span>(<span class='no'>start</span>, <span class='no'>end</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"exact"</span>, <span class='kw'>useGW</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -112,13 +112,13 @@
     </tr>
     <tr>
       <th>by</th>
-      <td><p>Temporal resolution</p></td>
+      <td><p>Temporal resolution, "year", "month", or "day".</p></td>
     </tr>
     <tr>
       <th>partial</th>
       <td><p>Option for how to handle edge cases where a state is independent
 for only part of a time period (year, month, etc.). Options include
-<code>"first"</code>, <code>"middle"</code>, <code>"last"</code>, <code>"any"</code>. See details.</p></td>
+<code>"exact"</code>, and <code>"any"</code>. See details.</p></td>
     </tr>
     <tr>
       <th>useGW</th>
@@ -129,17 +129,43 @@ membership list.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Parsing of the <code>partial</code> option depends on the time resolution.</p><ul>
-<li><p><code>"first"</code> and <code>"last"</code> are the first and last days of the
-        time period, e.g. February 28th, March 31st, etc.</p></li>
-<li><p><code>"middle"</code> is yyyy-07-02, yyyy-mm-16, and Wednesdays for weekly.</p></li>
+    <p>The partial option determines how to handle instances where a country gains
+or loses independence during a time period specified in the by option:</p><ul>
+<li><p>"exact": the exact date in start is used for filtering</p></li>
+<li><p>"any": a state-period is included if the state was independent at
+                 any point in that period.</p></li>
 </ul>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>begin</span> <span class='kw'>&lt;-</span> <span class='fu'>as.Date</span>(<span class='st'>"1991-01-01"</span>)
-<span class='no'>end</span>   <span class='kw'>&lt;-</span> <span class='fu'>as.Date</span>(<span class='st'>"2015-01-01"</span>)
-<span class='no'>gwlist</span>  <span class='kw'>&lt;-</span> <span class='fu'>state_panel</span>(<span class='no'>begin</span>, <span class='no'>end</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>useGW</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in state_panel(begin, end, by = "year", useGW = TRUE): Not implemented yet</span></div><div class='input'><span class='no'>cowlist</span> <span class='kw'>&lt;-</span> <span class='fu'>state_panel</span>(<span class='no'>begin</span>, <span class='no'>end</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>useGW</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in state_panel(begin, end, by = "year", useGW = FALSE): Not implemented yet</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>gwlist</span>  <span class='kw'>&lt;-</span> <span class='fu'>state_panel</span>(<span class='st'>"1991-01-01"</span>, <span class='st'>"2015-01-01"</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>useGW</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>head</span>(<span class='no'>gwlist</span>, <span class='fl'>3</span>)</div><div class='output co'>#&gt;   gwcode       date
+#&gt; 1      2 1991-01-01
+#&gt; 2      2 1992-01-01
+#&gt; 3      2 1993-01-01</div><div class='input'><span class='no'>cowlist</span> <span class='kw'>&lt;-</span> <span class='fu'>state_panel</span>(<span class='st'>"1991-01-01"</span>, <span class='st'>"2015-01-01"</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>useGW</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>head</span>(<span class='no'>cowlist</span>, <span class='fl'>3</span>)</div><div class='output co'>#&gt;   cowcode       date
+#&gt; 1       2 1991-01-01
+#&gt; 2       2 1992-01-01
+#&gt; 3       2 1993-01-01</div><div class='input'>
+<span class='co'># Partials</span>
+<span class='co'># Focus on South Sudan--is there a record for 2011, first year of indendence?</span>
+<span class='fu'>data</span>(<span class='no'>gwstates</span>)
+<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>gwstates</span>, <span class='no'>gwcode</span><span class='kw'>==</span><span class='fl'>626</span>)</div><div class='output co'>#&gt;   gwcode iso3c country_name      start        end microstate
+#&gt; 1    626   SSD  South Sudan 2011-07-09 2016-12-31      FALSE</div><div class='input'><span class='co'># No 2011 because SSD was not indpendent on January 1st 2011</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>state_panel</span>(<span class='st'>"2011-01-01"</span>, <span class='st'>"2013-01-01"</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"exact"</span>)
+<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>x</span>, <span class='no'>gwcode</span><span class='kw'>==</span><span class='fl'>626</span>)</div><div class='output co'>#&gt;   gwcode       date
+#&gt; 1    626 2012-01-01
+#&gt; 2    626 2013-01-01</div><div class='input'><span class='co'># Includes 2011 because 12-31 date is used for filtering</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>state_panel</span>(<span class='st'>"2011-12-31"</span>, <span class='st'>"2013-12-31"</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"exact"</span>)
+<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>x</span>, <span class='no'>gwcode</span><span class='kw'>==</span><span class='fl'>626</span>)</div><div class='output co'>#&gt;   gwcode       date
+#&gt; 1    626 2011-12-31
+#&gt; 2    626 2012-12-31
+#&gt; 3    626 2013-12-31</div><div class='input'><span class='co'># Includes 2011 because partial = "any"</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>state_panel</span>(<span class='st'>"2011-01-01"</span>, <span class='st'>"2013-01-01"</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"any"</span>)
+<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>x</span>, <span class='no'>gwcode</span><span class='kw'>==</span><span class='fl'>626</span>)</div><div class='output co'>#&gt;   gwcode       date
+#&gt; 1    626 2011-01-01
+#&gt; 2    626 2012-01-01
+#&gt; 3    626 2013-01-01</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

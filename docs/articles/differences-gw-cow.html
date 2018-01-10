@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vignette Title • states</title>
+<title>Country code differences to look out for • states</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
@@ -45,7 +45,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/differences-gw-cow.html">Vignette Title</a>
+      <a href="../articles/differences-gw-cow.html">Country code differences to look out for</a>
     </li>
   </ul>
 </li>
@@ -65,46 +65,209 @@
       </header><div class="row">
   <div class="col-md-9">
     <div class="page-header toc-ignore">
-      <h1>Vignette Title</h1>
-                        <h4 class="author">Vignette Author</h4>
+      <h1>Country code differences to look out for</h1>
+                        <h4 class="author">Andreas Beger</h4>
             
-            <h4 class="date">2017-12-04</h4>
+            <h4 class="date">2018-01-10</h4>
           </div>
 
     
     
 <div class="contents">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"states"</span>)
-knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">TRUE</span>)
-
-<span class="kw">data</span>(<span class="st">"cowstates"</span>)
-<span class="kw">data</span>(<span class="st">"gwstates"</span>)
-
-<span class="kw">table</span>(cowstates<span class="op">$</span>country_name <span class="op">%in%</span><span class="st"> </span>gwstates<span class="op">$</span>country_name)</code></pre></div>
+<p>Notes on common country code differences when comparing and merging different data sources.</p>
+<div id="between-cow-and-gw-lists" class="section level2">
+<h2 class="hasAnchor">
+<a href="#between-cow-and-gw-lists" class="anchor"></a>Between COW and G&amp;W lists</h2>
+<p>How many COW country names are in G&amp;W country names?</p>
 <pre><code>## 
 ## FALSE  TRUE 
 ##    36   207</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(gwstates<span class="op">$</span>country_name <span class="op">%in%</span><span class="st"> </span>cowstates<span class="op">$</span>country)</code></pre></div>
+<p>How many G&amp;W country names are in COW country names?</p>
 <pre><code>## 
 ## FALSE  TRUE 
 ##    46   193</code></pre>
+<p>There is more apparent overlap when we focus on country codes:</p>
+<table class="table">
+<caption>Country codes in COW but not in G&amp;W</caption>
+<thead><tr class="header">
+<th align="right">cowcode</th>
+<th align="left">cow3c</th>
+<th align="left">country_name</th>
+<th align="left">start</th>
+<th align="left">end</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">679</td>
+<td align="left">YEM</td>
+<td align="left">Yemen</td>
+<td align="left">1990-05-22</td>
+<td align="left">2016-12-31</td>
+</tr>
+<tr class="even">
+<td align="right">946</td>
+<td align="left">KIR</td>
+<td align="left">Kiribati</td>
+<td align="left">1999-09-14</td>
+<td align="left">2016-12-31</td>
+</tr>
+<tr class="odd">
+<td align="right">947</td>
+<td align="left">TUV</td>
+<td align="left">Tuvalu</td>
+<td align="left">2000-09-05</td>
+<td align="left">2016-12-31</td>
+</tr>
+<tr class="even">
+<td align="right">955</td>
+<td align="left">TON</td>
+<td align="left">Tonga</td>
+<td align="left">1999-09-14</td>
+<td align="left">2016-12-31</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption>Country codes in G&amp;W but not in COW</caption>
+<thead><tr class="header">
+<th align="right">gwcode</th>
+<th align="left">iso3c</th>
+<th align="left">country_name</th>
+<th align="left">start</th>
+<th align="left">end</th>
+<th align="left">microstate</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">89</td>
+<td align="left">UPC</td>
+<td align="left">United Provinces of Central America</td>
+<td align="left">1823-07-01</td>
+<td align="left">1839-12-31</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="right">99</td>
+<td align="left">GCL</td>
+<td align="left">Great Colombia</td>
+<td align="left">1821-08-30</td>
+<td align="left">1830-09-22</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="right">340</td>
+<td align="left">SER</td>
+<td align="left">Serbia</td>
+<td align="left">1878-07-13</td>
+<td align="left">1915-10-01</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="right">340</td>
+<td align="left">SER</td>
+<td align="left">Serbia</td>
+<td align="left">2006-06-05</td>
+<td align="left">2016-12-31</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="right">563</td>
+<td align="left">TRA</td>
+<td align="left">Transvaal</td>
+<td align="left">1852-01-01</td>
+<td align="left">1910-05-30</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="right">564</td>
+<td align="left">OFS</td>
+<td align="left">Orange Free State</td>
+<td align="left">1854-03-28</td>
+<td align="left">1910-05-30</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="right">711</td>
+<td align="left">TBT</td>
+<td align="left">Tibet</td>
+<td align="left">1913-01-01</td>
+<td align="left">1950-10-01</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="right">815</td>
+<td align="left">VNM</td>
+<td align="left">Vietnam (Annam/Cochin China/Tonkin)</td>
+<td align="left">1816-01-01</td>
+<td align="left">1893-01-01</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="right">396</td>
+<td align="left">ABK</td>
+<td align="left">Abkhazia</td>
+<td align="left">2008-08-26</td>
+<td align="left">2016-12-31</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="right">397</td>
+<td align="left">SOT</td>
+<td align="left">South Ossetia</td>
+<td align="left">2008-08-26</td>
+<td align="left">2016-12-31</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="right">971</td>
+<td align="left">NAU</td>
+<td align="left">Nauru</td>
+<td align="left">1968-12-31</td>
+<td align="left">2016-12-31</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="right">972</td>
+<td align="left">TON</td>
+<td align="left">Tonga</td>
+<td align="left">1970-06-04</td>
+<td align="left">2016-12-31</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="right">973</td>
+<td align="left">TUV</td>
+<td align="left">Tuvalu</td>
+<td align="left">1978-10-01</td>
+<td align="left">2016-12-31</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+<p>This is deceiving however. There are several country codes that refer to different countries in COW and G&amp;W. Also, which code is retained for states after a split or merge is different in several cases.</p>
 <ul>
-<li>Re-united Germany: COW uses 255 for Germany after reunification, G&amp;W uses 260.</li>
+<li>Germany after 1991 unification: COW uses 255, G&amp;W continues 260</li>
 <li>Yemen: COW has 678 for Yemen from 1926 to 1990, then 679 after unification; G&amp;W uses 678 throughout, but independence is earlier.</li>
+<li>Kiribati: 970 in G&amp;W, 946 in COW</li>
+<li>Nauru: 971 in G&amp;W, 970 in COW</li>
+<li>Tuvalu: 973 in G&amp;W, 947 in COW</li>
+<li>Tonga: 972 in G&amp;W, 955 in COW</li>
 </ul>
+</div>
 <div id="gw-and-wdi" class="section level2">
 <h2 class="hasAnchor">
 <a href="#gw-and-wdi" class="anchor"></a>G&amp;W and WDI</h2>
-<pre><code>WDI(...) %&gt;%
-  mutate(gwcode = countrycode(iso2c, "iso2c", "cown")) %&gt;%
-  mutate(gwcode = case_when(
-           iso2c=="RS" ~ 340L,
-           iso2c=="XK" ~ 347L,
-           iso2c=="SS" ~ 626L,
-           gwcode==255L &amp; year &gt;= 1949 ~ 260L,
-           gwcode==679L ~ 678L,
-           TRUE ~ gwcode
-         ))</code></pre>
+<p>Some example code for converting WDI data to G&amp;W:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">WDI</span>(...) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gwcode =</span> <span class="kw">countrycode</span>(iso2c, <span class="st">"iso2c"</span>, <span class="st">"cown"</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gwcode =</span> <span class="kw">case_when</span>(
+           iso2c<span class="op">==</span><span class="st">"RS"</span> <span class="op">~</span><span class="st"> </span>340L,
+           iso2c<span class="op">==</span><span class="st">"XK"</span> <span class="op">~</span><span class="st"> </span>347L,
+           iso2c<span class="op">==</span><span class="st">"SS"</span> <span class="op">~</span><span class="st"> </span>626L,
+           gwcode<span class="op">==</span>255L <span class="op">&amp;</span><span class="st"> </span>year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1949</span> <span class="op">~</span><span class="st"> </span>260L,
+           gwcode<span class="op">==</span>679L <span class="op">~</span><span class="st"> </span>678L,
+           <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>gwcode
+         ))</code></pre></div>
 </div>
 </div>
   </div>
@@ -114,7 +277,8 @@ knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="k
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#gw-and-wdi">G&amp;W and WDI</a></li>
+<li><a href="#between-cow-and-gw-lists">Between COW and G&amp;W lists</a></li>
+      <li><a href="#gw-and-wdi">G&amp;W and WDI</a></li>
       </ul>
 </div>
       </div>
