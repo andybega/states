@@ -13,11 +13,13 @@ LazyData: true
 Imports:
     dplyr,
     lubridate
-RoxygenNote: 6.0.1
 Suggests:
     testthat,
     ggplot2,
     stringr,
     knitr,
     rmarkdown
+RoxygenNote: 6.0.1
 VignetteBuilder: knitr
+URL: https://github.com/andybega/states, https://andybeger.com/states
+BugReports: https://github.com/andybega/states/issues
