@@ -11,7 +11,8 @@ Create data based on the Gleditsch & Ward (G&W) or Correlates of
     for merging other sources of data that have conflicting sets of states.
 }
 \details{
-TODO
+See static docs at https://andybeger.com/states and the source code
+    at https://www.github.com/andybega/states
 }
 \references{
 Gleditsch, Kristian S. & Michael D. Ward. 1999. ``Interstate System

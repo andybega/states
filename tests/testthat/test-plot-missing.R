@@ -5,11 +5,8 @@ context("`plot_missing`")
 
 cy <- state_panel(as.Date("1980-06-30"), as.Date("2015-06-30"), by = "year",
                   useGW = TRUE)
-cy$year <- as.integer(substr(as.character(cy$date), 1, 4))
-
 cy$myvar <- rnorm(nrow(cy))
 cy$myvar[sample(1:nrow(cy), nrow(cy)*.1, replace = FALSE)] <- NA
-cy$date <- as.Date(paste0(cy$year, "-06-30"))
 
 test_that("plot_missing accepts all input options", {
 

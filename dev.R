@@ -1,5 +1,63 @@
-# ## Notes
+# Package development -----------------------------------------------------
 #
+#   keep track in news.md
+#
+
+library("devtools")
+library("pkgdown")
+
+if (!requireNamespace("pkg", quietly = TRUE)) {
+  stop("Pkg needed for this function to work. Please install it.",
+       call. = FALSE)
+}
+
+# Check local
+devtools::load_all()
+devtools::test()
+devtools::document()
+devtools::check()
+pkgdown::build_site()
+
+
+# Package release ---------------------------------------------------------
+
+library("devtools")
+
+#   Update NEWS
+#
+#   Update date and version in DESCRIPTION:
+#     [major][minor][patch][dev]
+#       - major: not backwards compatible
+#       - minor: feature enhancements
+#       - patch: fixes bugs
+#       - dev (9000): working version
+
+devtools::check()
+devtools::build()
+
+build_win(version = "R-release")
+build_win(version = "R-devel")
+
+# commit to git for travis
+# https://travis-ci.org
+
+#   once emails are in and travis is done:
+#
+#   Update cran-comments.md
+
+R.Version()$version.string
+
+devtools::release()
+
+# update local install
+desc <- readLines("DESCRIPTION")
+vers <- desc[grep("Version", desc)]
+vers <- stringr::str_extract(vers, "[0-9\\.]+")
+devtools::install_url(paste0("file://", getwd(), "/../states_", vers, ".tar.gz"))
+
+
+# Notes -------------------------------------------------------------------
+
 # - change state_panel to recognize date resolutions, e.g. "2017-05" implies monthly data
 # - use broad matching, i.e. for "2017" match any state that existed at any point
 # in 2017, more specific matching can in most cases be done by specifying more predise dates, e.g. "2017-12-31" to match at end of year
@@ -82,61 +140,3 @@
 #       6. NO: error
 #     7. NO:
 
-
-
-# Package development -----------------------------------------------------
-#
-#   keep track in news.md
-#
-
-library("devtools")
-library("pkgdown")
-
-if (!requireNamespace("pkg", quietly = TRUE)) {
-  stop("Pkg needed for this function to work. Please install it.",
-       call. = FALSE)
-}
-
-# Check local
-devtools::load_all()
-devtools::test()
-devtools::document()
-devtools::check()
-pkgdown::build_site()
-
-
-# Package release ---------------------------------------------------------
-
-library("devtools")
-
-#   Update NEWS
-#
-#   Update date and version in DESCRIPTION:
-#     [major][minor][patch][dev]
-#       - major: not backwards compatible
-#       - minor: feature enhancements
-#       - patch: fixes bugs
-#       - dev (9000): working version
-
-devtools::check()
-devtools::build()
-
-build_win(version = "R-release")
-build_win(version = "R-devel")
-
-# commit to git for travis
-# https://travis-ci.org
-
-#   once emails are in and travis is done:
-#
-#   Update cran-comments.md
-
-R.Version()$version.string
-
-devtools::release()
-
-# update local install
-desc <- readLines("DESCRIPTION")
-vers <- desc[grep("Version", desc)]
-vers <- stringr::str_extract(vers, "[0-9\\.]+")
-devtools::install_url(paste0("file://", getwd(), "/../states_", vers, ".tar.gz"))

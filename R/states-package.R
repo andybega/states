@@ -4,7 +4,8 @@
 #'     War (COW) state system memberships lists. This is useful as a template
 #'     for merging other sources of data that have conflicting sets of states.
 #'
-#' @details TODO
+#' @details See static docs at https://andybeger.com/states and the source code
+#'     at https://www.github.com/andybega/states
 #'
 #' @references
 #'     Gleditsch, Kristian S. & Michael D. Ward. 1999. ``Interstate System

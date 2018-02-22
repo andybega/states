@@ -3,7 +3,11 @@
 [![CRAN versions](http://www.r-pkg.org/badges/version/states)](http://www.r-pkg.org/badges/version/states)
 [![Travis-CI Build Status](https://travis-ci.org/andybega/states.svg?branch=master)](https://travis-ci.org/andybega/states)
 
-Create country-year/month/day panels consistend with the COW or Gleditsch & Ward lists of independent states. 
+Create country-year/month/day panels consistent with the COW or Gleditsch & Ward lists of independent states. I mainly use this for merging different data sources: 
+
+1. Create a master template that reflects one of the independent states lists. 
+2. For each data source, normalize to a copy of the master template. Doing this by source makes it easier to identify and address issues like missing values or observation for non-independent states. 
+3. In the end, merge everything together. Since all the inputs are already normalized to a proper state panel list, there should be no issues.
 
 What the package does:
 

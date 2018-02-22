@@ -53,7 +53,7 @@ state_panel <- function(start, end, by = "year", partial = "exact", useGW=TRUE) 
     stop("Could not convert start or end to Date class, are they in 'YYYY-MM-DD' format?")
   }
   if (!by %in% c("year", "month", "day")) {
-    stop("Only 'year' and 'month' are currently supported for the 'by' argument.")
+    stop("Only 'year', 'month', and 'day' are currently supported for the 'by' argument.")
   }
   if (!partial %in% c("exact", "any")) {
     stop("Only 'exact' and 'any' options are supported for 'partial' argument.")
@@ -76,7 +76,7 @@ state_panel <- function(start, end, by = "year", partial = "exact", useGW=TRUE) 
   statelist <- statelist[with(statelist, cend >= start & cstart <= end), ]
 
   statelist$dummy <- 1
-  dates = data.frame(dummy = 1,
+  dates <- data.frame(dummy = 1,
                      date = seq(start, end, by = by))
   panel <- dplyr::full_join(statelist, dates, by = "dummy") %>%
     dplyr::select(-dummy)
@@ -114,4 +114,4 @@ state_panel <- function(start, end, by = "year", partial = "exact", useGW=TRUE) 
   panel
 }
 
-
+utils::globalVariables(c("ccode", "cend", "cstart", "datestr", "dummy"))

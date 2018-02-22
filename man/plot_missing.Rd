@@ -2,14 +2,16 @@
 % Please edit documentation in R/plot-missing.R
 \name{plot_missing}
 \alias{plot_missing}
-\title{Visualize missing status for state panel}
+\alias{missing_info}
+\title{Vizualize missing and non-proper cases for state panel data}
 \usage{
 plot_missing(x, data, space, time, time_unit, statelist = c("none", "GW",
   "COW"))
+
+missing_info(x, data, space, time, time_unit, statelist = "none")
 }
 \arguments{
-\item{x}{Variable names(s), e.g. "x" or c("x1", "x2"). To check all variables
-in a data frame use something like.}
+\item{x}{Variable names(s), e.g. "x" or c("x1", "x2").}
 
 \item{data}{State panel data frame}
 
@@ -21,13 +23,31 @@ in a data frame use something like.}
 See details in \code{\link[base]{seq.Date}}.}
 
 \item{statelist}{Check not only missing values, but presence or absence of
-observations against a list of independent states?}
+observations against a list of independent states? "none" or "GW" or "COW".}
 }
 \description{
-Visualize missing status for state panel
+Plot missing values by country and date, and additionally identify country-date
+cases that do or do not match an independent state list.
+}
+\details{
+\code{missing_info} provides the information that is plotted with
+    \code{plot_missing}. The latter returns a ggplot, and thus can be chained
+    with other ggplot functions as usual.
 }
 \examples{
+cy <- state_panel(as.Date("1980-06-30"), as.Date("2015-06-30"), by = "year",
+useGW = TRUE)
+cy$myvar <- rnorm(nrow(cy))
+cy$myvar[sample(1:nrow(cy), nrow(cy)*.1, replace = FALSE)] <- NA
+str(cy)
+
+head(missing_info("myvar", cy, "gwcode", "date", "year", "none"))
+plot_missing("myvar", cy, "gwcode", "date", "year", "none")
+
+# Check data also against G&W list of independent states
+head(missing_info("myvar", cy, "gwcode", "date", "year", "GW"))
+plot_missing("myvar", cy, "gwcode", "date", "year", "GW")
+
 # To check all variables:
 # plot_missing(setdiff(colnames(df), "space", "time"), ...)
-
 }

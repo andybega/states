@@ -75,7 +75,12 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#states" class="anchor"></a>states</h1></div>
 
-<p>Create country-year/month/day panels consistend with the COW or Gleditsch &amp; Ward lists of independent states.</p>
+<p>Create country-year/month/day panels consistent with the COW or Gleditsch &amp; Ward lists of independent states. I mainly use this for merging different data sources:</p>
+<ol>
+<li>Create a master template that reflects one of the independent states lists.</li>
+<li>For each data source, normalize to a copy of the master template. Doing this by source makes it easier to identify and address issues like missing values or observation for non-independent states.</li>
+<li>In the end, merge everything together. Since all the inputs are already normalized to a proper state panel list, there should be no issues.</li>
+</ol>
 <p>What the package does:</p>
 <ol>
 <li>

@@ -1,0 +1,21 @@
+reference:
+  - title: "Basics"
+    desc: >
+      Basic functionality
+    contents:
+      - state_panel
+      - sfind
+      - plot_missing
+      - states
+  - title: "Helper functions"
+    desc: >
+      Miscellaneous utility functions
+    contents:
+      - id_date_sequence
+      - missing_info
+  - title: "Data"
+    desc: >
+      The COW and G&W independent states lists are included in the package.
+    contents:
+      - cowstates
+      - gwstates
