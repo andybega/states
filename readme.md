@@ -28,7 +28,13 @@ What the package does:
 
 ## Install
 
-Not on CRAN, so:
+The package is on CRAN and can be installed with:
+
+```r
+install.packages("states")
+```
+
+Or to install from GitHub:
 
 ```r
 library(devtools)
