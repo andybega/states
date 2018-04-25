@@ -104,7 +104,7 @@ cases that do or do not match an independent state list.</p>
     
 
     <pre class="usage"><span class='fu'>plot_missing</span>(<span class='no'>x</span>, <span class='no'>data</span>, <span class='no'>space</span>, <span class='no'>time</span>, <span class='no'>time_unit</span>, <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"none"</span>, <span class='st'>"GW"</span>,
-  <span class='st'>"COW"</span>))
+  <span class='st'>"COW"</span>), <span class='kw'>skip_labels</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 
 <span class='fu'>missing_info</span>(<span class='no'>x</span>, <span class='no'>data</span>, <span class='no'>space</span>, <span class='no'>time</span>, <span class='no'>time_unit</span>, <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='st'>"none"</span>)</pre>
     
@@ -121,11 +121,12 @@ cases that do or do not match an independent state list.</p>
     </tr>
     <tr>
       <th>space</th>
-      <td><p>Name of state identifier</p></td>
+      <td><p>Name of variable identifying state country codes.</p></td>
     </tr>
     <tr>
       <th>time</th>
-      <td><p>Name of time identifier</p></td>
+      <td><p>Name of time identifier, the corresponding variables needs to be
+Date class.</p></td>
     </tr>
     <tr>
       <th>time_unit</th>
@@ -137,7 +138,23 @@ See details in <code><a href='http://www.rdocumentation.org/packages/base/topics
       <td><p>Check not only missing values, but presence or absence of
 observations against a list of independent states? "none" or "GW" or "COW".</p></td>
     </tr>
+    <tr>
+      <th>skip_labels</th>
+      <td><p>Only plot the label for every n-th country on the y-axis
+to avoid overplotting.</p></td>
+    </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>plot_missing</code> returns a ggplot2 object.</p>
+<p><code>missing_info</code> returns a data frame with components:</p>
+<dt>[space]</dt><dd><p>Space identifer, with name equal to the "space" argument, e.g. "ccode".</p></dd>
+  <dt>[time]</dt><dd><p>Time identifer, with name equal to the "time" argument, e.g. "date".</p></dd>
+  <dt>independent</dt><dd><p>A logical vector, is the statelist argument is none, NA.</p></dd>
+  <dt>missing_value</dt><dd><p>A logical vector indicating if that record has missing values</p></dd>
+  <dt>status</dt><dd><p>The label used for plotting, combining the independence and missing value information for a case as appropriate.</p></dd>
+
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -147,7 +164,8 @@ observations against a list of independent states? "none" or "GW" or "COW".</p><
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>cy</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='state_panel.html'>state_panel</a></span>(<span class='fu'>as.Date</span>(<span class='st'>"1980-06-30"</span>), <span class='fu'>as.Date</span>(<span class='st'>"2015-06-30"</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>,
+    <pre class="examples"><div class='input'><span class='co'># Create an example data frame with missing values</span>
+<span class='no'>cy</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='state_panel.html'>state_panel</a></span>(<span class='fu'>as.Date</span>(<span class='st'>"1980-06-30"</span>), <span class='fu'>as.Date</span>(<span class='st'>"2015-06-30"</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>,
 <span class='kw'>useGW</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='no'>cy</span>$<span class='no'>myvar</span> <span class='kw'>&lt;-</span> <span class='fu'>rnorm</span>(<span class='fu'>nrow</span>(<span class='no'>cy</span>))
 <span class='no'>cy</span>$<span class='no'>myvar</span>[<span class='fu'>sample</span>(<span class='fl'>1</span>:<span class='fu'>nrow</span>(<span class='no'>cy</span>), <span class='fu'>nrow</span>(<span class='no'>cy</span>)*<span class='fl'>.1</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)] <span class='kw'>&lt;-</span> <span class='fl'>NA</span>
@@ -155,13 +173,25 @@ observations against a list of independent states? "none" or "GW" or "COW".</p><
 #&gt;  $ gwcode: int  2 2 2 2 2 2 2 2 2 2 ...
 #&gt;  $ date  : Date, format: "1980-06-30" "1981-06-30" ...
 #&gt;  $ myvar : num  -1.40004 0.25532 -2.43726 -0.00557 0.62155 ...</div><div class='input'>
+<span class='co'># Visualize missing values:</span>
+<span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"none"</span>)</div><div class='img'><img src='plot_missing-16.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='co'># missing_info() generates the data underlying plot_missing():</span>
 <span class='fu'>head</span>(<span class='fu'>missing_info</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"none"</span>))</div><div class='output co'>#&gt;   gwcode       date independent missing_value         status
 #&gt; 1      2 1980-06-30          NA         FALSE       Complete
 #&gt; 2     20 1980-06-30          NA         FALSE       Complete
 #&gt; 3     31 1980-06-30          NA         FALSE       Complete
 #&gt; 4     40 1980-06-30          NA          TRUE Missing values
 #&gt; 5     41 1980-06-30          NA         FALSE       Complete
-#&gt; 6     42 1980-06-30          NA         FALSE       Complete</div><div class='input'><span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"none"</span>)</div><div class='img'><img src='plot_missing-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+#&gt; 6     42 1980-06-30          NA         FALSE       Complete</div><div class='input'>
+<span class='co'># if we specify a statelist to check against, 'independent' will have values</span>
+<span class='co'># now:</span>
+<span class='fu'>head</span>(<span class='fu'>missing_info</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>))</div><div class='output co'>#&gt;   gwcode       date independent missing_value                status
+#&gt; 1      2 1980-06-30           1         FALSE Complete, independent
+#&gt; 2      2 1981-06-30           1         FALSE Complete, independent
+#&gt; 3      2 1982-06-30           1         FALSE Complete, independent
+#&gt; 4      2 1983-06-30           1         FALSE Complete, independent
+#&gt; 5      2 1984-06-30           1         FALSE Complete, independent
+#&gt; 6      2 1985-06-30           1         FALSE Complete, independent</div><div class='input'>
 <span class='co'># Check data also against G&amp;W list of independent states</span>
 <span class='fu'>head</span>(<span class='fu'>missing_info</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>))</div><div class='output co'>#&gt;   gwcode       date independent missing_value                status
 #&gt; 1      2 1980-06-30           1         FALSE Complete, independent
@@ -169,16 +199,37 @@ observations against a list of independent states? "none" or "GW" or "COW".</p><
 #&gt; 3      2 1982-06-30           1         FALSE Complete, independent
 #&gt; 4      2 1983-06-30           1         FALSE Complete, independent
 #&gt; 5      2 1984-06-30           1         FALSE Complete, independent
-#&gt; 6      2 1985-06-30           1         FALSE Complete, independent</div><div class='input'><span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>)</div><div class='img'><img src='plot_missing-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
-# To check all variables:
-# plot_missing(setdiff(colnames(df), "space", "time"), ...)
-</div></pre>
+#&gt; 6      2 1985-06-30           1         FALSE Complete, independent</div><div class='input'><span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>)</div><div class='img'><img src='plot_missing-17.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='co'># To check all variables:</span>
+<span class='co'># plot_missing(setdiff(colnames(df), "space", "time"), ...)</span>
+
+<span class='co'># Live example with Polity data</span>
+<span class='fu'>data</span>(<span class='st'>"polity"</span>)
+<span class='fu'>head</span>(<span class='no'>polity</span>)</div><div class='output co'>#&gt;   ccode year polity
+#&gt; 1   700 1800     -6
+#&gt; 2   700 1801     -6
+#&gt; 3   700 1802     -6
+#&gt; 4   700 1803     -6
+#&gt; 5   700 1804     -6
+#&gt; 6   700 1805     -6</div><div class='input'><span class='no'>polity</span>$<span class='no'>date</span> <span class='kw'>&lt;-</span> <span class='fu'>as.Date</span>(<span class='fu'>paste0</span>(<span class='no'>polity</span>$<span class='no'>year</span>, <span class='st'>"-12-31"</span>))
+<span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>)</div><div class='img'><img src='plot_missing-18.png' alt='' width='700' height='432.632880098887' /></div><div class='input'><span class='co'># COW starts in 1816; Polity has excess data for several non-independent</span>
+<span class='co'># states after that date, and is missing coverage for several countries.</span>
+
+<span class='co'># The date option is relevant for years in which states gain or lose</span>
+<span class='co'># independence, so this will be slighlty different:</span>
+<span class='no'>polity</span>$<span class='no'>date</span> <span class='kw'>&lt;-</span> <span class='fu'>as.Date</span>(<span class='fu'>paste0</span>(<span class='no'>polity</span>$<span class='no'>year</span>, <span class='st'>"-01-01"</span>))
+<span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>)</div><div class='img'><img src='plot_missing-19.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='co'># plot_missing returns a ggplot2 object, so you can do anything you want</span>
+<span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>) +
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/coord_flip'>coord_flip</a></span>()</div><div class='img'><img src='plot_missing-20.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>

@@ -75,7 +75,7 @@
       <h1>Country code differences to look out for</h1>
                         <h4 class="author">Andreas Beger</h4>
             
-            <h4 class="date">2018-03-26</h4>
+            <h4 class="date">2018-04-25</h4>
           </div>
 
     
@@ -261,21 +261,6 @@
 <li>Tonga: 972 in G&amp;W, 955 in COW</li>
 </ul>
 </div>
-<div id="gw-and-wdi" class="section level2">
-<h2 class="hasAnchor">
-<a href="#gw-and-wdi" class="anchor"></a>G&amp;W and WDI</h2>
-<p>Some example code for converting WDI data to G&amp;W:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">WDI</span>(...) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gwcode =</span> <span class="kw">countrycode</span>(iso2c, <span class="st">"iso2c"</span>, <span class="st">"cown"</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gwcode =</span> <span class="kw">case_when</span>(
-           iso2c<span class="op">==</span><span class="st">"RS"</span> <span class="op">~</span><span class="st"> </span>340L,
-           iso2c<span class="op">==</span><span class="st">"XK"</span> <span class="op">~</span><span class="st"> </span>347L,
-           iso2c<span class="op">==</span><span class="st">"SS"</span> <span class="op">~</span><span class="st"> </span>626L,
-           gwcode<span class="op">==</span>255L <span class="op">&amp;</span><span class="st"> </span>year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1949</span> <span class="op">~</span><span class="st"> </span>260L,
-           gwcode<span class="op">==</span>679L <span class="op">~</span><span class="st"> </span>678L,
-           <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>gwcode
-         ))</code></pre></div>
-</div>
 </div>
   </div>
 
@@ -285,7 +270,6 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#between-cow-and-gw-lists">Between COW and G&amp;W lists</a></li>
-      <li><a href="#gw-and-wdi">G&amp;W and WDI</a></li>
       </ul>
 </div>
       </div>

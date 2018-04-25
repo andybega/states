@@ -15,7 +15,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-home">
+    <div class="container template-vignette">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -70,30 +70,65 @@
 
       
       </header><div class="row">
-  <div class="contents col-md-9">
-    <div id="states" class="section level1">
+  <div class="col-md-9">
+    
+
+    
+    
+<div class="contents">
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<div id="states" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#states" class="anchor"></a>states</h1></div>
 
 <p>Create country-year/month/day panels consistent with the COW or Gleditsch &amp; Ward lists of independent states. I mainly use this for merging different data sources:</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>Create a master template that reflects one of the independent states lists.</li>
 <li>For each data source, normalize to a copy of the master template. Doing this by source makes it easier to identify and address issues like missing values or observation for non-independent states.</li>
 <li>In the end, merge everything together. Since all the inputs are already normalized to a proper state panel list, there should be no issues.</li>
 </ol>
 <p>What the package does:</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>
 <p>It contains the Gleditsch and Ward (G&amp;W) as well as the Correlates of War (COW) state system membership lists.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(gwstates)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"states"</span>)
+<span class="kw">data</span>(gwstates)
 <span class="kw">data</span>(cowstates)</code></pre></div>
 <p>Search them with <code>sfind</code>, this can be helpful for manual coding:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/sfind.html">sfind</a></span>(<span class="dv">260</span>)
-<span class="kw"><a href="reference/sfind.html">sfind</a></span>(<span class="st">"German"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/sfind.html">sfind</a></span>(<span class="dv">260</span>)[, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]
+<span class="co">#&gt;     list ccode code3c            country_name      start        end</span>
+<span class="co">#&gt; 45   G&amp;W   260    GFR German Federal Republic 1949-09-21 2016-12-31</span>
+<span class="co">#&gt; 299  COW   260    GFR German Federal Republic 1955-05-05 1990-10-02</span>
+<span class="kw"><a href="reference/sfind.html">sfind</a></span>(<span class="st">"German"</span>)[, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]
+<span class="co">#&gt;     list ccode code3c               country_name      start        end</span>
+<span class="co">#&gt; 44   G&amp;W   255    GMY          Germany (Prussia) 1816-01-01 1945-05-07</span>
+<span class="co">#&gt; 45   G&amp;W   260    GFR    German Federal Republic 1949-09-21 2016-12-31</span>
+<span class="co">#&gt; 46   G&amp;W   265    GDR German Democratic Republic 1949-10-05 1990-10-02</span>
+<span class="co">#&gt; 297  COW   255    GMY                    Germany 1816-01-01 1945-05-08</span>
+<span class="co">#&gt; 298  COW   255    GMY                    Germany 1990-10-03 2016-12-31</span>
+<span class="co">#&gt; 299  COW   260    GFR    German Federal Republic 1955-05-05 1990-10-02</span>
+<span class="co">#&gt; 300  COW   265    GDR German Democratic Republic 1954-03-25 1990-10-02</span></code></pre></div>
 </li>
 <li>
 <p>You can use it to build a country-year template that matches either the COW or G&amp;W state lists.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">countries &lt;-<span class="st"> </span><span class="kw"><a href="reference/state_panel.html">state_panel</a></span>(<span class="st">"1991-01-01"</span>, <span class="st">"2010-01-01"</span>, <span class="dt">by =</span> <span class="st">"year"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">countries &lt;-<span class="st"> </span><span class="kw"><a href="reference/state_panel.html">state_panel</a></span>(<span class="st">"1991-01-01"</span>, <span class="st">"2010-01-01"</span>, <span class="dt">by =</span> <span class="st">"year"</span>)
+<span class="kw">str</span>(countries)
+<span class="co">#&gt; 'data.frame':    3808 obs. of  2 variables:</span>
+<span class="co">#&gt;  $ gwcode: int  2 2 2 2 2 2 2 2 2 2 ...</span>
+<span class="co">#&gt;  $ date  : Date, format: "1991-01-01" "1992-01-01" ...</span></code></pre></div>
+</li>
+<li>
+<p>Visualize missing/non-independent cases in your data. See this related <a href="https://andybeger.com/2016/09/14/data-management/">blog post for more details</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"states"</span>)
+<span class="kw">data</span>(<span class="st">"polity"</span>)
+<span class="kw">str</span>(polity)
+<span class="co">#&gt; 'data.frame':    17228 obs. of  3 variables:</span>
+<span class="co">#&gt;  $ ccode : num  700 700 700 700 700 700 700 700 700 700 ...</span>
+<span class="co">#&gt;  $ year  : num  1800 1801 1802 1803 1804 ...</span>
+<span class="co">#&gt;  $ polity: num  -6 -6 -6 -6 -6 -6 -6 -6 -6 -6 ...</span>
+polity<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">paste0</span>(polity<span class="op">$</span>year, <span class="st">"-12-31"</span>))
+<span class="kw"><a href="reference/plot_missing.html">plot_missing</a></span>(<span class="st">"polity"</span>, polity, <span class="st">"ccode"</span>, <span class="st">"date"</span>, <span class="st">"year"</span>, <span class="dt">statelist =</span> <span class="st">"COW"</span>)</code></pre></div>
+<p><img src="README-unnamed-chunk-5-1.png" width="672"></p>
 </li>
 </ol>
 <div id="install" class="section level2">
@@ -114,10 +149,12 @@
 <p>Correlates of War Project. 2017. “State System Membership List, v2016.” Online, <a href="http://correlatesofwar.org" class="uri">http://correlatesofwar.org</a></p>
 </div>
 </div>
+</div>
   </div>
 
-  <div class="col-md-3" id="sidebar">
-    <h2>Links</h2>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2 class="hasAnchor">
+<a href="#sidebar" class="anchor"></a>Links</h2>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cran.r-project.org/package=states">https://​cran.r-project.org/​package=states</a>
 </li>
@@ -139,6 +176,7 @@
 <li><a href="https://travis-ci.org/andybega/states"><img src="https://travis-ci.org/andybega/states.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 </ul>
 </div>
+
 </div>
 
 

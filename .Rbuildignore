@@ -12,3 +12,5 @@ dev
 ^\.travis\.yml$
 ^_pkgdown\.yml$
 ^cran-comments\.md$
+^README\.Rmd$
+^README-.*\.png$

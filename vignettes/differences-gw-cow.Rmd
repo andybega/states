@@ -60,19 +60,3 @@ This is deceiving however. There are several country codes that refer to differe
 - Tonga: 972 in G&W, 955 in COW
 
 
-## G&W and WDI
-
-Some example code for converting WDI data to G&W:
-
-```r
-WDI(...) %>%
-  mutate(gwcode = countrycode(iso2c, "iso2c", "cown")) %>%
-  mutate(gwcode = case_when(
-           iso2c=="RS" ~ 340L,
-           iso2c=="XK" ~ 347L,
-           iso2c=="SS" ~ 626L,
-           gwcode==255L & year >= 1949 ~ 260L,
-           gwcode==679L ~ 678L,
-           TRUE ~ gwcode
-         ))
-```

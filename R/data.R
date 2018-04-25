@@ -60,6 +60,39 @@
 #' head(cowstates)
 "cowstates"
 
+#' @docType data
+#'
+#' @name polity
+#'
+#' @title Polity IV combined Polity scores
+#'
+#' @description Polity scores reflect how democratic or autocratic countries are
+#'   from a scale of -10 (autocratic) to 10 (democratic). There are also three
+#'   special codes for foreign "interruption" (-66), anarchy (-77), and transition
+#'   periods (-88).
+#'
+#'   The data are included here for as an example for use with the missing plot.
+#'   Thus they do not contain all available Polity indicators, which are
+#'   available at the Polity project website www.systemicpeace.org.
+#'
+#' @usage polity
+#'
+#' @format Data frame
+#' \describe{
+#'  \item{\code{ccode}}{Correlates of War (COW) country code.}
+#'  \item{\code{year}}{Year of the observation.}
+#'  \item{\code{polity}}{Combined Polity score.}
+#'}
+#'
+#' @source
+#' Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2017. ``Polity IV
+#'   Project: Dataset Users' Manual.'' http://www.systemicpeace.org/inscr/p4manualv2016.pdf
+#'
+#' @examples
+#' data("polity")
+#' head("polity")
+"polity"
+
 
 
 #' Lookup country codes or names

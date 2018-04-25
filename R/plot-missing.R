@@ -5,28 +5,48 @@
 #'
 #' @param x Variable names(s), e.g. "x" or c("x1", "x2").
 #' @param data State panel data frame
-#' @param space Name of state identifier
-#' @param time Name of time identifier
+#' @param space Name of variable identifying state country codes.
+#' @param time Name of time identifier, the corresponding variables needs to be
+#'     Date class.
 #' @param time_unit Temporal resolution character string, e.g. "year" or "month".
 #'     See details in \code{\link[base]{seq.Date}}.
 #' @param statelist Check not only missing values, but presence or absence of
 #'     observations against a list of independent states? "none" or "GW" or "COW".
+#' @param skip_labels Only plot the label for every n-th country on the y-axis
+#'     to avoid overplotting.
 #'
 #' @details \code{missing_info} provides the information that is plotted with
 #'     \code{plot_missing}. The latter returns a ggplot, and thus can be chained
 #'     with other ggplot functions as usual.
 #'
+#' @return \code{plot_missing} returns a ggplot2 object.
+#'
+#'   \code{missing_info} returns a data frame with components:
+#'   \item{[space]}{Space identifer, with name equal to the "space" argument, e.g. "ccode".}
+#'   \item{[time]}{Time identifer, with name equal to the "time" argument, e.g. "date".}
+#'   \item{independent}{A logical vector, is the statelist argument is none, NA.}
+#'   \item{missing_value}{A logical vector indicating if that record has missing values}
+#'   \item{status}{The label used for plotting, combining the independence and missing value information for a case as appropriate.}
+#'
 #' @export
 #' @importFrom grDevices hcl
 #' @examples
+#' # Create an example data frame with missing values
 #' cy <- state_panel(as.Date("1980-06-30"), as.Date("2015-06-30"), by = "year",
 #' useGW = TRUE)
 #' cy$myvar <- rnorm(nrow(cy))
 #' cy$myvar[sample(1:nrow(cy), nrow(cy)*.1, replace = FALSE)] <- NA
 #' str(cy)
 #'
-#' head(missing_info("myvar", cy, "gwcode", "date", "year", "none"))
+#' # Visualize missing values:
 #' plot_missing("myvar", cy, "gwcode", "date", "year", "none")
+#'
+#' # missing_info() generates the data underlying plot_missing():
+#' head(missing_info("myvar", cy, "gwcode", "date", "year", "none"))
+#'
+#' # if we specify a statelist to check against, 'independent' will have values
+#' # now:
+#' head(missing_info("myvar", cy, "gwcode", "date", "year", "GW"))
 #'
 #' # Check data also against G&W list of independent states
 #' head(missing_info("myvar", cy, "gwcode", "date", "year", "GW"))
@@ -34,8 +54,25 @@
 #'
 #' # To check all variables:
 #' # plot_missing(setdiff(colnames(df), "space", "time"), ...)
-plot_missing <- function(x, data, space, time, time_unit,
-                         statelist = c("none", "GW", "COW")) {
+#'
+#' # Live example with Polity data
+#' data("polity")
+#' head(polity)
+#' polity$date <- as.Date(paste0(polity$year, "-12-31"))
+#' plot_missing("polity", polity, "ccode", "date", "year", "COW")
+#' # COW starts in 1816; Polity has excess data for several non-independent
+#' # states after that date, and is missing coverage for several countries.
+#'
+#' # The date option is relevant for years in which states gain or lose
+#' # independence, so this will be slighlty different:
+#' polity$date <- as.Date(paste0(polity$year, "-01-01"))
+#' plot_missing("polity", polity, "ccode", "date", "year", "COW")
+#'
+#' # plot_missing returns a ggplot2 object, so you can do anything you want
+#' plot_missing("polity", polity, "ccode", "date", "year", "COW") +
+#'   ggplot2::coord_flip()
+plot_missing <- function(x, data, space, time, time_unit, statelist = c("none", "GW", "COW"),
+                         skip_labels = 5) {
   if (!statelist %in% c("none", "GW", "COW")) {
     stop(sprintf("'%s' is not a valid option for 'statelist', use 'none', 'GW', or 'COW'",
                  statelist))
@@ -58,11 +95,17 @@ plot_missing <- function(x, data, space, time, time_unit,
                       "No observation"   = grDevices::hcl(15, l=97, c=0))
   }
 
+  # Skip labels to avoid overplotting
+  brks <- sort(unique(mm[, space]), decreasing = T)
+  brks <- brks[seq(1, length(brks), by = skip_labels)]
+
   p <- ggplot2::ggplot(mm, ggplot2::aes_string(x = time, y = space, fill = "status")) +
     ggplot2::geom_tile() +
+    ggplot2::scale_y_discrete(breaks = brks) +
     ggplot2::scale_x_date(expand=c(0, 0)) +
     ggplot2::scale_fill_manual("", drop = FALSE, values = fill_values) +
     ggplot2::guides(fill = ggplot2::guide_legend(ncol = 2)) +
+    ggplot2::theme_minimal() +
     ggplot2::theme(legend.position = "bottom")
   p
 }
@@ -73,9 +116,27 @@ plot_missing <- function(x, data, space, time, time_unit,
 #' @rdname plot_missing
 #' @importFrom stats complete.cases
 missing_info <- function(x, data, space, time, time_unit, statelist = "none") {
-  if (any(is.na(data[, space]))) stop(paste0("Space identifier '", space, "' contains missing values."))
-  if (any(is.na(data[, time]))) stop(paste0("Space identifier '", time, "' contains missing values."))
-  if (!statelist %in% c("none", "GW", "COW")) stop("'none', 'GW', or 'COW'")
+
+  # Check space ID has no missing values
+  if (any(is.na(data[, space]))) {
+    stop(paste0("Space identifier '", space, "' contains missing values."))
+  }
+
+  # Check time ID has no missing values
+  if (any(is.na(data[, time]))) {
+    stop(paste0("Time identifier '", time, "' contains missing values."))
+  }
+
+  # Check time variable is class Date
+  if (!inherits(data[, time], "Date")) {
+    stop(sprintf("Time identifier '%s' must be a Date object", time))
+  }
+
+  # Check correct option for statelist
+  if (!statelist %in% c("none", "GW", "COW")) {
+    stop("Valid choices for statelist argument are 'none', 'GW', or 'COW'")
+  }
+
   df <- as.data.frame(data)
 
   # Create missingness logical vector
@@ -133,4 +194,5 @@ missing_info <- function(x, data, space, time, time_unit, statelist = "none") {
   full_mat[, space] <- factor(full_mat[, space], levels = rev(sort(unique(full_mat[, space]))))
   full_mat
 }
+
 

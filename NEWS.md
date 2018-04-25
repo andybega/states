@@ -1,3 +1,8 @@
+# states 0.2.0.9000
+
+* `plot_missing` improvements: examples with Polity data, added a `skip_labels` option that will plot every n-th label for countries instead of all labels to avoid overplotting on the y-axis. The latter is inspired by https://github.com/xuyiqing/panelView.
+* Added Polity combined score as example data set.
+
 # states 0.2.0
 
 * Initial version on CRAN.

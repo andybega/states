@@ -6,16 +6,17 @@ reference:
       - state_panel
       - sfind
       - plot_missing
-      - states
   - title: "Helper functions"
     desc: >
       Miscellaneous utility functions
     contents:
       - id_date_sequence
-      - missing_info
+      - states
   - title: "Data"
     desc: >
-      The COW and G&W independent states lists are included in the package.
+      The COW and G&W independent states lists are included in the package, as
+      well as Combined Polity scores as an example for `plot_missing()`.
     contents:
       - cowstates
       - gwstates
+      - polity
