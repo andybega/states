@@ -50,6 +50,9 @@ What the package does:
     polity$date <- as.Date(paste0(polity$year, "-12-31"))
     
     plot_missing("polity", polity, "ccode", "date", "year", statelist = "COW")
+    
+    # for the underlying data
+    mm <- missing_info("polity", polity, "ccode", "date", "year", statelist = "COW")
     ```
 
 ## Install

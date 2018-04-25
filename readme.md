@@ -67,6 +67,12 @@ What the package does:
 
     ![](README-unnamed-chunk-5-1.png)
 
+    ``` r
+
+    # for the underlying data
+    mm <- missing_info("polity", polity, "ccode", "date", "year", statelist = "COW")
+    ```
+
 Install
 -------
 
