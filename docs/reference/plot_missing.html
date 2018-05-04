@@ -18,13 +18,23 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Vizualize missing and non-proper cases for state panel data — plot_missing" />
+
+<meta property="og:description" content="Plot missing values by country and date, and additionally identify country-date
+cases that do or do not match an independent state list." />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +57,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">states</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">states</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -73,7 +87,7 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -85,6 +99,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -92,23 +107,27 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Vizualize missing and non-proper cases for state panel data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/andybega/states/blob/master/R/plot-missing.R'><code>R/plot-missing.R</code></a></small>
+    <div class="hidden name"><code>plot_missing.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Plot missing values by country and date, and additionally identify country-date
 cases that do or do not match an independent state list.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>plot_missing</span>(<span class='no'>x</span>, <span class='no'>data</span>, <span class='no'>space</span>, <span class='no'>time</span>, <span class='no'>time_unit</span>, <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"none"</span>, <span class='st'>"GW"</span>,
   <span class='st'>"COW"</span>), <span class='kw'>skip_labels</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 
 <span class='fu'>missing_info</span>(<span class='no'>x</span>, <span class='no'>data</span>, <span class='no'>space</span>, <span class='no'>time</span>, <span class='no'>time_unit</span>, <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='st'>"none"</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -174,7 +193,7 @@ to avoid overplotting.</p></td>
 #&gt;  $ date  : Date, format: "1980-06-30" "1981-06-30" ...
 #&gt;  $ myvar : num  -1.40004 0.25532 -2.43726 -0.00557 0.62155 ...</div><div class='input'>
 <span class='co'># Visualize missing values:</span>
-<span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"none"</span>)</div><div class='img'><img src='plot_missing-16.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"none"</span>)</div><div class='img'><img src='plot_missing-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># missing_info() generates the data underlying plot_missing():</span>
 <span class='fu'>head</span>(<span class='fu'>missing_info</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"none"</span>))</div><div class='output co'>#&gt;   gwcode       date independent missing_value         status
 #&gt; 1      2 1980-06-30          NA         FALSE       Complete
@@ -199,7 +218,7 @@ to avoid overplotting.</p></td>
 #&gt; 3      2 1982-06-30           1         FALSE Complete, independent
 #&gt; 4      2 1983-06-30           1         FALSE Complete, independent
 #&gt; 5      2 1984-06-30           1         FALSE Complete, independent
-#&gt; 6      2 1985-06-30           1         FALSE Complete, independent</div><div class='input'><span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>)</div><div class='img'><img src='plot_missing-17.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+#&gt; 6      2 1985-06-30           1         FALSE Complete, independent</div><div class='input'><span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>)</div><div class='img'><img src='plot_missing-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># To check all variables:</span>
 <span class='co'># plot_missing(setdiff(colnames(df), "space", "time"), ...)</span>
 
@@ -212,16 +231,16 @@ to avoid overplotting.</p></td>
 #&gt; 4   700 1803     -6
 #&gt; 5   700 1804     -6
 #&gt; 6   700 1805     -6</div><div class='input'><span class='no'>polity</span>$<span class='no'>date</span> <span class='kw'>&lt;-</span> <span class='fu'>as.Date</span>(<span class='fu'>paste0</span>(<span class='no'>polity</span>$<span class='no'>year</span>, <span class='st'>"-12-31"</span>))
-<span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>)</div><div class='img'><img src='plot_missing-18.png' alt='' width='700' height='432.632880098887' /></div><div class='input'><span class='co'># COW starts in 1816; Polity has excess data for several non-independent</span>
+<span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>)</div><div class='img'><img src='plot_missing-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># COW starts in 1816; Polity has excess data for several non-independent</span>
 <span class='co'># states after that date, and is missing coverage for several countries.</span>
 
 <span class='co'># The date option is relevant for years in which states gain or lose</span>
 <span class='co'># independence, so this will be slighlty different:</span>
 <span class='no'>polity</span>$<span class='no'>date</span> <span class='kw'>&lt;-</span> <span class='fu'>as.Date</span>(<span class='fu'>paste0</span>(<span class='no'>polity</span>$<span class='no'>year</span>, <span class='st'>"-01-01"</span>))
-<span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>)</div><div class='img'><img src='plot_missing-19.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>)</div><div class='img'><img src='plot_missing-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># plot_missing returns a ggplot2 object, so you can do anything you want</span>
 <span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>) +
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/coord_flip'>coord_flip</a></span>()</div><div class='img'><img src='plot_missing-20.png' alt='' width='700' height='432.632880098887' /></div></pre>
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/coord_flip'>coord_flip</a></span>()</div><div class='img'><img src='plot_missing-5.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -244,11 +263,14 @@ to avoid overplotting.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

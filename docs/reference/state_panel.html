@@ -18,13 +18,22 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Create state panel data — state_panel" />
+
+<meta property="og:description" content="Create panel data consisting of independent states in the international system." />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +56,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">states</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">states</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -73,7 +86,7 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -85,6 +98,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -92,19 +106,23 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create state panel data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/andybega/states/blob/master/R/state-panel.R'><code>R/state-panel.R</code></a></small>
+    <div class="hidden name"><code>state_panel.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Create panel data consisting of independent states in the international system.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>state_panel</span>(<span class='no'>start</span>, <span class='no'>end</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"exact"</span>, <span class='kw'>useGW</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -135,7 +153,8 @@ membership list.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The partial option determines how to handle instances where a country gains
-or loses independence during a time period specified in the by option:</p><ul>
+or loses independence during a time period specified in the by option:</p>
+<ul>
 <li><p>"exact": the exact date in start is used for filtering</p></li>
 <li><p>"any": a state-period is included if the state was independent at
                  any point in that period.</p></li>
@@ -156,7 +175,7 @@ or loses independence during a time period specified in the by option:</p><ul>
 <span class='co'># Focus on South Sudan--is there a record for 2011, first year of indendence?</span>
 <span class='fu'>data</span>(<span class='no'>gwstates</span>)
 <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>gwstates</span>, <span class='no'>gwcode</span><span class='kw'>==</span><span class='fl'>626</span>)</div><div class='output co'>#&gt;   gwcode iso3c country_name      start        end microstate
-#&gt; 1    626   SSD  South Sudan 2011-07-09 2016-12-31      FALSE</div><div class='input'><span class='co'># No 2011 because SSD was not indpendent on January 1st 2011</span>
+#&gt; 1    626   SSD  South Sudan 2011-07-09 2017-12-31      FALSE</div><div class='input'><span class='co'># No 2011 because SSD was not indpendent on January 1st 2011</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>state_panel</span>(<span class='st'>"2011-01-01"</span>, <span class='st'>"2013-01-01"</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"exact"</span>)
 <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>x</span>, <span class='no'>gwcode</span><span class='kw'>==</span><span class='fl'>626</span>)</div><div class='output co'>#&gt;   gwcode       date
 #&gt; 1    626 2012-01-01
@@ -192,11 +211,14 @@ or loses independence during a time period specified in the by option:</p><ul>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

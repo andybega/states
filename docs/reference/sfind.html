@@ -18,13 +18,22 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Lookup country codes or names — sfind" />
+
+<meta property="og:description" content="Helper to look up state list entries by country code or name" />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +56,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">states</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">states</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -73,7 +86,7 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -85,6 +98,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -92,19 +106,23 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Lookup country codes or names</h1>
+    <small class="dont-index">Source: <a href='https://github.com/andybega/states/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>sfind.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Helper to look up state list entries by country code or name</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>sfind</span>(<span class='no'>x</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -121,13 +139,13 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Works with either integer or strings</span>
 <span class='fu'>sfind</span>(<span class='fl'>325</span>)</div><div class='output co'>#&gt;     list ccode code3c   country_name      start        end microstate
-#&gt; 60   G&amp;W   325    ITA Italy/Sardinia 1816-01-01 2016-12-31      FALSE
+#&gt; 60   G&amp;W   325    ITA Italy/Sardinia 1816-01-01 2017-12-31      FALSE
 #&gt; 317  COW   325    ITA          Italy 1816-01-01 2016-12-31         NA</div><div class='input'><span class='fu'>sfind</span>(<span class='st'>"ALG"</span>)</div><div class='output co'>#&gt;     list ccode code3c country_name      start        end microstate
 #&gt; 151  G&amp;W   615    ALG      Algeria 1816-01-01 1830-07-05      FALSE
-#&gt; 152  G&amp;W   615    ALG      Algeria 1962-07-05 2016-12-31      FALSE
+#&gt; 152  G&amp;W   615    ALG      Algeria 1962-07-05 2017-12-31      FALSE
 #&gt; 411  COW   615    ALG      Algeria 1962-07-05 2016-12-31         NA</div><div class='input'><span class='fu'>sfind</span>(<span class='st'>"Algeria"</span>)</div><div class='output co'>#&gt;     list ccode code3c country_name      start        end microstate
 #&gt; 151  G&amp;W   615    ALG      Algeria 1816-01-01 1830-07-05      FALSE
-#&gt; 152  G&amp;W   615    ALG      Algeria 1962-07-05 2016-12-31      FALSE
+#&gt; 152  G&amp;W   615    ALG      Algeria 1962-07-05 2017-12-31      FALSE
 #&gt; 411  COW   615    ALG      Algeria 1962-07-05 2016-12-31         NA</div><div class='input'>
 <span class='co'># Search strings are treated as regular expressions (see stringr::str_detect)</span>
 <span class='fu'>sfind</span>(<span class='st'>"Germany"</span>)</div><div class='output co'>#&gt;     list ccode code3c      country_name      start        end microstate
@@ -135,7 +153,7 @@
 #&gt; 297  COW   255    GMY           Germany 1816-01-01 1945-05-08         NA
 #&gt; 298  COW   255    GMY           Germany 1990-10-03 2016-12-31         NA</div><div class='input'><span class='fu'>sfind</span>(<span class='st'>"German"</span>)</div><div class='output co'>#&gt;     list ccode code3c               country_name      start        end
 #&gt; 44   G&amp;W   255    GMY          Germany (Prussia) 1816-01-01 1945-05-07
-#&gt; 45   G&amp;W   260    GFR    German Federal Republic 1949-09-21 2016-12-31
+#&gt; 45   G&amp;W   260    GFR    German Federal Republic 1949-09-21 2017-12-31
 #&gt; 46   G&amp;W   265    GDR German Democratic Republic 1949-10-05 1990-10-02
 #&gt; 297  COW   255    GMY                    Germany 1816-01-01 1945-05-08
 #&gt; 298  COW   255    GMY                    Germany 1990-10-03 2016-12-31
@@ -167,11 +185,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

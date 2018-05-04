@@ -16,7 +16,15 @@ gwstates$microstate <- FALSE
 gwmicrostates$microstate <- TRUE
 
 gwstates <- dplyr::bind_rows(gwstates, gwmicrostates)
-gwstates$end[gwstates$end==max(gwstates$end)] <- as.Date("2016-12-31")
+gwstates$end[gwstates$end==max(gwstates$end)] <- as.Date("2017-12-31")
+
+# Fix encoding issue for countries like Cote d'Ivoire
+Encoding(gwstates$country_name) <- "latin1"
+gwstates$country_name <- enc2utf8(gwstates$country_name)
+
+gwstates <- as.data.frame(gwstates)
+save(gwstates, file = "data/gwstates.rda")
+
 
 cowstates <- readr::read_csv("http://www.correlatesofwar.org/data-sets/state-system-membership/states2016/at_download/file")
 
@@ -27,8 +35,9 @@ cowstates <- cowstates %>%
   rename(cow3c = stateabb, cowcode = ccode, country_name = statenme) %>%
   select(cowcode, cow3c, country_name, start, end)
 
-gwstates <- as.data.frame(gwstates)
+Encoding(cowstates$country_name) <- "UTF-8"
+
 cowstates <- as.data.frame(cowstates)
 
-save(gwstates, file = "data/gwstates.rda")
+
 save(cowstates, file = "data/cowstates.rda")
