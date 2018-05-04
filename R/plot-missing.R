@@ -1,4 +1,4 @@
-#' Vizualize missing and non-proper cases for state panel data
+#' Visualize missing and non-proper cases for state panel data
 #'
 #' Plot missing values by country and date, and additionally identify country-date
 #' cases that do or do not match an independent state list.
@@ -22,8 +22,8 @@
 #' @return \code{plot_missing} returns a ggplot2 object.
 #'
 #'   \code{missing_info} returns a data frame with components:
-#'   \item{[space]}{Space identifer, with name equal to the "space" argument, e.g. "ccode".}
-#'   \item{[time]}{Time identifer, with name equal to the "time" argument, e.g. "date".}
+#'   \item{[space]}{Space identifier, with name equal to the "space" argument, e.g. "ccode".}
+#'   \item{[time]}{Time identifier, with name equal to the "time" argument, e.g. "date".}
 #'   \item{independent}{A logical vector, is the statelist argument is none, NA.}
 #'   \item{missing_value}{A logical vector indicating if that record has missing values}
 #'   \item{status}{The label used for plotting, combining the independence and missing value information for a case as appropriate.}
