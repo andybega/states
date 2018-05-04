@@ -3,7 +3,7 @@
 \name{plot_missing}
 \alias{plot_missing}
 \alias{missing_info}
-\title{Vizualize missing and non-proper cases for state panel data}
+\title{Visualize missing and non-proper cases for state panel data}
 \usage{
 plot_missing(x, data, space, time, time_unit, statelist = c("none", "GW",
   "COW"), skip_labels = 5)
@@ -33,8 +33,8 @@ to avoid overplotting.}
 \code{plot_missing} returns a ggplot2 object.
 
   \code{missing_info} returns a data frame with components:
-  \item{[space]}{Space identifer, with name equal to the "space" argument, e.g. "ccode".}
-  \item{[time]}{Time identifer, with name equal to the "time" argument, e.g. "date".}
+  \item{[space]}{Space identifier, with name equal to the "space" argument, e.g. "ccode".}
+  \item{[time]}{Time identifier, with name equal to the "time" argument, e.g. "date".}
   \item{independent}{A logical vector, is the statelist argument is none, NA.}
   \item{missing_value}{A logical vector indicating if that record has missing values}
   \item{status}{The label used for plotting, combining the independence and missing value information for a case as appropriate.}
