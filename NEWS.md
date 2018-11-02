@@ -3,6 +3,8 @@
 - Changed sfind() so that it ignores capitalization and treats character numbers as numbers. These pairs of queries now produce the same results, unlike before:
   - "Gabon" and "gabon",
   - 260 and "260"
+- Changed plot_missing() and missing_info() to work nicer with pipes by making "data" the first argument and "x" the second argument. 
+- Fixed plot_missing() and missing_info() error when "data" is a tibble ("tbl_df"). 
 
 # states 0.2.1
 

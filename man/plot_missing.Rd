@@ -5,15 +5,15 @@
 \alias{missing_info}
 \title{Visualize missing and non-proper cases for state panel data}
 \usage{
-plot_missing(x, data, space, time, time_unit, statelist = c("none", "GW",
+plot_missing(data, x, space, time, time_unit, statelist = c("none", "GW",
   "COW"), skip_labels = 5)
 
-missing_info(x, data, space, time, time_unit, statelist = "none")
+missing_info(data, x, space, time, time_unit, statelist = "none")
 }
 \arguments{
-\item{x}{Variable names(s), e.g. "x" or c("x1", "x2").}
-
 \item{data}{State panel data frame}
+
+\item{x}{Variable names(s), e.g. "x" or c("x1", "x2").}
 
 \item{space}{Name of variable identifying state country codes.}
 

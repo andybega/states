@@ -3,8 +3,8 @@
 #' Plot missing values by country and date, and additionally identify country-date
 #' cases that do or do not match an independent state list.
 #'
-#' @param x Variable names(s), e.g. "x" or c("x1", "x2").
 #' @param data State panel data frame
+#' @param x Variable names(s), e.g. "x" or c("x1", "x2").
 #' @param space Name of variable identifying state country codes.
 #' @param time Name of time identifier, the corresponding variables needs to be
 #'     Date class.
@@ -71,7 +71,7 @@
 #' # plot_missing returns a ggplot2 object, so you can do anything you want
 #' plot_missing("polity", polity, "ccode", "date", "year", "COW") +
 #'   ggplot2::coord_flip()
-plot_missing <- function(x, data, space, time, time_unit, statelist = c("none", "GW", "COW"),
+plot_missing <- function(data, x, space, time, time_unit, statelist = c("none", "GW", "COW"),
                          skip_labels = 5) {
   if (!statelist %in% c("none", "GW", "COW")) {
     stop(sprintf("'%s' is not a valid option for 'statelist', use 'none', 'GW', or 'COW'",
@@ -83,7 +83,9 @@ plot_missing <- function(x, data, space, time, time_unit, statelist = c("none", 
          call. = FALSE)
   }
 
-  mm <- missing_info(x, data, space, time, time_unit, statelist)
+  data <- as.data.frame(data)
+
+  mm <- missing_info(data, x, space, time, time_unit, statelist)
 
   if (statelist %in% c("GW", "COW")) {
     fill_values <- c("Complete, independent" = hcl(195, 100, 65), "Complete, non-independent" = hcl(15, 100, 20),
@@ -115,20 +117,22 @@ plot_missing <- function(x, data, space, time, time_unit, statelist = c("none", 
 #' @export
 #' @rdname plot_missing
 #' @importFrom stats complete.cases
-missing_info <- function(x, data, space, time, time_unit, statelist = "none") {
+missing_info <- function(data, x, space, time, time_unit, statelist = "none") {
+
+  df <- as.data.frame(data)
 
   # Check space ID has no missing values
-  if (any(is.na(data[, space]))) {
+  if (any(is.na(df[, space]))) {
     stop(paste0("Space identifier '", space, "' contains missing values."))
   }
 
   # Check time ID has no missing values
-  if (any(is.na(data[, time]))) {
+  if (any(is.na(df[, time]))) {
     stop(paste0("Time identifier '", time, "' contains missing values."))
   }
 
   # Check time variable is class Date
-  if (!inherits(data[, time], "Date")) {
+  if (!inherits(df[, time], "Date")) {
     stop(sprintf("Time identifier '%s' must be a Date object", time))
   }
 
@@ -136,8 +140,6 @@ missing_info <- function(x, data, space, time, time_unit, statelist = "none") {
   if (!statelist %in% c("none", "GW", "COW")) {
     stop("Valid choices for statelist argument are 'none', 'GW', or 'COW'")
   }
-
-  df <- as.data.frame(data)
 
   # Create missingness logical vector
   df[, "missing_value"] <- !stats::complete.cases(df[, x])
