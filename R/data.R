@@ -100,7 +100,7 @@
 #' Helper to look up state list entries by country code or name
 #'
 #' @param x The search string or number.
-#' @param list Which state list to search (both, G&W, or COW only)
+#' @param list Which state list to search (both, GW, or COW only)
 #'
 #' @examples
 #' # Works with either integer or strings
@@ -113,6 +113,12 @@
 #' sfind("German")
 #' @export
 sfind <- function(x, list = "both") {
+
+  if (!requireNamespace("stringr", quietly = TRUE)) {
+    stop("stringr needed for this function to work. Please install it.",
+         call. = FALSE)
+  }
+
   gwstates  <- states::gwstates
   cowstates <- states::cowstates
 
@@ -122,21 +128,25 @@ sfind <- function(x, list = "both") {
   colnames(cowstates)[2] <- "code3c"
 
   slist <- rbind(
-    cbind(list = "G&W", gwstates),
+    cbind(list = "GW", gwstates),
     cbind(list = "COW", cowstates, microstate = NA)
   )
   slist$search_string <- paste0(slist$code3c, ";", slist$country_name)
-
-  if (!requireNamespace("stringr", quietly = TRUE)) {
-    stop("stringr needed for this function to work. Please install it.",
-         call. = FALSE)
-  }
+  slist$search_string <- tolower(slist$search_string)
 
   if (list != "both") {
     slist <- slist[slist$list==list, ]
   }
 
-  if (is.numeric(x)) {
+  # check if input query is numeric, otherwise transform to lowercase
+  x_is_numeric <- suppressWarnings(!is.na(as.numeric(as.character(x))))
+  if (x_is_numeric) {
+    x <- as.numeric(x)
+  } else {
+    x <- tolower(as.character(x))
+  }
+
+  if (x_is_numeric) {
     res <- slist[slist$ccode==x, ]
   } else {
     res <- slist[stringr::str_detect(slist$search_string, x), ]

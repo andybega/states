@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Vizualize missing and non-proper cases for state panel data — plot_missing • states</title>
+<title>Visualize missing and non-proper cases for state panel data — plot_missing • states</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -21,18 +21,21 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
 
-<meta property="og:title" content="Vizualize missing and non-proper cases for state panel data — plot_missing" />
+<meta property="og:title" content="Visualize missing and non-proper cases for state panel data — plot_missing" />
 
 <meta property="og:description" content="Plot missing values by country and date, and additionally identify country-date
 cases that do or do not match an independent state list." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -59,7 +62,7 @@ cases that do or do not match an independent state list." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">states</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1.9000</span>
       </span>
     </div>
 
@@ -110,7 +113,7 @@ cases that do or do not match an independent state list." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Vizualize missing and non-proper cases for state panel data</h1>
+    <h1>Visualize missing and non-proper cases for state panel data</h1>
     <small class="dont-index">Source: <a href='https://github.com/andybega/states/blob/master/R/plot-missing.R'><code>R/plot-missing.R</code></a></small>
     <div class="hidden name"><code>plot_missing.Rd</code></div>
     </div>
@@ -168,8 +171,8 @@ to avoid overplotting.</p></td>
 
     <p><code>plot_missing</code> returns a ggplot2 object.</p>
 <p><code>missing_info</code> returns a data frame with components:</p>
-<dt>[space]</dt><dd><p>Space identifer, with name equal to the "space" argument, e.g. "ccode".</p></dd>
-  <dt>[time]</dt><dd><p>Time identifer, with name equal to the "time" argument, e.g. "date".</p></dd>
+<dt>[space]</dt><dd><p>Space identifier, with name equal to the "space" argument, e.g. "ccode".</p></dd>
+  <dt>[time]</dt><dd><p>Time identifier, with name equal to the "time" argument, e.g. "date".</p></dd>
   <dt>independent</dt><dd><p>A logical vector, is the statelist argument is none, NA.</p></dd>
   <dt>missing_value</dt><dd><p>A logical vector indicating if that record has missing values</p></dd>
   <dt>status</dt><dd><p>The label used for plotting, combining the independence and missing value information for a case as appropriate.</p></dd>
@@ -240,7 +243,7 @@ to avoid overplotting.</p></td>
 <span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>)</div><div class='img'><img src='plot_missing-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># plot_missing returns a ggplot2 object, so you can do anything you want</span>
 <span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>) +
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/coord_flip'>coord_flip</a></span>()</div><div class='img'><img src='plot_missing-5.png' alt='' width='700' height='433' /></div></pre>
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='ggplot2.tidyverse.org/reference/coord_flip.html'>coord_flip</a></span>()</div><div class='img'><img src='plot_missing-5.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -9,7 +9,7 @@ sfind(x, list = "both")
 \arguments{
 \item{x}{The search string or number.}
 
-\item{list}{Which state list to search (both, G&W, or COW only)}
+\item{list}{Which state list to search (both, GW, or COW only)}
 }
 \description{
 Helper to look up state list entries by country code or name

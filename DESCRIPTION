@@ -1,7 +1,7 @@
 Package: states
 Type: Package
 Title: Create Panels of Independent States
-Version: 0.2.1
+Version: 0.2.1.9000
 Authors@R: person("Andreas", "Beger", role = c("cre", "aut"), email =
     "adbeger@gmail.com", comment = c(ORCID = "0000-0003-1883-3169"))
 Maintainer: Andreas Beger <adbeger@gmail.com>
@@ -22,7 +22,7 @@ Suggests:
     stringr,
     knitr,
     rmarkdown
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 VignetteBuilder: knitr
 URL: https://github.com/andybega/states, https://andybeger.com/states
 BugReports: https://github.com/andybega/states/issues
