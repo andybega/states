@@ -6,6 +6,11 @@
 \usage{
 .warner(data, x)
 }
+\arguments{
+\item{data}{data.frame}
+
+\item{x}{string}
+}
 \description{
 Temporary helper function to warn about argument order change
 }

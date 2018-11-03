@@ -213,6 +213,8 @@ missing_info <- function(data, x, space, time, time_unit, statelist = "none") {
 
 #' Temporary helper function to warn about argument order change
 #'
+#' @param data data.frame
+#' @param x string
 .warner <- function(data, x) {
   if (inherits(x, "data.frame") & class(data)[1]=="character") {
     warning("The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.\nplot_missing(data, x, ...)\nmissing_info(data, x, ...)")
