@@ -73,6 +73,13 @@
 #'   ggplot2::coord_flip()
 plot_missing <- function(data, x, space, time, time_unit, statelist = c("none", "GW", "COW"),
                          skip_labels = 5) {
+
+  # Temporary code for data, x argument order switch
+  args <- .warner(data, x)
+  data <- args$data
+  x    <- args$x
+  rm(args)
+
   if (!statelist %in% c("none", "GW", "COW")) {
     stop(sprintf("'%s' is not a valid option for 'statelist', use 'none', 'GW', or 'COW'",
                  statelist))
@@ -118,6 +125,12 @@ plot_missing <- function(data, x, space, time, time_unit, statelist = c("none", 
 #' @rdname plot_missing
 #' @importFrom stats complete.cases
 missing_info <- function(data, x, space, time, time_unit, statelist = "none") {
+
+  # Temporary code for data, x argument order switch
+  args <- .warner(data, x)
+  data <- args$data
+  x    <- args$x
+  rm(args)
 
   df <- as.data.frame(data)
 
@@ -198,3 +211,12 @@ missing_info <- function(data, x, space, time, time_unit, statelist = "none") {
 }
 
 
+#' Temporary helper function to warn about argument order change
+#'
+.warner <- function(data, x) {
+  if (inherits(x, "data.frame") & class(data)[1]=="character") {
+    warning("The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.\nplot_missing(data, x, ...)\nmissing_info(data, x, ...)")
+    return(list(data = x, x = data))
+  }
+  list(data = data, x = x)
+}

@@ -196,14 +196,42 @@ to avoid overplotting.</p></td>
 #&gt;  $ date  : Date, format: "1980-06-30" "1981-06-30" ...
 #&gt;  $ myvar : num  -1.40004 0.25532 -2.43726 -0.00557 0.62155 ...</div><div class='input'>
 <span class='co'># Visualize missing values:</span>
-<span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"none"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(df, , space): undefined columns selected</span></div><div class='input'>
+<span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"none"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
+#&gt; <span class='warning'>plot_missing(data, x, ...)</span>
+#&gt; <span class='warning'>missing_info(data, x, ...)</span></div><div class='img'><img src='plot_missing-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># missing_info() generates the data underlying plot_missing():</span>
-<span class='fu'>head</span>(<span class='fu'>missing_info</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"none"</span>))</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(df, , space): undefined columns selected</span></div><div class='input'>
+<span class='fu'>head</span>(<span class='fu'>missing_info</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"none"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
+#&gt; <span class='warning'>plot_missing(data, x, ...)</span>
+#&gt; <span class='warning'>missing_info(data, x, ...)</span></div><div class='output co'>#&gt;   gwcode       date independent missing_value         status
+#&gt; 1      2 1980-06-30          NA         FALSE       Complete
+#&gt; 2     20 1980-06-30          NA         FALSE       Complete
+#&gt; 3     31 1980-06-30          NA         FALSE       Complete
+#&gt; 4     40 1980-06-30          NA          TRUE Missing values
+#&gt; 5     41 1980-06-30          NA         FALSE       Complete
+#&gt; 6     42 1980-06-30          NA         FALSE       Complete</div><div class='input'>
 <span class='co'># if we specify a statelist to check against, 'independent' will have values</span>
 <span class='co'># now:</span>
-<span class='fu'>head</span>(<span class='fu'>missing_info</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>))</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(df, , space): undefined columns selected</span></div><div class='input'>
+<span class='fu'>head</span>(<span class='fu'>missing_info</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
+#&gt; <span class='warning'>plot_missing(data, x, ...)</span>
+#&gt; <span class='warning'>missing_info(data, x, ...)</span></div><div class='output co'>#&gt;   gwcode       date independent missing_value                status
+#&gt; 1      2 1980-06-30           1         FALSE Complete, independent
+#&gt; 2      2 1981-06-30           1         FALSE Complete, independent
+#&gt; 3      2 1982-06-30           1         FALSE Complete, independent
+#&gt; 4      2 1983-06-30           1         FALSE Complete, independent
+#&gt; 5      2 1984-06-30           1         FALSE Complete, independent
+#&gt; 6      2 1985-06-30           1         FALSE Complete, independent</div><div class='input'>
 <span class='co'># Check data also against G&amp;W list of independent states</span>
-<span class='fu'>head</span>(<span class='fu'>missing_info</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>))</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(df, , space): undefined columns selected</span></div><div class='input'><span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(df, , space): undefined columns selected</span></div><div class='input'>
+<span class='fu'>head</span>(<span class='fu'>missing_info</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
+#&gt; <span class='warning'>plot_missing(data, x, ...)</span>
+#&gt; <span class='warning'>missing_info(data, x, ...)</span></div><div class='output co'>#&gt;   gwcode       date independent missing_value                status
+#&gt; 1      2 1980-06-30           1         FALSE Complete, independent
+#&gt; 2      2 1981-06-30           1         FALSE Complete, independent
+#&gt; 3      2 1982-06-30           1         FALSE Complete, independent
+#&gt; 4      2 1983-06-30           1         FALSE Complete, independent
+#&gt; 5      2 1984-06-30           1         FALSE Complete, independent
+#&gt; 6      2 1985-06-30           1         FALSE Complete, independent</div><div class='input'><span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
+#&gt; <span class='warning'>plot_missing(data, x, ...)</span>
+#&gt; <span class='warning'>missing_info(data, x, ...)</span></div><div class='img'><img src='plot_missing-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># To check all variables:</span>
 <span class='co'># plot_missing(setdiff(colnames(df), "space", "time"), ...)</span>
 
@@ -216,16 +244,22 @@ to avoid overplotting.</p></td>
 #&gt; 4   700 1803     -6
 #&gt; 5   700 1804     -6
 #&gt; 6   700 1805     -6</div><div class='input'><span class='no'>polity</span>$<span class='no'>date</span> <span class='kw'>&lt;-</span> <span class='fu'>as.Date</span>(<span class='fu'>paste0</span>(<span class='no'>polity</span>$<span class='no'>year</span>, <span class='st'>"-12-31"</span>))
-<span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(df, , space): undefined columns selected</span></div><div class='input'><span class='co'># COW starts in 1816; Polity has excess data for several non-independent</span>
+<span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
+#&gt; <span class='warning'>plot_missing(data, x, ...)</span>
+#&gt; <span class='warning'>missing_info(data, x, ...)</span></div><div class='img'><img src='plot_missing-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># COW starts in 1816; Polity has excess data for several non-independent</span>
 <span class='co'># states after that date, and is missing coverage for several countries.</span>
 
 <span class='co'># The date option is relevant for years in which states gain or lose</span>
 <span class='co'># independence, so this will be slighlty different:</span>
 <span class='no'>polity</span>$<span class='no'>date</span> <span class='kw'>&lt;-</span> <span class='fu'>as.Date</span>(<span class='fu'>paste0</span>(<span class='no'>polity</span>$<span class='no'>year</span>, <span class='st'>"-01-01"</span>))
-<span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(df, , space): undefined columns selected</span></div><div class='input'>
+<span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
+#&gt; <span class='warning'>plot_missing(data, x, ...)</span>
+#&gt; <span class='warning'>missing_info(data, x, ...)</span></div><div class='img'><img src='plot_missing-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># plot_missing returns a ggplot2 object, so you can do anything you want</span>
 <span class='fu'>plot_missing</span>(<span class='st'>"polity"</span>, <span class='no'>polity</span>, <span class='st'>"ccode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"COW"</span>) +
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='ggplot2.tidyverse.org/reference/coord_flip.html'>coord_flip</a></span>()</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(df, , space): undefined columns selected</span></div></pre>
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='ggplot2.tidyverse.org/reference/coord_flip.html'>coord_flip</a></span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
+#&gt; <span class='warning'>plot_missing(data, x, ...)</span>
+#&gt; <span class='warning'>missing_info(data, x, ...)</span></div><div class='img'><img src='plot_missing-5.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

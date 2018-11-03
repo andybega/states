@@ -27,13 +27,13 @@ What the package does:
     ``` r
     sfind(260)[, 1:6]
     #>     list ccode code3c            country_name      start        end
-    #> 45   G&W   260    GFR German Federal Republic 1949-09-21 2016-12-31
+    #> 45    GW   260    GFR German Federal Republic 1949-09-21 2017-12-31
     #> 299  COW   260    GFR German Federal Republic 1955-05-05 1990-10-02
     sfind("German")[, 1:6]
     #>     list ccode code3c               country_name      start        end
-    #> 44   G&W   255    GMY          Germany (Prussia) 1816-01-01 1945-05-07
-    #> 45   G&W   260    GFR    German Federal Republic 1949-09-21 2016-12-31
-    #> 46   G&W   265    GDR German Democratic Republic 1949-10-05 1990-10-02
+    #> 44    GW   255    GMY          Germany (Prussia) 1816-01-01 1945-05-07
+    #> 45    GW   260    GFR    German Federal Republic 1949-09-21 2017-12-31
+    #> 46    GW   265    GDR German Democratic Republic 1949-10-05 1990-10-02
     #> 297  COW   255    GMY                    Germany 1816-01-01 1945-05-08
     #> 298  COW   255    GMY                    Germany 1990-10-03 2016-12-31
     #> 299  COW   260    GFR    German Federal Republic 1955-05-05 1990-10-02
@@ -62,7 +62,7 @@ What the package does:
     #>  $ polity: num  -6 -6 -6 -6 -6 -6 -6 -6 -6 -6 ...
     polity$date <- as.Date(paste0(polity$year, "-12-31"))
 
-    plot_missing("polity", polity, "ccode", "date", "year", statelist = "COW")
+    plot_missing(polity, "polity", "ccode", "date", "year", statelist = "COW")
     ```
 
     ![](README-unnamed-chunk-5-1.png)
@@ -70,7 +70,7 @@ What the package does:
     ``` r
 
     # for the underlying data
-    mm <- missing_info("polity", polity, "ccode", "date", "year", statelist = "COW")
+    mm <- missing_info(polity, "polity", "ccode", "date", "year", statelist = "COW")
     ```
 
 Install
