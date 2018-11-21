@@ -1,3 +1,4 @@
+^codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 
@@ -14,3 +15,5 @@ dev
 ^cran-comments\.md$
 ^README\.Rmd$
 ^README-.*\.png$
+
+data-raw

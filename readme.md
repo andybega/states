@@ -3,7 +3,7 @@
 states
 ======
 
-[![CRAN versions](http://www.r-pkg.org/badges/version/states)](https://cran.r-project.org/package=states) [![Travis-CI Build Status](https://travis-ci.org/andybega/states.svg?branch=master)](https://travis-ci.org/andybega/states)
+[![CRAN versions](http://www.r-pkg.org/badges/version/states)](https://cran.r-project.org/package=states) [![Travis-CI Build Status](https://travis-ci.org/andybega/states.svg?branch=master)](https://travis-ci.org/andybega/states) [![Coverage status](https://codecov.io/gh/andybega/states/branch/master/graph/badge.svg)](https://codecov.io/github/andybega/states?branch=master)
 
 Create country-year/month/day panels consistent with the COW or Gleditsch & Ward lists of independent states. I mainly use this for merging different data sources:
 

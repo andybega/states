@@ -3,8 +3,10 @@
 #   keep track in news.md
 #
 
+library("usethis")
 library("devtools")
 library("pkgdown")
+library("rmarkdown")
 
 if (!requireNamespace("pkg", quietly = TRUE)) {
   stop("Pkg needed for this function to work. Please install it.",
@@ -16,6 +18,7 @@ devtools::load_all()
 devtools::test()
 devtools::document()
 devtools::check()
+render("README.Rmd")
 pkgdown::build_site()
 
 
