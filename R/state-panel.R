@@ -22,10 +22,19 @@
 #' }
 #'
 #' @examples
-#' gwlist  <- state_panel("1991-01-01", "2015-01-01", by = "year", useGW = TRUE)
+#' # Basic usage with full option set specified:
+#' gwlist  <- state_panel("1991-01-01", "2015-01-01", by = "year",
+#'                        partial = "any", useGW = TRUE)
 #' head(gwlist, 3)
-#' cowlist <- state_panel("1991-01-01", "2015-01-01", by = "year", useGW = FALSE)
+#' cowlist <- state_panel("1991-01-01", "2015-01-01", by = "year",
+#'                        partial = "any", useGW = FALSE)
 #' head(cowlist, 3)
+#'
+#' # For yearly data, a proper date is not needed, and by = "year" and
+#' # partial = "any" are inferred.
+#' gwlist <- state_panel(1990, 1995)
+#' sfind(265, list = "GW")
+#' 265 %in% gwlist$gwcode
 #'
 #' # Partials
 #' # Focus on South Sudan--is there a record for 2011, first year of indendence?
@@ -47,17 +56,34 @@
 state_panel <- function(start, end, by = "year", partial = "exact", useGW=TRUE) {
 
   # Input validation
-  start <- as.Date(start)
-  end   <- as.Date(end)
-  if (is.na(start) | is.na(end)) {
-    stop("Could not convert start or end to Date class, are they in 'YYYY-MM-DD' format?")
-  }
   if (!by %in% c("year", "month", "day")) {
     stop("Only 'year', 'month', and 'day' are currently supported for the 'by' argument.")
   }
   if (!partial %in% c("exact", "any")) {
     stop("Only 'exact' and 'any' options are supported for 'partial' argument.")
   }
+  dates <- c(start, end)
+  yyyy <- all(grepl("^[0-9]{4}$", dates))
+  yyyymmdd <- all(grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}", dates))
+  if (!any(yyyy, yyyymmdd)) {
+    stop("Invalid start/end input, format should be either 'YYYY' or 'YYYY-MM-DD'.")
+  }
+
+  # Parse YYYY input
+  if (yyyy) {
+    start   <- paste0(start, "-01-01")
+    end     <- paste0(end, "-01-01")
+    by      <- "year"
+    partial <- "any"
+  }
+
+  # Date validation
+  start <- as.Date(start)
+  end   <- as.Date(end)
+  if (is.na(start) | is.na(end)) {
+    stop("Could not convert start or end to Date class.")
+  }
+
 
   if (useGW) {
     utils::data("gwstates", envir = environment())

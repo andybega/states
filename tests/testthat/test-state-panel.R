@@ -5,7 +5,7 @@ context("`state_panel()`")
 test_that("input validation identifies errors", {
   expect_error(
     state_panel(NA, "1992-01-01", by = "day"),
-    "Could not convert"
+    "Invalid start/end"
   )
   expect_error(
     state_panel("1991-01-01", "1992-01-01", by = "week"),
@@ -63,6 +63,14 @@ test_that("partial 'any' works at all time resolutions", {
 test_that("end date is updated", {
   foo <- state_panel("2015-01-01", "2018-01-01", by = "year", partial = "any")
   expect_true(substr(max(foo$date), 1, 4)=="2018")
+})
+
+
+test_that("abbreviated year input works", {
+  expect_error(state_panel(2011, 2013), NA)
+  expect_error(state_panel("2011", "2013"), NA)
+
+  expect_error(state_panel("2011-01-01", "2011"), "Invalid start/end")
 })
 
 #

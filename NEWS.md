@@ -1,5 +1,6 @@
 # Unreleased
 
+- Added option to use simpler input when generating a yearly panel, i.e. `state_panel(2001, 2005)` instead of `state_panel("2001-01-01", "2005-01-01", by = "year", partial = "any")`. 
 - Changed sfind() so that it ignores capitalization and treats character numbers as numbers. These pairs of queries now produce the same results, unlike before:
   - "Gabon" and "gabon",
   - 260 and "260"
