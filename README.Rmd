@@ -68,8 +68,8 @@ install.packages("states")
 Or to install from GitHub:
 
 ```r
-library(devtools)
-install_github("andybega/states")
+library("remotes")
+remotes::install_github("andybega/states")
 ```
 
 ## Citations

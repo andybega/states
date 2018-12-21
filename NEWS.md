@@ -5,6 +5,7 @@
   - "Gabon" and "gabon",
   - 260 and "260"
 - Changed plot_missing() and missing_info() to work nicer with pipes by making "data" the first argument and "x" the second argument. 
+- Added "partial" argument for `plot_missing()`, it works the same as in `state_panel()`. 
 - Fixed plot_missing() and missing_info() error when "data" is a tibble ("tbl_df"). 
 
 # states 0.2.1

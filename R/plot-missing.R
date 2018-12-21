@@ -14,6 +14,9 @@
 #'     observations against a list of independent states? "none" or "GW" or "COW".
 #' @param skip_labels Only plot the label for every n-th country on the y-axis
 #'     to avoid overplotting.
+#' @param partial Option for how to handle edge cases where a state is independent
+#'   for only part of a time period (year, month, etc.). Options include
+#'   "exact", and "any". See [state_panel()] for details.
 #'
 #' @details \code{missing_info} provides the information that is plotted with
 #'     \code{plot_missing}. The latter returns a ggplot, and thus can be chained
@@ -22,14 +25,16 @@
 #' @return \code{plot_missing} returns a ggplot2 object.
 #'
 #'   \code{missing_info} returns a data frame with components:
-#'   \item{[space]}{Space identifier, with name equal to the "space" argument, e.g. "ccode".}
-#'   \item{[time]}{Time identifier, with name equal to the "time" argument, e.g. "date".}
+#'   \item{space}{Space identifier, with name equal to the "space" argument, e.g. "ccode".}
+#'   \item{time}{Time identifier, with name equal to the "time" argument, e.g. "date".}
 #'   \item{independent}{A logical vector, is the statelist argument is none, NA.}
 #'   \item{missing_value}{A logical vector indicating if that record has missing values}
 #'   \item{status}{The label used for plotting, combining the independence and missing value information for a case as appropriate.}
 #'
 #' @export
 #' @importFrom grDevices hcl
+#' @md
+#'
 #' @examples
 #' # Create an example data frame with missing values
 #' cy <- state_panel(as.Date("1980-06-30"), as.Date("2015-06-30"), by = "year",
@@ -59,20 +64,20 @@
 #' data("polity")
 #' head(polity)
 #' polity$date <- as.Date(paste0(polity$year, "-12-31"))
-#' plot_missing("polity", polity, "ccode", "date", "year", "COW")
+#' plot_missing(polity, "polity", "ccode", "date", "year", "COW")
 #' # COW starts in 1816; Polity has excess data for several non-independent
 #' # states after that date, and is missing coverage for several countries.
 #'
 #' # The date option is relevant for years in which states gain or lose
 #' # independence, so this will be slighlty different:
 #' polity$date <- as.Date(paste0(polity$year, "-01-01"))
-#' plot_missing("polity", polity, "ccode", "date", "year", "COW")
+#' plot_missing(polity, "polity", "ccode", "date", "year", "COW")
 #'
 #' # plot_missing returns a ggplot2 object, so you can do anything you want
-#' plot_missing("polity", polity, "ccode", "date", "year", "COW") +
+#' plot_missing(polity, "polity", "ccode", "date", "year", "COW") +
 #'   ggplot2::coord_flip()
 plot_missing <- function(data, x, space, time, time_unit, statelist = c("none", "GW", "COW"),
-                         skip_labels = 5) {
+                         skip_labels = 5, partial = "exact") {
 
   # Temporary code for data, x argument order switch
   args <- .warner(data, x)
@@ -92,7 +97,7 @@ plot_missing <- function(data, x, space, time, time_unit, statelist = c("none", 
 
   data <- as.data.frame(data)
 
-  mm <- missing_info(data, x, space, time, time_unit, statelist)
+  mm <- missing_info(data, x, space, time, time_unit, statelist, partial)
 
   if (statelist %in% c("GW", "COW")) {
     fill_values <- c("Complete, independent" = hcl(195, 100, 65), "Complete, non-independent" = hcl(15, 100, 20),
@@ -124,7 +129,8 @@ plot_missing <- function(data, x, space, time, time_unit, statelist = c("none", 
 #' @export
 #' @rdname plot_missing
 #' @importFrom stats complete.cases
-missing_info <- function(data, x, space, time, time_unit, statelist = "none") {
+missing_info <- function(data, x, space, time, time_unit, statelist = "none",
+                         partial = "exact") {
 
   # Temporary code for data, x argument order switch
   args <- .warner(data, x)
@@ -181,7 +187,8 @@ missing_info <- function(data, x, space, time, time_unit, statelist = "none") {
   } else {
 
     ccname <- ifelse(statelist=="GW", "gwcode", "cowcode")
-    ind_states <- state_panel(min(df[, time]), max(df[, time]), by = time_unit, useGW = (statelist=="GW"))
+    ind_states <- state_panel(min(df[, time]), max(df[, time]), by = time_unit,
+                              useGW = (statelist=="GW"), partial = partial)
     colnames(ind_states)  <- c(space, time)
     ind_states$independent <- 1
 
