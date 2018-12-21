@@ -2,6 +2,21 @@ library("states")
 
 context("`state_panel()`")
 
+test_that("input validation identifies errors", {
+  expect_error(
+    state_panel(NA, "1992-01-01", by = "day"),
+    "Could not convert"
+  )
+  expect_error(
+    state_panel("1991-01-01", "1992-01-01", by = "week"),
+    "Only 'year', "
+  )
+  expect_error(
+    state_panel("1991-01-01", "1992-01-01", partial = "middle"),
+    "Only 'exact'"
+  )
+})
+
 test_that("state_panel() works at all time resolutions", {
   expect_s3_class(
     state_panel("1991-01-01", "1992-01-01", by = "day"),
@@ -29,6 +44,25 @@ test_that("correct columns are returned", {
     names(state_panel("1991-01-01", "2001-01-01", by = "year", partial = "any")),
     c("gwcode", "date")
   )
+})
+
+
+test_that("partial 'any' works at all time resolutions", {
+  expect_error(state_panel("1991-01-01", "1992-01-01", by = "day", partial = "any"),
+               NA)
+
+  expect_error(state_panel("1991-01-01", "1992-01-01", by = "month", partial = "any"),
+               NA)
+
+  expect_error(state_panel("1991-01-01", "1992-01-01", by = "year", partial = "any"),
+               NA)
+})
+
+# end date modification is done so that countries beyond the 'official' data
+# end date are still included
+test_that("end date is updated", {
+  foo <- state_panel("2015-01-01", "2018-01-01", by = "year", partial = "any")
+  expect_true(substr(max(foo$date), 1, 4)=="2018")
 })
 
 #

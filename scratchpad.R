@@ -3,8 +3,10 @@
 #   keep track in news.md
 #
 
-library("usethis")
+stop()
+
 library("devtools")
+library("usethis")
 library("pkgdown")
 library("rmarkdown")
 
