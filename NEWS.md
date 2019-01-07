@@ -4,9 +4,13 @@
 - Changed sfind() so that it ignores capitalization and treats character numbers as numbers. These pairs of queries now produce the same results, unlike before:
   - "Gabon" and "gabon",
   - 260 and "260"
-- Changed plot_missing() and missing_info() to work nicer with pipes by making "data" the first argument and "x" the second argument. 
-- Added "partial" argument for `plot_missing()`, it works the same as in `state_panel()`. 
+- Changes in plot_missing() and missing_info(): 
+  - make "data" the first argument and "x" the second argument so that it works nicer in pipes. 
+  - add more intelligence defaults so that not all arguments have to be explicitly specified.
+  - rename the "time_unit" argument to "period".
+  - added "partial" argument, it works the same as in `state_panel()`. 
 - Fixed plot_missing() and missing_info() error when "data" is a tibble ("tbl_df"). 
+
 
 # states 0.2.1
 

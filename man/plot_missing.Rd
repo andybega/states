@@ -5,24 +5,28 @@
 \alias{missing_info}
 \title{Visualize missing and non-proper cases for state panel data}
 \usage{
-plot_missing(data, x, space, time, time_unit, statelist = c("none", "GW",
-  "COW"), skip_labels = 5, partial = "exact")
-
-missing_info(data, x, space, time, time_unit, statelist = "none",
+plot_missing(data, x = NULL, space = NULL, time = "date",
+  period = "year", statelist = "none", skip_labels = 5,
   partial = "exact")
+
+missing_info(data, x = NULL, space = NULL, time = "date",
+  period = "year", statelist = "none", partial = "exact")
 }
 \arguments{
 \item{data}{State panel data frame}
 
-\item{x}{Variable names(s), e.g. "x" or c("x1", "x2").}
+\item{x}{Variable names(s), e.g. "x" or c("x1", "x2"). Default is NULL, in
+which case all columns expect the space and time ID columns will be used.}
 
-\item{space}{Name of variable identifying state country codes.}
+\item{space}{Name of variable identifying state country codes. If NULL
+(default) and one of "gwcode" or "cowcode" is a column in the data, it
+will be used.}
 
 \item{time}{Name of time identifier, the corresponding variables needs to be
-Date class.}
+Date class. Default is "date".}
 
-\item{time_unit}{Temporal resolution character string, e.g. "year" or "month".
-See details in \code{\link[base]{seq.Date}}.}
+\item{period}{Temporal resolution character string, e.g. "year" or "month".
+See details in \code{\link[base]{seq.Date}}. Default is "year".}
 
 \item{statelist}{Check not only missing values, but presence or absence of
 observations against a list of independent states? "none" or "GW" or "COW".}

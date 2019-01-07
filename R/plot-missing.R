@@ -4,12 +4,15 @@
 #' cases that do or do not match an independent state list.
 #'
 #' @param data State panel data frame
-#' @param x Variable names(s), e.g. "x" or c("x1", "x2").
-#' @param space Name of variable identifying state country codes.
+#' @param x Variable names(s), e.g. "x" or c("x1", "x2"). Default is NULL, in
+#'    which case all columns expect the space and time ID columns will be used.
+#' @param space Name of variable identifying state country codes. If NULL
+#'    (default) and one of "gwcode" or "cowcode" is a column in the data, it
+#'    will be used.
 #' @param time Name of time identifier, the corresponding variables needs to be
-#'     Date class.
-#' @param time_unit Temporal resolution character string, e.g. "year" or "month".
-#'     See details in \code{\link[base]{seq.Date}}.
+#'     Date class. Default is "date".
+#' @param period Temporal resolution character string, e.g. "year" or "month".
+#'     See details in \code{\link[base]{seq.Date}}. Default is "year".
 #' @param statelist Check not only missing values, but presence or absence of
 #'     observations against a list of independent states? "none" or "GW" or "COW".
 #' @param skip_labels Only plot the label for every n-th country on the y-axis
@@ -76,14 +79,19 @@
 #' # plot_missing returns a ggplot2 object, so you can do anything you want
 #' plot_missing(polity, "polity", "ccode", "date", "year", "COW") +
 #'   ggplot2::coord_flip()
-plot_missing <- function(data, x, space, time, time_unit, statelist = c("none", "GW", "COW"),
-                         skip_labels = 5, partial = "exact") {
+plot_missing <- function(data, x = NULL, space = NULL, time = "date", period = "year",
+                         statelist = "none", skip_labels = 5, partial = "exact") {
 
   # Temporary code for data, x argument order switch
   args <- .warner(data, x)
   data <- args$data
   x    <- args$x
   rm(args)
+
+  # Try to find ID columns if not specified
+  if (is.null(space)) {
+    space <- id_space_column(data)
+  }
 
   if (!statelist %in% c("none", "GW", "COW")) {
     stop(sprintf("'%s' is not a valid option for 'statelist', use 'none', 'GW', or 'COW'",
@@ -97,7 +105,7 @@ plot_missing <- function(data, x, space, time, time_unit, statelist = c("none", 
 
   data <- as.data.frame(data)
 
-  mm <- missing_info(data, x, space, time, time_unit, statelist, partial)
+  mm <- missing_info(data, x, space, time, period, statelist, partial)
 
   if (statelist %in% c("GW", "COW")) {
     fill_values <- c("Complete, independent" = hcl(195, 100, 65), "Complete, non-independent" = hcl(15, 100, 20),
@@ -129,14 +137,19 @@ plot_missing <- function(data, x, space, time, time_unit, statelist = c("none", 
 #' @export
 #' @rdname plot_missing
 #' @importFrom stats complete.cases
-missing_info <- function(data, x, space, time, time_unit, statelist = "none",
-                         partial = "exact") {
+missing_info <- function(data, x = NULL, space = NULL, time = "date", period = "year",
+                         statelist = "none", partial = "exact") {
 
   # Temporary code for data, x argument order switch
   args <- .warner(data, x)
   data <- args$data
   x    <- args$x
   rm(args)
+
+  # Try to find ID columns if not specified
+  if (is.null(space)) {
+    space <- id_space_column(data)
+  }
 
   df <- as.data.frame(data)
 
@@ -160,6 +173,12 @@ missing_info <- function(data, x, space, time, time_unit, statelist = "none",
     stop("Valid choices for statelist argument are 'none', 'GW', or 'COW'")
   }
 
+  # Infer x variables if not specified; have to do this after already infering
+  # space, time, and period, if needed
+  if (is.null(x)) {
+    x <- setdiff(colnames(data), c(space, time))
+  }
+
   # Create missingness logical vector
   df[, "missing_value"] <- !stats::complete.cases(df[, x])
   df <- df[, c(space, time, "missing_value")]
@@ -169,7 +188,7 @@ missing_info <- function(data, x, space, time, time_unit, statelist = "none",
     space_range <- unique(df[, space])
     time_range  <- seq.Date(from = min(data[, time]),
                             to   = max(data[, time]),
-                            by   = time_unit
+                            by   = period
     )
     full_mat <- expand.grid(space_range, time_range)
     colnames(full_mat) <- c(space, time)
@@ -187,7 +206,7 @@ missing_info <- function(data, x, space, time, time_unit, statelist = "none",
   } else {
 
     ccname <- ifelse(statelist=="GW", "gwcode", "cowcode")
-    ind_states <- state_panel(min(df[, time]), max(df[, time]), by = time_unit,
+    ind_states <- state_panel(min(df[, time]), max(df[, time]), by = period,
                               useGW = (statelist=="GW"), partial = partial)
     colnames(ind_states)  <- c(space, time)
     ind_states$independent <- 1
@@ -228,4 +247,20 @@ missing_info <- function(data, x, space, time, time_unit, statelist = "none",
     return(list(data = x, x = data))
   }
   list(data = data, x = x)
+}
+
+
+id_space_column <- function(data) {
+  idx <- c("gwcode", "cowcode") %in% colnames(data)
+  if (!any(idx)) {
+    stop("Please specifiy the \"space\" argument")
+  }
+  if (all(idx)) {
+    warning("Found both \"gwcode\" and \"cowcode\" columns in data, using \"gwcode\".")
+    space <- "gwcode"
+  }
+  if (xor(idx[1], idx[2])) {
+    space <- c("gwcode", "cowcode")[idx]
+  }
+  space
 }
