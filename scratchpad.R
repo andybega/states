@@ -54,7 +54,7 @@ check_win_devel()
 R.Version()$version.string
 
 devtools::spell_check()
-check_rhub
+devtools::check_rhub()
 devtools::release()
 
 # update local install

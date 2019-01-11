@@ -12,4 +12,3 @@
 **********
 
 Minor updates, and should also resolve the two NOTES for some platforms on CRAN results. Thanks!
-Andreas Beger
