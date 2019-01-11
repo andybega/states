@@ -11,5 +11,5 @@
 
 **********
 
-Thanks!
+Minor updates, and it should resolve one of the NOTES current on the CRAN results page. Thanks!
 Andreas Beger
