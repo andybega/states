@@ -1,7 +1,7 @@
 Package: states
 Type: Package
 Title: Create Panels of Independent States
-Version: 0.2.1.9000
+Version: 0.2.2
 Authors@R: person("Andreas", "Beger", role = c("cre", "aut"), email =
     "adbeger@gmail.com", comment = c(ORCID = "0000-0003-1883-3169"))
 Maintainer: Andreas Beger <adbeger@gmail.com>
@@ -15,8 +15,7 @@ Encoding: UTF-8
 LazyData: true
 Depends: R (>= 2.10)
 Imports:
-    dplyr,
-    lubridate
+    dplyr
 Suggests:
     testthat,
     ggplot2,
