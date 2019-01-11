@@ -2,6 +2,7 @@ library("dplyr")
 library("readr")
 library("lubridate")
 library("usethis")
+library("stringr")
 
 ksg_states_url <- "http://ksgleditsch.com/data/iisystem.dat"
 ksg_microstates_url <- "http://ksgleditsch.com/data/microstatessystem.dat"
@@ -35,6 +36,14 @@ gwstates$end[gwstates$end==max(gwstates$end)] <- as.Date("9999-12-31")
 # Fix encoding issue for countries like Cote d'Ivoire
 Encoding(gwstates$country_name) <- "latin1"
 gwstates$country_name <- enc2utf8(gwstates$country_name)
+
+# Get rid of non-Ascii characters, this causes CRAN NOTEs
+gwstates <- gwstates %>%
+  mutate(country_name = str_replace(country_name, "ü", "u"),
+         country_name = str_replace(country_name, "’", "'"),
+         country_name = str_replace(country_name, "ã", "a"),
+         country_name = str_replace(country_name, "é", "e"))
+table(stringi::stri_enc_mark(gwstates$country_name))
 
 gwstates <- as.data.frame(gwstates)
 

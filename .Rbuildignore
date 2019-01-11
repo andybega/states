@@ -1,3 +1,4 @@
+^CRAN-RELEASE$
 ^codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
@@ -13,6 +14,5 @@ scratchpad.R
 ^cran-comments\.md$
 ^README\.Rmd$
 ^README-.*\.png$
-
 ^dev$
 ^data-raw$

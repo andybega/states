@@ -11,5 +11,5 @@
 
 **********
 
-Minor updates, and it should resolve one of the NOTES current on the CRAN results page. Thanks!
+Minor updates, and should also resolve the two NOTES for some platforms on CRAN results. Thanks!
 Andreas Beger

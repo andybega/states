@@ -18,6 +18,8 @@ cowstates <- cowstates %>%
 
 Encoding(cowstates$country_name) <- "UTF-8"
 
+table(stringi::stri_enc_mark(gwstates$country_name))
+
 cowstates <- as.data.frame(cowstates)
 
 usethis::use_data(cowstates, overwrite = TRUE)
