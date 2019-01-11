@@ -41,8 +41,8 @@ library("devtools")
 devtools::check()
 devtools::build()
 
-build_win(version = "R-release")
-build_win(version = "R-devel")
+check_win_release()
+check_win_devel()
 
 # commit to git for travis
 # https://travis-ci.org

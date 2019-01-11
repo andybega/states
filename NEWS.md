@@ -1,4 +1,4 @@
-# Unreleased
+# states 0.2.2
 
 - Added option to use simpler input when generating a yearly panel, i.e. `state_panel(2001, 2005)` instead of `state_panel("2001-01-01", "2005-01-01", by = "year", partial = "any")`. 
 - Changed sfind() so that it ignores capitalization and treats character numbers as numbers. These pairs of queries now produce the same results, unlike before:
@@ -6,7 +6,7 @@
   - 260 and "260"
 - Changes in plot_missing() and missing_info(): 
   - make "data" the first argument and "x" the second argument so that it works nicer in pipes. 
-  - add more intelligence defaults so that not all arguments have to be explicitly specified.
+  - add more intelligent defaults so that not all arguments have to be explicitly specified.
   - rename the "time_unit" argument to "period".
   - added "partial" argument, it works the same as in `state_panel()`. 
 - Fixed plot_missing() and missing_info() error when "data" is a tibble ("tbl_df"). 

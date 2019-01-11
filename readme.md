@@ -65,7 +65,7 @@ What the package does:
     plot_missing(polity, "polity", "ccode", "date", "year", statelist = "COW")
     ```
 
-    ![](README-unnamed-chunk-5-1.png)
+    <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
     ``` r
 
@@ -85,8 +85,8 @@ install.packages("states")
 Or to install from GitHub:
 
 ``` r
-library(devtools)
-install_github("andybega/states")
+library("remotes")
+remotes::install_github("andybega/states")
 ```
 
 Citations
