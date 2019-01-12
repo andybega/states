@@ -27,12 +27,12 @@ What the package does:
     ``` r
     sfind(260)[, 1:6]
     #>     list ccode code3c            country_name      start        end
-    #> 45    GW   260    GFR German Federal Republic 1949-09-21 2017-12-31
+    #> 45    GW   260    GFR German Federal Republic 1949-09-21 9999-12-31
     #> 299  COW   260    GFR German Federal Republic 1955-05-05 1990-10-02
     sfind("German")[, 1:6]
     #>     list ccode code3c               country_name      start        end
     #> 44    GW   255    GMY          Germany (Prussia) 1816-01-01 1945-05-07
-    #> 45    GW   260    GFR    German Federal Republic 1949-09-21 2017-12-31
+    #> 45    GW   260    GFR    German Federal Republic 1949-09-21 9999-12-31
     #> 46    GW   265    GDR German Democratic Republic 1949-10-05 1990-10-02
     #> 297  COW   255    GMY                    Germany 1816-01-01 1945-05-08
     #> 298  COW   255    GMY                    Germany 1990-10-03 2016-12-31

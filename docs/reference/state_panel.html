@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -190,7 +190,7 @@ or loses independence during a time period specified in the by option:</p>
 <span class='co'># Focus on South Sudan--is there a record for 2011, first year of indendence?</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>gwstates</span>)
 <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>gwstates</span>, <span class='no'>gwcode</span><span class='kw'>==</span><span class='fl'>626</span>)</div><div class='output co'>#&gt;   gwcode iso3c country_name      start        end microstate
-#&gt; 1    626   SSD  South Sudan 2011-07-09 2017-12-31      FALSE</div><div class='input'><span class='co'># No 2011 because SSD was not indpendent on January 1st 2011</span>
+#&gt; 1    626   SSD  South Sudan 2011-07-09 9999-12-31      FALSE</div><div class='input'><span class='co'># No 2011 because SSD was not indpendent on January 1st 2011</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>state_panel</span>(<span class='st'>"2011-01-01"</span>, <span class='st'>"2013-01-01"</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"exact"</span>)
 <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>x</span>, <span class='no'>gwcode</span><span class='kw'>==</span><span class='fl'>626</span>)</div><div class='output co'>#&gt;   gwcode       date
 #&gt; 1    626 2012-01-01
