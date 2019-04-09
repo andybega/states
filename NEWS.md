@@ -1,3 +1,7 @@
+# states 0.2.2.9000
+
+- Add country_names() to translate country codes to country names. 
+
 # states 0.2.2
 
 - Added option to use simpler input when generating a yearly panel, i.e. `state_panel(2001, 2005)` instead of `state_panel("2001-01-01", "2005-01-01", by = "year", partial = "any")`. 

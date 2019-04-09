@@ -17,5 +17,7 @@
 #'
 #' @name states
 #' @docType package
+#'
+#' @importFrom utils tail
 NULL
 globalVariables(c("gwstates", "cowstates"))

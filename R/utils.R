@@ -34,3 +34,25 @@ id_date_sequence <- function(x, pd) {
   xx <- c(1, round(diff_days / divisor))
   cumsum(xx!=1) + 1
 }
+
+
+#' Country names
+#'
+#' @param x A vector of numeric country codes
+#' @param list Which states list to use? Only "GW" at this time.
+#'
+#' @examples
+#' data("gwstates")
+#' codes <- gwstates$gwcode
+#' cn    <- country_names(codes)
+#' data.frame(gwcode = codes, country_name = cn)
+#'
+#' @export
+country_names <- function(x, list = "GW") {
+  cnames <- states::gwstates %>%
+    dplyr::group_by(gwcode) %>%
+    dplyr::summarize(country_name = tail(unique(country_name), 1))
+  data.frame(gwcode = x) %>%
+    dplyr::left_join(cnames, by = "gwcode") %>%
+    dplyr::pull(country_name)
+}
