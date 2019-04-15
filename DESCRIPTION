@@ -22,7 +22,8 @@ Suggests:
     stringr,
     knitr,
     rmarkdown,
-    covr
+    covr,
+    pkgdown
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
 URL: https://github.com/andybega/states, https://andybeger.com/states
