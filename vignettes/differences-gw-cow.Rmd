@@ -1,10 +1,10 @@
 ---
-title: "Country code differences to look out for"
+title: "G&W and COW country code differences"
 author: "Andreas Beger"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Country code differences to look out for}
+  %\VignetteIndexEntry{G&W and COW country code differences}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,47 +16,16 @@ library("states")
 library("dplyr")
 ```
 
-Notes on common country code differences when comparing and merging different data sources. 
+The COW and G&W state system lists generally have high overlap, but there are differences in states start and end dates, and also some differences in which numeric code is used for a particular states. Some notable code differences for post-WW2 states to look out for when trying to merge datasets with/from COW to G&W coding are:
 
-## Between COW and G&W lists
-
-```{r}
-
-data("cowstates")
-data("gwstates")
-
-```
-
-How many COW country names are in G&W country names?
-
-```{r}
-table(cowstates$country_name %in% gwstates$country_name)
-```
-
-How many G&W country names are in COW country names?
-
-```{r}
-table(gwstates$country_name %in% cowstates$country)
-```
-
-There is more apparent overlap when we focus on country codes:
-
-```{r}
-cowstates %>% filter(!cowcode %in% gwstates$gwcode) %>%
-  knitr::kable(caption = "Country codes in COW but not in G&W")
-
-gwstates %>% filter(!gwcode %in% cowstates$cowcode) %>%
-  knitr::kable(caption = "Country codes in G&W but not in COW")
-```
-
-
-This is deceiving however. There are several country codes that refer to different countries in COW and G&W. Also, which code is retained for states after a split or merge is different in several cases. 
-
-- Germany after 1991 unification: COW uses 255, G&W continues 260
-- Yemen: COW has 678 for Yemen from 1926 to 1990, then 679 after unification; G&W uses 678 throughout, but independence is earlier. 
-- Kiribati: 970 in G&W, 946 in COW
-- Nauru: 971 in G&W, 970 in COW
-- Tuvalu: 973 in G&W, 947 in COW
-- Tonga: 972 in G&W, 955 in COW
+| Case | G&W | COW |
+|------|-----|-----|
+|Germany after 1990 unification | continue 260 | 255 |
+|Yemen after 1990 unification | continue 678 | 679 |
+|Serbia after 2006 dissolution of Serbia & Montenegro | 340 | continue 345 |
+|Kiribati | 970 | 946 |
+|Nauru | 971 | 970 |
+|Tuvalu | 973 | 947 |
+|Tonga | 972 | 955 |
 
 
