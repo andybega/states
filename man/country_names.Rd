@@ -7,13 +7,13 @@
 country_names(x, list = "GW", shorten = FALSE)
 }
 \arguments{
-\item{x}{([numeric])
+\item{x}{(\link{numeric})
 A vector of numeric country codes}
 
-\item{list}{(`logical(1)`)\cr
+\item{list}{(\code{logical(1)})\cr
 Which states list to use? Only "GW" at this time.}
 
-\item{shorten}{(`logical(1)`)\cr
+\item{shorten}{(\code{logical(1)})\cr
 Shorten some of the longer country names like "Macedonia, the former Yugoslav Republic of"?}
 }
 \description{

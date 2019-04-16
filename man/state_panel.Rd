@@ -28,9 +28,9 @@ The partial option determines how to handle instances where a country gains
 or loses independence during a time period specified in the by option:
 
 \itemize{
-    \item{"exact": the exact date in start is used for filtering}
-    \item{"any": a state-period is included if the state was independent at
-                 any point in that period.}
+\item{"exact": the exact date in start is used for filtering}
+\item{"any": a state-period is included if the state was independent at
+any point in that period.}
 }
 }
 \examples{

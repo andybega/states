@@ -12,7 +12,7 @@
 #' @param time Name of time identifier, the corresponding variables needs to be
 #'     Date class. Default is "date".
 #' @param period Temporal resolution character string, e.g. "year" or "month".
-#'     See details in \code{\link[base]{seq.Date}}. Default is "year".
+#'     See details in [base::seq.Date()]. Default is "year".
 #' @param statelist Check not only missing values, but presence or absence of
 #'     observations against a list of independent states? "none" or "GW" or "COW".
 #' @param skip_labels Only plot the label for every n-th country on the y-axis
@@ -21,13 +21,13 @@
 #'   for only part of a time period (year, month, etc.). Options include
 #'   "exact", and "any". See [state_panel()] for details.
 #'
-#' @details \code{missing_info} provides the information that is plotted with
-#'     \code{plot_missing}. The latter returns a ggplot, and thus can be chained
+#' @details `missing_info` provides the information that is plotted with
+#'     `plot_missing`. The latter returns a ggplot, and thus can be chained
 #'     with other ggplot functions as usual.
 #'
-#' @return \code{plot_missing} returns a ggplot2 object.
+#' @return `plot_missing` returns a ggplot2 object.
 #'
-#'   \code{missing_info} returns a data frame with components:
+#'   `missing_info` returns a data frame with components:
 #'   \item{space}{Space identifier, with name equal to the "space" argument, e.g. "ccode".}
 #'   \item{time}{Time identifier, with name equal to the "time" argument, e.g. "date".}
 #'   \item{independent}{A logical vector, is the statelist argument is none, NA.}

@@ -7,8 +7,8 @@
 prettyc(x)
 }
 \arguments{
-\item{x}{([character])\cr
-Country names, e.g. from [country_names()].}
+\item{x}{(\link{character})\cr
+Country names, e.g. from \code{\link[=country_names]{country_names()}}.}
 }
 \description{
 Shorten country names

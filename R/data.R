@@ -11,12 +11,12 @@
 #'
 #' @format Data frame
 #' \describe{
-#'  \item{\code{gwcode}}{Gleditsch and Ward country code.}
-#'  \item{\code{iso3c}}{ISO 3 character country code.}
-#'  \item{\code{country_name}}{Long form country name}
-#'  \item{\code{start}}{Country start of independence.}
-#'  \item{\code{end}}{Country end of independence.}
-#'  \item{\code{microstate}}{Logical flag for whether state is a microstates with less than 250,000 population.}
+#'  \item{`gwcode`}{Gleditsch and Ward country code.}
+#'  \item{`iso3c`}{ISO 3 character country code.}
+#'  \item{`country_name`}{Long form country name}
+#'  \item{`start`}{Country start of independence.}
+#'  \item{`end`}{Country end of independence.}
+#'  \item{`microstate`}{Logical flag for whether state is a microstates with less than 250,000 population.}
 #'}
 #'
 #' @source
@@ -43,12 +43,12 @@
 #'
 #' @format Data frame
 #' \describe{
-#'  \item{\code{ccode}}{Gleditsch and Ward country code.}
-#'  \item{\code{iso3c}}{ISO 3 character country code.}
-#'  \item{\code{country_name}}{Long form country name}
-#'  \item{\code{start}}{Country start of independence.}
-#'  \item{\code{end}}{Country end of independence.}
-#'  \item{\code{microstate}}{Logical flag for whether state is a microstates with less than 250,000 population.}
+#'  \item{`ccode`}{Gleditsch and Ward country code.}
+#'  \item{`iso3c`}{ISO 3 character country code.}
+#'  \item{`country_name`}{Long form country name}
+#'  \item{`start`}{Country start of independence.}
+#'  \item{`end`}{Country end of independence.}
+#'  \item{`microstate`}{Logical flag for whether state is a microstates with less than 250,000 population.}
 #'}
 #'
 #' @source
@@ -79,9 +79,9 @@
 #'
 #' @format Data frame
 #' \describe{
-#'  \item{\code{ccode}}{Correlates of War (COW) country code.}
-#'  \item{\code{year}}{Year of the observation.}
-#'  \item{\code{polity}}{Combined Polity score.}
+#'  \item{`ccode`}{Correlates of War (COW) country code.}
+#'  \item{`year`}{Year of the observation.}
+#'  \item{`polity`}{Combined Polity score.}
 #'}
 #'
 #' @source

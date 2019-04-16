@@ -7,7 +7,7 @@
 #' @param by Temporal resolution, "year", "month", or "day".
 #' @param partial Option for how to handle edge cases where a state is independent
 #'   for only part of a time period (year, month, etc.). Options include
-#'   \code{"exact"}, and \code{"any"}. See details.
+#'   `"exact"`, and `"any"`. See details.
 #' @param useGW Use Gleditsch & Ward statelist or Correlates of War state system
 #'     membership list.
 #'
