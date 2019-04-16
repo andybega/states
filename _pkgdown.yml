@@ -12,6 +12,8 @@ reference:
     contents:
       - id_date_sequence
       - states
+      - country_names
+      - prettyc
   - title: "Data"
     desc: >
       The COW and G&W independent states lists are included in the package, as
