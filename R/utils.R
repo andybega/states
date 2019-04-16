@@ -38,21 +38,87 @@ id_date_sequence <- function(x, pd) {
 
 #' Country names
 #'
-#' @param x A vector of numeric country codes
-#' @param list Which states list to use? Only "GW" at this time.
+#' @param x ([numeric])
+#'   A vector of numeric country codes
+#' @param list (`logical(1)`)\cr
+#'   Which states list to use? Only "GW" at this time.
+#' @param shorten (`logical(1)`)\cr
+#'   Shorten some of the longer country names like "Macedonia, the former Yugoslav Republic of"?
 #'
 #' @examples
 #' data("gwstates")
 #' codes <- gwstates$gwcode
 #' cn    <- country_names(codes)
-#' data.frame(gwcode = codes, country_name = cn)
+#' cs    <- country_names(codes, shorten = TRUE)
+#' data.frame(gwcode = codes, country_name = cn, short_names = cs)
 #'
 #' @export
-country_names <- function(x, list = "GW") {
+country_names <- function(x, list = "GW", shorten = FALSE) {
+  # hack to avoid globals NOTE;
+  # for better, see https://dplyr.tidyverse.org/articles/programming.html
+  gwcode <- country_name <- NULL
   cnames <- states::gwstates %>%
     dplyr::group_by(gwcode) %>%
     dplyr::summarize(country_name = tail(unique(country_name), 1))
+
+  if (isTRUE(shorten)) {
+    cnames$country_name <- pretty_names(cnames$country_name)
+  }
+
   data.frame(gwcode = x) %>%
     dplyr::left_join(cnames, by = "gwcode") %>%
     dplyr::pull(country_name)
 }
+
+
+#' Shorten country names
+#'
+#' @param x ([character])\cr
+#'   Country names, e.g. from [country_names()].
+#'
+#' @examples
+#' cn <- c(
+#'   "Macedonia, the former Yugoslav Republic of",
+#'   "Congo, the Democratic Republic of the",
+#'   "Tanzania, United Republic of")
+#' pretty_names(cn)
+#'
+#' @export
+# Fix some ugly country names from countrycode package
+pretty_names <- function(x) {
+  cn <- x
+  dict <- matrix(ncol=2, byrow=TRUE, c(
+    "Burkina Faso (Upper Volta)", "Burkina Faso",
+    "Bolivia, Plurinational State of", "Bolivia",
+    "Central African Republic", "CAR",
+    "Congo, the Democratic Republic of the", "DR Congo",
+    "Federal Republic of Germany", "Germany",
+    "Federated States of Micronesia", "Micronesia",
+    "Korea, Democratic People's Republic of", "North Korea",
+    "Korea, People's Republic of", "North Korea",
+    "Korea, Republic of", "South Korea",
+    "Lao People's Democratic Republic", "Laos",
+    "Macedonia, the former Yugoslav Republic of", "Macedonia",
+    "Moldova, Republic of", "Moldova",
+    "Myanmar (Burma)", "Myanmar",
+    "Iran, Islamic Republic of", "Iran",
+    "Iran (Persia)", "Iran",
+    "Russian Federation", "Russia",
+    "Sri Lanka (Ceylon)", "Sri Lanka",
+    "Syrian Arab Republic", "Syria",
+    "Tanzania, United Republic of", "Tanzania",
+    "Turkey (Ottoman Empire)", "Turkey",
+    "Venezuela, Bolivarian Republic of", "Venezuela",
+    "Vietnam (Annam/Cochin China/Tonkin)", "Vietnam",
+    "Vietnam, Democratic Republic of", "Vietnam",
+    "Vietnam, Republic of", "South Vietnam",
+    "Yemen Arab Republic", "Yemen",
+    "Yemen (Arab Republic of Yemen)", "Yemen",
+    "Yemen, People's Republic of", "South Yemen")
+  )
+  for (i in 1:nrow(dict)) {
+    cn <- gsub(dict[i, 1], dict[i, 2], cn)
+  }
+  cn
+}
+

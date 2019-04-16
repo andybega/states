@@ -18,14 +18,14 @@ library("dplyr")
 
 The COW and G&W state system lists generally have high overlap, but there are differences in states start and end dates, and also some differences in which numeric code is used for a particular states. Some notable code differences for post-WW2 states to look out for when trying to merge datasets with/from COW to G&W coding are:
 
-| Case | G&W | COW |
-|------|-----|-----|
-|Germany after 1990 unification | continue 260 | 255 |
-|Yemen after 1990 unification | continue 678 | 679 |
-|Serbia after 2006 dissolution of Serbia & Montenegro | 340 | continue 345 |
-|Kiribati | 970 | 946 |
-|Nauru | 971 | 970 |
-|Tuvalu | 973 | 947 |
-|Tonga | 972 | 955 |
+| Case                                                | G&W          | COW          |
+|-----------------------------------------------------|--------------|--------------|
+|Germany after 1990 unification                       | continue 260 |          255 |
+|Yemen after 1990 unification                         | continue 678 |          679 |
+|Serbia after 2006 dissolution of Serbia & Montenegro | 340          | continue 345 |
+|Kiribati                                             | 970          |          946 |
+|Nauru                                                | 971          |          970 |
+|Tuvalu                                               | 973          |          947 |
+|Tonga                                                | 972          |          955 |
 
 

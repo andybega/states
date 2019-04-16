@@ -4,12 +4,17 @@
 \alias{country_names}
 \title{Country names}
 \usage{
-country_names(x, list = "GW")
+country_names(x, list = "GW", shorten = FALSE)
 }
 \arguments{
-\item{x}{A vector of numeric country codes}
+\item{x}{([numeric])
+A vector of numeric country codes}
 
-\item{list}{Which states list to use? Only "GW" at this time.}
+\item{list}{(`logical(1)`)\cr
+Which states list to use? Only "GW" at this time.}
+
+\item{shorten}{(`logical(1)`)\cr
+Shorten some of the longer country names like "Macedonia, the former Yugoslav Republic of"?}
 }
 \description{
 Country names
@@ -18,6 +23,7 @@ Country names
 data("gwstates")
 codes <- gwstates$gwcode
 cn    <- country_names(codes)
-data.frame(gwcode = codes, country_name = cn)
+cs    <- country_names(codes, shorten = TRUE)
+data.frame(gwcode = codes, country_name = cn, short_names = cs)
 
 }
