@@ -62,7 +62,7 @@ country_names <- function(x, list = "GW", shorten = FALSE) {
     dplyr::summarize(country_name = tail(unique(country_name), 1))
 
   if (isTRUE(shorten)) {
-    cnames$country_name <- pretty_names(cnames$country_name)
+    cnames$country_name <- prettyc(cnames$country_name)
   }
 
   data.frame(gwcode = x) %>%
@@ -81,11 +81,10 @@ country_names <- function(x, list = "GW", shorten = FALSE) {
 #'   "Macedonia, the former Yugoslav Republic of",
 #'   "Congo, the Democratic Republic of the",
 #'   "Tanzania, United Republic of")
-#' pretty_names(cn)
+#' prettyc(cn)
 #'
 #' @export
-# Fix some ugly country names from countrycode package
-pretty_names <- function(x) {
+prettyc <- function(x) {
   cn <- x
   dict <- matrix(ncol=2, byrow=TRUE, c(
     "Burkina Faso (Upper Volta)", "Burkina Faso",
