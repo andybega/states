@@ -87,10 +87,11 @@ country_names <- function(x, list = "GW", shorten = FALSE) {
 prettyc <- function(x) {
   cn <- x
   dict <- matrix(ncol=2, byrow=TRUE, c(
-    "Burkina Faso (Upper Volta)", "Burkina Faso",
+    "Burkina Faso \\(Upper Volta\\)", "Burkina Faso",
     "Bolivia, Plurinational State of", "Bolivia",
     "Central African Republic", "CAR",
     "Congo, the Democratic Republic of the", "DR Congo",
+    "Congo, Democratic Republic of \\(Zaire\\)", "DR Congo",
     "Federal Republic of Germany", "Germany",
     "Federated States of Micronesia", "Micronesia",
     "Korea, Democratic People's Republic of", "North Korea",
@@ -99,20 +100,21 @@ prettyc <- function(x) {
     "Lao People's Democratic Republic", "Laos",
     "Macedonia, the former Yugoslav Republic of", "Macedonia",
     "Moldova, Republic of", "Moldova",
-    "Myanmar (Burma)", "Myanmar",
+    "Myanmar \\(Burma\\)", "Myanmar",
     "Iran, Islamic Republic of", "Iran",
-    "Iran (Persia)", "Iran",
+    "Iran \\(Persia\\)", "Iran",
     "Russian Federation", "Russia",
-    "Sri Lanka (Ceylon)", "Sri Lanka",
+    "Sri Lanka \\(Ceylon\\)", "Sri Lanka",
     "Syrian Arab Republic", "Syria",
     "Tanzania, United Republic of", "Tanzania",
-    "Turkey (Ottoman Empire)", "Turkey",
+    "Tanzania/Tanganyika", "Tanzania",
+    "Turkey \\(Ottoman Empire\\)", "Turkey",
     "Venezuela, Bolivarian Republic of", "Venezuela",
-    "Vietnam (Annam/Cochin China/Tonkin)", "Vietnam",
+    "Vietnam \\(Annam/Cochin China/Tonkin\\)", "Vietnam",
     "Vietnam, Democratic Republic of", "Vietnam",
     "Vietnam, Republic of", "South Vietnam",
     "Yemen Arab Republic", "Yemen",
-    "Yemen (Arab Republic of Yemen)", "Yemen",
+    "Yemen \\(Arab Republic of Yemen\\)", "Yemen",
     "Yemen, People's Republic of", "South Yemen")
   )
   for (i in 1:nrow(dict)) {
