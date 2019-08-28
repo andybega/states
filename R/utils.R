@@ -99,6 +99,7 @@ prettyc <- function(x) {
     "Korea, Republic of", "South Korea",
     "Lao People's Democratic Republic", "Laos",
     "Macedonia, the former Yugoslav Republic of", "Macedonia",
+    "Macedonia \\(Former Yugoslav Republic of\\)", "Macedonia",
     "Moldova, Republic of", "Moldova",
     "Myanmar \\(Burma\\)", "Myanmar",
     "Iran, Islamic Republic of", "Iran",

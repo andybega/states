@@ -1,7 +1,8 @@
 # states 0.2.2.9000
 
 - Add `country_names()` to translate country codes to country names and `prettyc()` to shorten some of the longer country names, like "Macedonia, the former Yugoslav Republic of".
-- Updated vignette on G&W and COW differences to take into account when trying to translate between codes. 
+- Updated vignette on G&W and COW differences to take into account when trying to translate between codes.
+- Add `compare()` helper to compare two statelist data frames prior to merging. 
 
 # states 0.2.2
 
