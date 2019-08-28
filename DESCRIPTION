@@ -15,7 +15,8 @@ Encoding: UTF-8
 LazyData: true
 Depends: R (>= 2.10)
 Imports:
-    dplyr
+    dplyr,
+    rlang
 Suggests:
     testthat,
     ggplot2,

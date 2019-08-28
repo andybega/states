@@ -76,20 +76,13 @@ compare <- function(df1, df2, state1 = "gwcode", time1 = "year",
 }
 
 #' @export
+#' @importFrom rlang .data
 summary.state_sets <- function(object, ...) {
-  tbl <- by(object,
-            list(object$case_in_df1, object$case_in_df2, object$missval_df1,
-                 object$missval_df2),
-            function(x) {
-              data.frame(
-                case_in_df1 = unique(x$case_in_df1),
-                case_in_df2 = unique(x$case_in_df2),
-                missval_df1 = unique(x$missval_df1),
-                missval_df2 = unique(x$missval_df2),
-                n = nrow(x)
-              )
-            })
-  tbl <- do.call(rbind, tbl)
+  tbl <- object %>%
+    dplyr::group_by(.data$case_in_df1, .data$case_in_df2,
+                    .data$missval_df1, .data$missval_df2) %>%
+    dplyr::summarize(n = dplyr::n()) %>%
+    dplyr::ungroup()
   tbl
 }
 
