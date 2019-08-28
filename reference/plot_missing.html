@@ -8,11 +8,13 @@
 
 <title>Visualize missing and non-proper cases for state panel data — plot_missing • states</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,11 +32,12 @@
 
 
 
-<meta property="og:title" content="Visualize missing and non-proper cases for state panel data — plot_missing" />
 
+<meta property="og:title" content="Visualize missing and non-proper cases for state panel data — plot_missing" />
 <meta property="og:description" content="Plot missing values by country and date, and additionally identify country-date
 cases that do or do not match an independent state list." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -95,7 +98,6 @@ cases that do or do not match an independent state list." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/andybega/states">
@@ -121,10 +123,8 @@ cases that do or do not match an independent state list." />
     </div>
 
     <div class="ref-description">
-    
     <p>Plot missing values by country and date, and additionally identify country-date
 cases that do or do not match an independent state list.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>plot_missing</span>(<span class='no'>data</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>space</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"date"</span>,
@@ -133,7 +133,7 @@ cases that do or do not match an independent state list.</p>
 
 <span class='fu'>missing_info</span>(<span class='no'>data</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>space</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"date"</span>,
   <span class='kw'>period</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"exact"</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -179,7 +179,7 @@ for only part of a time period (year, month, etc.). Options include
 "exact", and "any". See <code><a href='state_panel.html'>state_panel()</a></code> for details.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>plot_missing</code> returns a ggplot2 object.</p>
@@ -190,13 +190,11 @@ for only part of a time period (year, month, etc.). Options include
 <dt>missing_value</dt><dd><p>A logical vector indicating if that record has missing values</p></dd>
 <dt>status</dt><dd><p>The label used for plotting, combining the independence and missing value information for a case as appropriate.</p></dd>
 
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>missing_info</code> provides the information that is plotted with
 <code>plot_missing</code>. The latter returns a ggplot, and thus can be chained
 with other ggplot functions as usual.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Create an example data frame with missing values</span>
@@ -272,11 +270,8 @@ with other ggplot functions as usual.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
