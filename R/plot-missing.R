@@ -44,6 +44,8 @@
 #' useGW = TRUE)
 #' cy$myvar <- rnorm(nrow(cy))
 #' cy$myvar[sample(1:nrow(cy), nrow(cy)*.1, replace = FALSE)] <- NA
+#' cy$date <- as.Date(paste0(cy$year, "-01-01"))
+#' cy$year <- NULL
 #' str(cy)
 #'
 #' # Visualize missing values:
@@ -208,6 +210,10 @@ missing_info <- function(data, x = NULL, space = NULL, time = "date", period = "
     ccname <- ifelse(statelist=="GW", "gwcode", "cowcode")
     ind_states <- state_panel(min(df[, time]), max(df[, time]), by = period,
                               useGW = (statelist=="GW"), partial = partial)
+    if (period=="year") {
+      ind_states$date <- as.Date(paste0(ind_states$year, "-01-01"))
+      ind_states$year <- NULL
+    }
     colnames(ind_states)  <- c(space, time)
     ind_states$independent <- 1
 

@@ -63,6 +63,8 @@ cy <- state_panel(as.Date("1980-06-30"), as.Date("2015-06-30"), by = "year",
 useGW = TRUE)
 cy$myvar <- rnorm(nrow(cy))
 cy$myvar[sample(1:nrow(cy), nrow(cy)*.1, replace = FALSE)] <- NA
+cy$date <- as.Date(paste0(cy$year, "-01-01"))
+cy$year <- NULL
 str(cy)
 
 # Visualize missing values:

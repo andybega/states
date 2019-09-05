@@ -3,6 +3,7 @@ cy <- state_panel(as.Date("1980-06-30"), as.Date("2015-06-30"), by = "year",
                   useGW = TRUE)
 cy$myvar <- rnorm(nrow(cy))
 cy$myvar[sample(1:nrow(cy), nrow(cy)*.1, replace = FALSE)] <- NA
+cy$date <- as.Date(paste0(cy$year, "-01-01"))
 
 test_that("plot_missing accepts all input options", {
 
@@ -67,6 +68,7 @@ test_that("missing_info input checks", {
                     useGW = TRUE)
   cy$myvar <- rnorm(nrow(cy))
   cy$myvar[sample(1:nrow(cy), nrow(cy)*.1, replace = FALSE)] <- NA
+  cy$date <- as.Date(paste0(cy$year, "-01-01"))
 
   expect_error(missing_info(cy, "myvar", "gwcode", "date", "year", "GW"),
                NA)
@@ -96,6 +98,7 @@ test_that("auto input recognition works", {
                     useGW = TRUE)
   cy$myvar <- rnorm(nrow(cy))
   cy$myvar[sample(1:nrow(cy), nrow(cy)*.1, replace = FALSE)] <- NA
+  cy$date <- as.Date(paste0(cy$year, "-01-01"))
 
   expect_error(missing_info(cy, "myvar", space = "gwcode", time = "date", period = "year", statelist = "GW"), NA)
   expect_error(missing_info(cy, "myvar", space = NULL, time = "date", period = "year", statelist = "GW"), NA)

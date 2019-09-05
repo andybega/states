@@ -77,15 +77,15 @@ test_that("state_panel() works at all time resolutions", {
   )
 })
 
-test_that("correct columns are returned", {
+test_that("year instead of date is returned for country-year data", {
   expect_equal(
-    names(state_panel("1991-01-01", "2001-01-01", by = "year", partial = "exact")),
+    names(state_panel("1991-01-01", "1991-02-01", by = "month")),
     c("gwcode", "date")
   )
 
   expect_equal(
-    names(state_panel("1991-01-01", "2001-01-01", by = "year", partial = "any")),
-    c("gwcode", "date")
+    names(state_panel("1991-01-01", "1992-01-01", by = "year")),
+    c("gwcode", "year")
   )
 })
 
@@ -104,8 +104,8 @@ test_that("partial 'any' works at all time resolutions", {
 # end date modification is done so that countries beyond the 'official' data
 # end date are still included
 test_that("end date is updated", {
-  foo <- state_panel("2015-01-01", "2018-01-01", by = "year", partial = "any")
-  expect_true(substr(max(foo$date), 1, 4)=="2018")
+  out <- state_panel("2015-01-01", "2018-01-01", by = "year", partial = "any")
+  expect_true(max(out$year)==2018)
 })
 
 test_that("date shortcuts work", {

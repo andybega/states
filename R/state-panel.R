@@ -25,7 +25,15 @@
 #'     "exact" with a start date like "YYYY-12-21", but for calendar months
 #'     the last date varies, hence the need for this option.
 #'
-#' @return A [base::data.frame()].
+#' @return A [base::data.frame()] with 2 columns for the country code and date
+#'   information. The column names and types differ slightly based on the
+#'   "useGW" and "by" arguments.
+#'
+#'   - The first column will be "gwcode" if `useGW = TRUE` (the default), and
+#'     "cowcode" otherwise.
+#'   - The second column is an integer vector with name "year" for country-year
+#'     data (if `by` or the inferred `by` value is "year"), and a [base::Date()]
+#'     vector with the name "date" otherwise.
 #'
 #' @examples
 #' # Basic usage with full option set specified:
@@ -111,6 +119,12 @@ state_panel <- function(start, end, by = NULL, partial = "any", useGW = TRUE) {
 
   panel <- panel %>% dplyr::arrange(ccode, date)
   colnames(panel) <- c(ifelse(useGW, "gwcode", "cowcode"), "date")
+
+  if (by=="year") {
+    panel$year <- as.integer(substr(panel$date, 1, 4))
+    panel$date <- NULL
+  }
+
   panel <- as.data.frame(panel)
   panel
 }

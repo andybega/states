@@ -22,7 +22,16 @@ for only part of a time period (year, month, etc.). Options include
 membership list.}
 }
 \value{
-A \code{\link[base:data.frame]{base::data.frame()}}.
+A \code{\link[base:data.frame]{base::data.frame()}} with 2 columns for the country code and date
+information. The column names and types differ slightly based on the
+"useGW" and "by" arguments.
+\itemize{
+\item The first column will be "gwcode" if \code{useGW = TRUE} (the default), and
+"cowcode" otherwise.
+\item The second column is an integer vector with name "year" for country-year
+data (if \code{by} or the inferred \code{by} value is "year"), and a \code{\link[base:Date]{base::Date()}}
+vector with the name "date" otherwise.
+}
 }
 \description{
 Create panel data consisting of independent states in the international system.
