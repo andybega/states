@@ -105,26 +105,36 @@
 </ol>
 <p>What the package does:</p>
 <ol>
-<li>
-<p>It contains the Gleditsch and Ward (G&amp;W) as well as the Correlates of War (COW) state system membership lists. ```{r} library(“states”)</p>
-data(gwstates) data(cowstates) <code>Search them with `sfind`, this can be helpful for manual coding:</code>{r} sfind(260)[, 1:6] sfind(“German”)[, 1:6] ```</li>
-<li>
-<p>You can use it to build a country-year template that matches either the COW or G&amp;W state lists. ```{r} countries &lt;- state_panel(“1991-01-01”, “2010-01-01”, by = “year”)</p>
-str(countries) ```</li>
-<li>
-<p>Visualize missing/non-independent cases in your data. See this related <a href="https://andybeger.com/2016/09/14/data-management/">blog post for more details</a>. ```{r, fig.height = 5} data(“polity”) str(polity) polity$date &lt;- as.Date(paste0(polity$year, “-12-31”))</p>
-<p>plot_missing(polity, “polity”, “ccode”, “date”, “year”, statelist = “COW”)</p>
-<p># for the underlying data mm &lt;- missing_info(polity, “polity”, “ccode”, “date”, “year”, statelist = “COW”) ```</p>
-</li>
+<li>It contains the Gleditsch and Ward (G&amp;W) as well as the Correlates of War (COW) state system membership lists.</li>
 </ol>
+<pre class="{r}"><code><a href="https://rdrr.io/r/base/library.html">library("states")
+    
+data(gwstates)
+data(cowstates)</a></code></pre>
+<p>Search them with <code>sfind</code>, this can be helpful for manual coding:</p>
+<pre class="{r}"><code>sfind(260)[, 1:6]
+sfind("German")[, 1:6]</code></pre>
+<ol>
+<li>You can use it to build a country-year template that matches either the COW or G&amp;W state lists.</li>
+</ol>
+<pre class="{r}"><code>countries &lt;- state_panel(1991, 2001)
+    
+str(countries)</code></pre>
+<ol>
+<li>Visualize missing/non-independent cases in your data. See this related <a href="https://andybeger.com/2016/09/14/data-management/">blog post for more details</a>.</li>
+</ol>
+<p>```{r, fig.height = 5} data(“polity”) str(polity) polity$date &lt;- as.Date(paste0(polity$year, “-01-01”))</p>
+<p>plot_missing(polity, “polity”, “ccode”, “date”, “year”, statelist = “COW”) ```</p>
+<p>For the underlying data:</p>
+<pre class="{r}"><code>mm &lt;- missing_info(polity, "polity", "ccode", "date", "year", statelist = "COW")</code></pre>
 <div id="install" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h2>
 <p>The package is on CRAN and can be installed with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"states"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"states"</span>)</a></code></pre></div>
 <p>Or to install from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"remotes"</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"andybega/states"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"remotes"</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"andybega/states"</span>)</a></code></pre></div>
 </div>
 <div id="citations" class="section level2">
 <h2 class="hasAnchor">
