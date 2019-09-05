@@ -206,10 +206,12 @@ with other ggplot functions as usual.</p>
 <span class='kw'>useGW</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='no'>cy</span>$<span class='no'>myvar</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>cy</span>))
 <span class='no'>cy</span>$<span class='no'>myvar</span>[<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>cy</span>), <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>cy</span>)*<span class='fl'>.1</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)] <span class='kw'>&lt;-</span> <span class='fl'>NA</span>
+<span class='no'>cy</span>$<span class='no'>date</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='no'>cy</span>$<span class='no'>year</span>, <span class='st'>"-01-01"</span>))
+<span class='no'>cy</span>$<span class='no'>year</span> <span class='kw'>&lt;-</span> <span class='kw'>NULL</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>cy</span>)</div><div class='output co'>#&gt; 'data.frame':	6680 obs. of  3 variables:
 #&gt;  $ gwcode: int  2 2 2 2 2 2 2 2 2 2 ...
-#&gt;  $ date  : Date, format: "1980-01-01" "1981-01-01" ...
-#&gt;  $ myvar : num  0.3801 -0.0674 0.2801 0.3303 0.2848 ...</div><div class='input'>
+#&gt;  $ myvar : num  0.3801 -0.0674 0.2801 0.3303 0.2848 ...
+#&gt;  $ date  : Date, format: "1980-01-01" "1981-01-01" ...</div><div class='input'>
 <span class='co'># Visualize missing values:</span>
 <span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"none"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
 #&gt; <span class='warning'>plot_missing(data, x, ...)</span>
