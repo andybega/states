@@ -4,21 +4,25 @@
 \alias{state_panel}
 \title{Create state panel data}
 \usage{
-state_panel(start, end, by = "year", partial = "exact", useGW = TRUE)
+state_panel(start, end, by = NULL, partial = "any", useGW = TRUE)
 }
 \arguments{
-\item{start}{Beginning date for data}
+\item{start}{Beginning date for data, see \code{\link[=parse_date]{parse_date()}} for format options.}
 
-\item{end}{End date for data}
+\item{end}{End date for data, see \code{\link[=parse_date]{parse_date()}} for format options.}
 
-\item{by}{Temporal resolution, "year", "month", or "day".}
+\item{by}{Temporal resolution, "year", "month", or "day". If NULL, inferred
+from start and end input format, e.g. \code{start = 2006`` implies }by = "year"`.}
 
 \item{partial}{Option for how to handle edge cases where a state is independent
 for only part of a time period (year, month, etc.). Options include
-\code{"exact"}, and \code{"any"}. See details.}
+\code{"exact"}, \code{"first"}, \code{"last"}, and \code{"any"}. See details.}
 
 \item{useGW}{Use Gleditsch & Ward statelist or Correlates of War state system
 membership list.}
+}
+\value{
+A \code{\link[base:data.frame]{base::data.frame()}}.
 }
 \description{
 Create panel data consisting of independent states in the international system.
@@ -26,11 +30,15 @@ Create panel data consisting of independent states in the international system.
 \details{
 The partial option determines how to handle instances where a country gains
 or loses independence during a time period specified in the by option:
-
 \itemize{
-\item{"exact": the exact date in start is used for filtering}
-\item{"any": a state-period is included if the state was independent at
-any point in that period.}
+\item "exact": the exact date in start is used for filtering
+\item "any": a state-period is included if the state was independent at any point
+in that period.
+\item "first": same as "exact" with the first date in a time period, e.g.
+"2006-01-01".
+\item "last": last date in a period. For "yearly" data, this is the same as
+"exact" with a start date like "YYYY-12-21", but for calendar months
+the last date varies, hence the need for this option.
 }
 }
 \examples{
@@ -52,12 +60,15 @@ sfind(265, list = "GW")
 # Focus on South Sudan--is there a record for 2011, first year of indendence?
 data(gwstates)
 dplyr::filter(gwstates, gwcode==626)
+
 # No 2011 because SSD was not indpendent on January 1st 2011
-x <- state_panel("2011-01-01", "2013-01-01", by = "year", partial = "exact")
+x <- state_panel(2011, 2013, partial = "first")
 dplyr::filter(x, gwcode==626)
+
 # Includes 2011 because 12-31 date is used for filtering
 x <- state_panel("2011-12-31", "2013-12-31", by = "year", partial = "exact")
 dplyr::filter(x, gwcode==626)
+
 # Includes 2011 because partial = "any"
 x <- state_panel("2011-01-01", "2013-01-01", by = "year", partial = "any")
 dplyr::filter(x, gwcode==626)

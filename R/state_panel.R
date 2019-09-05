@@ -2,12 +2,13 @@
 #'
 #' Create panel data consisting of independent states in the international system.
 #'
-#' @param start Beginning date for data
-#' @param end End date for data
-#' @param by Temporal resolution, "year", "month", or "day".
+#' @param start Beginning date for data, see [parse_date()] for format options.
+#' @param end End date for data, see [parse_date()] for format options.
+#' @param by Temporal resolution, "year", "month", or "day". If NULL, inferred
+#'   from start and end input format, e.g. `start = 2006`` implies `by = "year"`.
 #' @param partial Option for how to handle edge cases where a state is independent
 #'   for only part of a time period (year, month, etc.). Options include
-#'   `"exact"`, and `"any"`. See details.
+#'   `"exact"`, `"first"`, `"last"`, and `"any"`. See details.
 #' @param useGW Use Gleditsch & Ward statelist or Correlates of War state system
 #'     membership list.
 #'
@@ -15,11 +16,16 @@
 #' The partial option determines how to handle instances where a country gains
 #' or loses independence during a time period specified in the by option:
 #'
-#' \itemize{
-#'     \item{"exact": the exact date in start is used for filtering}
-#'     \item{"any": a state-period is included if the state was independent at
-#'                  any point in that period.}
-#' }
+#' - "exact": the exact date in start is used for filtering
+#' - "any": a state-period is included if the state was independent at any point
+#'     in that period.
+#' - "first": same as "exact" with the first date in a time period, e.g.
+#'     "2006-01-01".
+#' - "last": last date in a period. For "yearly" data, this is the same as
+#'     "exact" with a start date like "YYYY-12-21", but for calendar months
+#'     the last date varies, hence the need for this option.
+#'
+#' @return A [base::data.frame()].
 #'
 #' @examples
 #' # Basic usage with full option set specified:
@@ -40,12 +46,15 @@
 #' # Focus on South Sudan--is there a record for 2011, first year of indendence?
 #' data(gwstates)
 #' dplyr::filter(gwstates, gwcode==626)
+#'
 #' # No 2011 because SSD was not indpendent on January 1st 2011
-#' x <- state_panel("2011-01-01", "2013-01-01", by = "year", partial = "exact")
+#' x <- state_panel(2011, 2013, partial = "first")
 #' dplyr::filter(x, gwcode==626)
+#'
 #' # Includes 2011 because 12-31 date is used for filtering
 #' x <- state_panel("2011-12-31", "2013-12-31", by = "year", partial = "exact")
 #' dplyr::filter(x, gwcode==626)
+#'
 #' # Includes 2011 because partial = "any"
 #' x <- state_panel("2011-01-01", "2013-01-01", by = "year", partial = "any")
 #' dplyr::filter(x, gwcode==626)
@@ -53,86 +62,52 @@
 #' @export
 #' @importFrom utils data
 #' @importFrom dplyr filter select mutate arrange full_join "%>%"
-state_panel <- function(start, end, by = "year", partial = "exact", useGW=TRUE) {
+state_panel <- function(start, end, by = NULL, partial = "any", useGW = TRUE) {
+
+  dates  <- c(start, end)
+  period <- sapply(dates, id_period)
 
   # Input validation
-  if (!by %in% c("year", "month", "day")) {
-    stop("Only 'year', 'month', and 'day' are currently supported for the 'by' argument.")
-  }
-  if (!partial %in% c("exact", "any")) {
-    stop("Only 'exact' and 'any' options are supported for 'partial' argument.")
-  }
-  dates <- c(start, end)
-  yyyy <- all(grepl("^[0-9]{4}$", dates))
-  yyyymmdd <- all(grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}", dates))
-  if (!any(yyyy, yyyymmdd)) {
-    stop("Invalid start/end input, format should be either 'YYYY' or 'YYYY-MM-DD'.")
+  if (length(unique(period)) > 1) {
+    stop(sprintf("Found multiple implied time periods (%s)",
+                 paste(period, collapse = ", ")))
   }
 
-  # Parse YYYY input
-  if (yyyy) {
-    start   <- paste0(start, "-01-01")
-    end     <- paste0(end, "-01-01")
-    by      <- "year"
-    partial <- "any"
-  }
+  stopifnot(
+    all(!is.na(dates)),
+    length(start)==1,
+    length(end)==1
+  )
 
-  # Date validation
-  start <- as.Date(start)
-  end   <- as.Date(end)
-  if (is.na(start) | is.na(end)) {
-    stop("Could not convert start or end to Date class.")
-  }
+  period <- unique(period)
 
-
-  if (useGW) {
-    utils::data("gwstates", envir = environment())
-    statelist <- gwstates[, c("gwcode", "start", "end")]
-  } else {
-    utils::data("cowstates", envir = environment())
-    statelist <- cowstates[, c("cowcode", "start", "end")]
-  }
-  colnames(statelist) <- c("ccode", "cstart", "cend")
-
-  # Update country end dates for currently existing countries
-  if (end > max(statelist$cend)) {
-    statelist$cend[statelist$cend==max(statelist$cend)] <- end
-  }
-  # Filter records outside desired date range
-  statelist <- statelist[with(statelist, cend >= start & cstart <= end), ]
-
-  statelist$dummy <- 1
-  dates <- data.frame(dummy = 1,
-                     date = seq(start, end, by = by))
-  panel <- dplyr::full_join(statelist, dates, by = "dummy") %>%
-    dplyr::select(-dummy)
-
-  if (partial == "exact") {
-    panel <- panel %>%
-      dplyr::filter(cstart <= date & cend >= date) %>%
-      dplyr::select(-cstart, -cend)
-  } else if (partial == "any") {
-    if (by == "year") {
-      panel$datestr <- as.integer(substr(panel$date, 1, 4))
-      panel$cstart <- as.integer(substr(panel$cstart, 1, 4))
-      panel$cend   <- as.integer(substr(panel$cend, 1, 4))
-      panel <- panel %>%
-        dplyr::filter(cstart <= datestr & cend >= datestr) %>%
-        dplyr::select(-cstart, -cend, -datestr)
-    } else if (by == "month") {
-      panel <- panel %>%
-        dplyr::mutate(datestr = substr(date, 1, 7),
-                      cstart  = substr(cstart, 1, 7),
-                      cend    = substr(cend, 1, 7)) %>%
-        dplyr::filter(cstart <= datestr & cend >= datestr) %>%
-        dplyr::select(-cstart, -cend, -datestr)
-    } else if (by == "day") {
-      # same as exact
-      panel <- panel %>%
-        dplyr::filter(cstart <= date & cend >= date) %>%
-        dplyr::select(-cstart, -cend)
+  if (!is.null(by)) {
+    if (!by %in% c("year", "month", "day")) {
+      stop("Only 'year', 'month', and 'day' are currently supported for the 'by' argument.")
     }
   }
+  if (!partial %in% c("exact", "any", "first", "last")) {
+    stop("Only 'exact', 'any', 'last', and 'first' options are supported for 'partial' argument.")
+  }
+  # partial = "exact" requires Dates as input
+  is_date <- methods::is(dates, "Date") | period=="day"
+  if (partial=="exact" & !is_date) {
+    stop("Option 'partial = \"exact\"' requires date input for 'start' and 'end'")
+  }
+  # if start and end are proper dates, require by argument
+  if (period=="day" & is.null(by)) {
+    stop("'by' argument is required with date 'start' and 'end' input")
+  }
+
+  start <- parse_date(start)
+  end   <- parse_date(end)
+
+  # Infer 'by' if it is null
+  if (is.null(by)) {
+    by = period
+  }
+
+  panel <- state_panel_date(start, end, by, partial, useGW)
 
   panel <- panel %>% dplyr::arrange(ccode, date)
   colnames(panel) <- c(ifelse(useGW, "gwcode", "cowcode"), "date")
@@ -140,4 +115,61 @@ state_panel <- function(start, end, by = "year", partial = "exact", useGW=TRUE) 
   panel
 }
 
-utils::globalVariables(c("ccode", "cend", "cstart", "datestr", "dummy"))
+utils::globalVariables(c("ccode", "cend", "cstart", "datestr"))
+
+#' State panel constructor
+#'
+#' Internal state panel constructor without input checking and fluff to allow
+#' argument shortcuts like start = 2000 instead of a full date
+#'
+#' @param start length 1 date
+#' @param end length 1 date
+#' @param by time period
+#' @param partial how to handle partial interval overlap
+#' @param useGW Use G&W statelist (`TRUE`), or COW (`FALSE`)?
+#'
+#' @keywords internal
+state_panel_date <- function(start, end, by, partial, useGW) {
+
+  if (useGW) {
+    statelist <- states::gwstates[, c("gwcode", "start", "end")]
+  } else {
+    statelist <- states::cowstates[, c("cowcode", "start", "end")]
+  }
+  colnames(statelist) <- c("ccode", "cstart", "cend")
+
+  # Filter records outside desired date range
+  statelist <- statelist[with(statelist, cend >= start & cstart <= end), ]
+
+  # For partial = "any", we can get the correct states by adjusting both the
+  # input start and end date and state start and end dates to period index
+  # dates
+  if (partial=="any") {
+    statelist$cstart <- index_date(statelist$cstart, period = by)
+    statelist$cend   <- index_date(statelist$cend, period = by)
+  }
+
+  # Adjust start and end dates. For "exact" we leave as are
+  if (partial %in% c("any", "first")) {
+    start <- index_date(start, period = by)
+    end   <- index_date(end, period = by)
+  } else if (partial=="last") {
+    if (by == "year") {
+      start <- as.Date(sprintf("%s-12-31", substr(start, 1, 4)), format = "%Y-%m-%d")
+      end   <- as.Date(sprintf("%s-12-31", substr(end, 1, 4)), format = "%Y-%m-%d")
+    } else {
+      stop("Not implemented")
+    }
+  }
+
+  dates <- data.frame(date = seq(start, end, by = by), dummy = 1)
+
+  statelist$dummy <- 1
+  super_panel     <- dplyr::full_join(statelist, dates, by = "dummy")
+  super_panel$dummy <- NULL
+
+  # Cut excess non-independent country-years from panel
+  panel <- subset(super_panel, with(super_panel, cstart <= date & cend >= date))
+  panel <- panel[, c("ccode", "date")]
+  panel
+}

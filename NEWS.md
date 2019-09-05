@@ -1,8 +1,19 @@
 # states 0.2.2.9000
 
-- Add `country_names()` to translate country codes to country names and `prettyc()` to shorten some of the longer country names, like "Macedonia, the former Yugoslav Republic of".
+## Improved support for state_panel shortcuts
+
+`state_panel()` has further improved support for input shortcuts (#3):
+
+- Accepted formats for the "start" and "end" arguments now incluce 2006, "2006", "2000-06", and "2006-06-01". See `parse_date()` for details. 
+- The implied time period is now also inferred from shortcut input when "by" is left at the new default of NULL. 
+- The "partial" option has gained new "first" and "last" values that also support shortcut input. Previously a shortcut input like 2006 could only be used with the "any" partial option, and to get country-years for states that were independent on the first day of a year one had to use `state_panel("YYYY-01-01", partial = "exact", ...)`. This can now instead be done with `state_panel(2006, partial = "first", ...)`. 
+
+## New functions
+
+- Added `country_names()` to translate country codes to country names and `prettyc()` to shorten some of the longer country names, like "Macedonia, the former Yugoslav Republic of".
 - Updated vignette on G&W and COW differences to take into account when trying to translate between codes.
-- Add `compare()` helper to compare two statelist data frames prior to merging. 
+- Added `compare()` helper to compare two statelist data frames prior to merging. 
+- Added `parse_date()` to handle more flexible "start" and "end" date input (#12). 
 
 # states 0.2.2
 

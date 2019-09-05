@@ -1,15 +1,58 @@
-library("states")
 
-context("`state_panel()`")
+test_that("state_panel_date returns correct cases with partial options", {
+
+  # In 2006, Montenegro (341) started on 3 June, Serbia (340) on 5 June; good
+  # separation point
+  sdate = as.Date("2006-06-04")
+  edate = as.Date("2006-12-31")
+
+  out <- state_panel_date(start = sdate, end = edate, by = "year",
+                          partial = "exact", useGW = TRUE)
+  expect_true(341 %in% out$ccode)
+  expect_false(340 %in% out$ccode)
+
+  out <- state_panel_date(start = sdate, end = edate, by = "year",
+                          partial = "any", useGW = TRUE)
+  expect_true(341 %in% out$ccode)
+  expect_true(340 %in% out$ccode)
+
+  out <- state_panel_date(start = sdate, end = edate, by = "year",
+                          partial = "first", useGW = TRUE)
+  expect_false(341 %in% out$ccode)
+  expect_false(340 %in% out$ccode)
+
+  expect_error(
+    out <- state_panel_date(start = sdate, end = edate, by = "year",
+                            partial = "last", useGW = TRUE),
+    NA
+  )
+  expect_true(341 %in% out$ccode)
+  expect_true(340 %in% out$ccode)
+
+})
+
+test_that("state_panel_date partial = last option for sub-year by works", {
+
+  # In 2006, Montenegro (341) started on 3 June, Serbia (340) on 5 June; good
+  # separation point
+  sdate = as.Date("2006-06-04")
+  edate = as.Date("2006-12-31")
+
+  expect_error(
+    out <- state_panel_date(start = sdate, end = edate, by = "month",
+                            partial = "last", useGW = TRUE),
+    "Not implemented")
+
+})
 
 test_that("input validation identifies errors", {
   expect_error(
     state_panel(NA, "1992-01-01", by = "day"),
-    "Invalid start/end"
+    "implied period"
   )
   expect_error(
     state_panel("1991-01-01", "1992-01-01", by = "week"),
-    "Only 'year', "
+    "Only 'year'"
   )
   expect_error(
     state_panel("1991-01-01", "1992-01-01", partial = "middle"),
@@ -65,32 +108,32 @@ test_that("end date is updated", {
   expect_true(substr(max(foo$date), 1, 4)=="2018")
 })
 
+test_that("date shortcuts work", {
 
-test_that("abbreviated year input works", {
-  expect_error(state_panel(2011, 2013), NA)
-  expect_error(state_panel("2011", "2013"), NA)
+  expect_error(
+    state_panel(2006, 2006),
+    NA
+  )
 
-  expect_error(state_panel("2011-01-01", "2011"), "Invalid start/end")
+  expect_error(
+    state_panel("2006", "2006"),
+    NA
+  )
+
+  expect_error(
+    state_panel("2006-06", "2006-06"),
+    NA
+  )
+
 })
 
-#
-# test_that("state_panel() works with implicit time resolutions", {
-#
-# })
-#
-#
-# context("`detect_date_format()`")
-#
-# test_that("date format is parsed correctly", {
-#   expect_equal(detect_date_format("2017-05-01"), "ymd")
-#   expect_error(detect_date_format("2017-05-011"))
-#
-#   expect_equal(detect_date_format("2017-05"), "ym")
-#   expect_error(detect_date_format("2017-055"))
-#
-#   expect_equal(detect_date_format("2017"), "y")
-#   expect_equal(detect_date_format(2017), "y")
-#   expect_error(detect_date_format("20177"))
-# })
+test_that("date shortcuts with inconsistent periods are rejected", {
+
+  expect_error(
+    state_panel("2011-01-01", "2011"),
+    "multiple implied"
+    )
+
+})
 
 

@@ -1,8 +1,3 @@
-library("states")
-library("ggplot2")
-library("dplyr")
-
-context("plot_missing()")
 
 cy <- state_panel(as.Date("1980-06-30"), as.Date("2015-06-30"), by = "year",
                   useGW = TRUE)
@@ -53,12 +48,12 @@ test_that("mssng_mat throws errors for missing ID values", {
 test_that("plot_missing works with tibbles", {
   expect_equal(
     plot_missing(cy, "myvar", "gwcode", "date", "year", "GW"),
-    plot_missing(as_tibble(cy), "myvar", "gwcode", "date", "year", "GW")
+    plot_missing(dplyr::as_tibble(cy), "myvar", "gwcode", "date", "year", "GW")
   )
 
   expect_equal(
     missing_info(cy, "myvar", "gwcode", "date", "year", "GW"),
-    missing_info(as_tibble(cy), "myvar", "gwcode", "date", "year", "GW")
+    missing_info(dplyr::as_tibble(cy), "myvar", "gwcode", "date", "year", "GW")
   )
 
 })
