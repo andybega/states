@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9005</span>
       </span>
     </div>
 
@@ -126,11 +126,26 @@
 <h1 class="page-header">
 <a href="#states-0-2-2-9000" class="anchor"></a>states 0.2.2.9000<small> Unreleased </small>
 </h1>
+<div id="improved-support-for-state_panel-shortcuts" class="section level2">
+<h2 class="hasAnchor">
+<a href="#improved-support-for-state_panel-shortcuts" class="anchor"></a>Improved support for state_panel shortcuts</h2>
+<p><code><a href="../reference/state_panel.html">state_panel()</a></code> has further improved support for input shortcuts (<a href='https://github.com/andybega/states/issues/3'>#3</a>):</p>
 <ul>
-<li>Add <code><a href="../reference/country_names.html">country_names()</a></code> to translate country codes to country names and <code><a href="../reference/prettyc.html">prettyc()</a></code> to shorten some of the longer country names, like “Macedonia, the former Yugoslav Republic of”.</li>
-<li>Updated vignette on G&amp;W and COW differences to take into account when trying to translate between codes.</li>
-<li>Add <code><a href="../reference/compare.html">compare()</a></code> helper to compare two statelist data frames prior to merging.</li>
+<li>Accepted formats for the “start” and “end” arguments now incluce 2006, “2006”, “2000-06”, and “2006-06-01”. See <code><a href="../reference/parse_date.html">parse_date()</a></code> for details.</li>
+<li>The implied time period is now also inferred from shortcut input when “by” is left at the new default of NULL.</li>
+<li>The “partial” option has gained new “first” and “last” values that also support shortcut input. Previously a shortcut input like 2006 could only be used with the “any” partial option, and to get country-years for states that were independent on the first day of a year one had to use <code><a href="../reference/state_panel.html">state_panel("YYYY-01-01", partial = "exact", ...)</a></code>. This can now instead be done with <code><a href="../reference/state_panel.html">state_panel(2006, partial = "first", ...)</a></code>.</li>
 </ul>
+</div>
+<div id="new-functions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-functions" class="anchor"></a>New functions</h2>
+<ul>
+<li>Added <code><a href="../reference/country_names.html">country_names()</a></code> to translate country codes to country names and <code><a href="../reference/prettyc.html">prettyc()</a></code> to shorten some of the longer country names, like “Macedonia, the former Yugoslav Republic of”.</li>
+<li>Updated vignette on G&amp;W and COW differences to take into account when trying to translate between codes.</li>
+<li>Added <code><a href="../reference/compare.html">compare()</a></code> helper to compare two statelist data frames prior to merging.</li>
+<li>Added <code><a href="../reference/parse_date.html">parse_date()</a></code> to handle more flexible “start” and “end” date input (<a href='https://github.com/andybega/states/issues/12'>#12</a>).</li>
+</ul>
+</div>
 </div>
     <div id="states-0-2-2" class="section level1">
 <h1 class="page-header">

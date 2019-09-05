@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9005</span>
       </span>
     </div>
 
@@ -149,23 +149,23 @@
     <pre class="examples"><div class='input'><span class='co'># Works with either integer or strings</span>
 <span class='fu'>sfind</span>(<span class='fl'>325</span>)</div><div class='output co'>#&gt;     list ccode code3c   country_name      start        end microstate
 #&gt; 60    GW   325    ITA Italy/Sardinia 1816-01-01 9999-12-31      FALSE
-#&gt; 317  COW   325    ITA          Italy 1816-01-01 2016-12-31         NA</div><div class='input'><span class='fu'>sfind</span>(<span class='st'>"ALG"</span>)</div><div class='output co'>#&gt;     list ccode code3c country_name      start        end microstate
+#&gt; 317  COW   325    ITA          Italy 1816-01-01 9999-12-31         NA</div><div class='input'><span class='fu'>sfind</span>(<span class='st'>"ALG"</span>)</div><div class='output co'>#&gt;     list ccode code3c country_name      start        end microstate
 #&gt; 151   GW   615    ALG      Algeria 1816-01-01 1830-07-05      FALSE
 #&gt; 152   GW   615    ALG      Algeria 1962-07-05 9999-12-31      FALSE
-#&gt; 411  COW   615    ALG      Algeria 1962-07-05 2016-12-31         NA</div><div class='input'><span class='fu'>sfind</span>(<span class='st'>"Algeria"</span>)</div><div class='output co'>#&gt;     list ccode code3c country_name      start        end microstate
+#&gt; 411  COW   615    ALG      Algeria 1962-07-05 9999-12-31         NA</div><div class='input'><span class='fu'>sfind</span>(<span class='st'>"Algeria"</span>)</div><div class='output co'>#&gt;     list ccode code3c country_name      start        end microstate
 #&gt; 151   GW   615    ALG      Algeria 1816-01-01 1830-07-05      FALSE
 #&gt; 152   GW   615    ALG      Algeria 1962-07-05 9999-12-31      FALSE
-#&gt; 411  COW   615    ALG      Algeria 1962-07-05 2016-12-31         NA</div><div class='input'>
+#&gt; 411  COW   615    ALG      Algeria 1962-07-05 9999-12-31         NA</div><div class='input'>
 <span class='co'># Search strings are treated as regular expressions (see stringr::str_detect)</span>
 <span class='fu'>sfind</span>(<span class='st'>"Germany"</span>)</div><div class='output co'>#&gt;     list ccode code3c      country_name      start        end microstate
 #&gt; 44    GW   255    GMY Germany (Prussia) 1816-01-01 1945-05-07      FALSE
 #&gt; 297  COW   255    GMY           Germany 1816-01-01 1945-05-08         NA
-#&gt; 298  COW   255    GMY           Germany 1990-10-03 2016-12-31         NA</div><div class='input'><span class='fu'>sfind</span>(<span class='st'>"German"</span>)</div><div class='output co'>#&gt;     list ccode code3c               country_name      start        end
+#&gt; 298  COW   255    GMY           Germany 1990-10-03 9999-12-31         NA</div><div class='input'><span class='fu'>sfind</span>(<span class='st'>"German"</span>)</div><div class='output co'>#&gt;     list ccode code3c               country_name      start        end
 #&gt; 44    GW   255    GMY          Germany (Prussia) 1816-01-01 1945-05-07
 #&gt; 45    GW   260    GFR    German Federal Republic 1949-09-21 9999-12-31
 #&gt; 46    GW   265    GDR German Democratic Republic 1949-10-05 1990-10-02
 #&gt; 297  COW   255    GMY                    Germany 1816-01-01 1945-05-08
-#&gt; 298  COW   255    GMY                    Germany 1990-10-03 2016-12-31
+#&gt; 298  COW   255    GMY                    Germany 1990-10-03 9999-12-31
 #&gt; 299  COW   260    GFR    German Federal Republic 1955-05-05 1990-10-02
 #&gt; 300  COW   265    GDR German Democratic Republic 1954-03-25 1990-10-02
 #&gt;     microstate

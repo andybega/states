@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Temporary helper function to warn about argument order change — .warner • states</title>
+<title>State panel constructor — state_panel_date • states</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,9 @@
 
 
 
-<meta property="og:title" content="Temporary helper function to warn about argument order change — .warner" />
-<meta property="og:description" content="Temporary helper function to warn about argument order change" />
+<meta property="og:title" content="State panel constructor — state_panel_date" />
+<meta property="og:description" content="Internal state panel constructor without input checking and fluff to allow
+argument shortcuts like start = 2000 instead of a full date" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,27 +121,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Temporary helper function to warn about argument order change</h1>
-    <small class="dont-index">Source: <a href='https://github.com/andybega/states/blob/master/R/plot_missing.R'><code>R/plot_missing.R</code></a></small>
-    <div class="hidden name"><code>dot-warner.Rd</code></div>
+    <h1>State panel constructor</h1>
+    <small class="dont-index">Source: <a href='https://github.com/andybega/states/blob/master/R/state_panel.R'><code>R/state_panel.R</code></a></small>
+    <div class="hidden name"><code>state_panel_date.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Temporary helper function to warn about argument order change</p>
+    <p>Internal state panel constructor without input checking and fluff to allow
+argument shortcuts like start = 2000 instead of a full date</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.warner</span>(<span class='no'>data</span>, <span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>state_panel_date</span>(<span class='no'>start</span>, <span class='no'>end</span>, <span class='no'>by</span>, <span class='no'>partial</span>, <span class='no'>useGW</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>data.frame</p></td>
+      <th>start</th>
+      <td><p>length 1 date</p></td>
     </tr>
     <tr>
-      <th>x</th>
-      <td><p>string</p></td>
+      <th>end</th>
+      <td><p>length 1 date</p></td>
+    </tr>
+    <tr>
+      <th>by</th>
+      <td><p>time period</p></td>
+    </tr>
+    <tr>
+      <th>partial</th>
+      <td><p>how to handle partial interval overlap</p></td>
+    </tr>
+    <tr>
+      <th>useGW</th>
+      <td><p>Use G&amp;W statelist (<code>TRUE</code>), or COW (<code>FALSE</code>)?</p></td>
     </tr>
     </table>
 

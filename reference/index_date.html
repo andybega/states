@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Temporary helper function to warn about argument order change — .warner • states</title>
+<title>Index date — index_date • states</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Temporary helper function to warn about argument order change — .warner" />
-<meta property="og:description" content="Temporary helper function to warn about argument order change" />
+<meta property="og:title" content="Index date — index_date" />
+<meta property="og:description" content="Find the first day of the time intervals in which a set of dates fall" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,27 +120,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Temporary helper function to warn about argument order change</h1>
-    <small class="dont-index">Source: <a href='https://github.com/andybega/states/blob/master/R/plot_missing.R'><code>R/plot_missing.R</code></a></small>
-    <div class="hidden name"><code>dot-warner.Rd</code></div>
+    <h1>Index date</h1>
+    <small class="dont-index">Source: <a href='https://github.com/andybega/states/blob/master/R/index-date.R'><code>R/index-date.R</code></a></small>
+    <div class="hidden name"><code>index_date.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Temporary helper function to warn about argument order change</p>
+    <p>Find the first day of the time intervals in which a set of dates fall</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.warner</span>(<span class='no'>data</span>, <span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>index_date</span>(<span class='no'>x</span>, <span class='no'>period</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>data.frame</p></td>
+      <th>x</th>
+      <td><p>a <code><a href='https://rdrr.io/r/base/Dates.html'>base::Date()</a></code> vector</p></td>
     </tr>
     <tr>
-      <th>x</th>
-      <td><p>string</p></td>
+      <th>period</th>
+      <td><p>a time period, e.g. "year" or "month"</p></td>
     </tr>
     </table>
 

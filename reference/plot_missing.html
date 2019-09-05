@@ -70,7 +70,7 @@ cases that do or do not match an independent state list." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9005</span>
       </span>
     </div>
 
@@ -206,9 +206,9 @@ with other ggplot functions as usual.</p>
 <span class='kw'>useGW</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='no'>cy</span>$<span class='no'>myvar</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>cy</span>))
 <span class='no'>cy</span>$<span class='no'>myvar</span>[<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>cy</span>), <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>cy</span>)*<span class='fl'>.1</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)] <span class='kw'>&lt;-</span> <span class='fl'>NA</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>cy</span>)</div><div class='output co'>#&gt; 'data.frame':	6654 obs. of  3 variables:
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>cy</span>)</div><div class='output co'>#&gt; 'data.frame':	6680 obs. of  3 variables:
 #&gt;  $ gwcode: int  2 2 2 2 2 2 2 2 2 2 ...
-#&gt;  $ date  : Date, format: "1980-06-30" "1981-06-30" ...
+#&gt;  $ date  : Date, format: "1980-01-01" "1981-01-01" ...
 #&gt;  $ myvar : num  0.3801 -0.0674 0.2801 0.3303 0.2848 ...</div><div class='input'>
 <span class='co'># Visualize missing values:</span>
 <span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"none"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
@@ -218,33 +218,33 @@ with other ggplot functions as usual.</p>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>missing_info</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"none"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
 #&gt; <span class='warning'>plot_missing(data, x, ...)</span>
 #&gt; <span class='warning'>missing_info(data, x, ...)</span></div><div class='output co'>#&gt;   gwcode       date independent missing_value         status
-#&gt; 1      2 1980-06-30          NA         FALSE       Complete
-#&gt; 2     20 1980-06-30          NA         FALSE       Complete
-#&gt; 3     31 1980-06-30          NA         FALSE       Complete
-#&gt; 4     40 1980-06-30          NA         FALSE       Complete
-#&gt; 5     41 1980-06-30          NA         FALSE       Complete
-#&gt; 6     42 1980-06-30          NA          TRUE Missing values</div><div class='input'>
+#&gt; 1      2 1980-01-01          NA         FALSE       Complete
+#&gt; 2     20 1980-01-01          NA         FALSE       Complete
+#&gt; 3     31 1980-01-01          NA         FALSE       Complete
+#&gt; 4     40 1980-01-01          NA         FALSE       Complete
+#&gt; 5     41 1980-01-01          NA         FALSE       Complete
+#&gt; 6     42 1980-01-01          NA          TRUE Missing values</div><div class='input'>
 <span class='co'># if we specify a statelist to check against, 'independent' will have values</span>
 <span class='co'># now:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>missing_info</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
 #&gt; <span class='warning'>plot_missing(data, x, ...)</span>
 #&gt; <span class='warning'>missing_info(data, x, ...)</span></div><div class='output co'>#&gt;   gwcode       date independent missing_value                      status
-#&gt; 1      2 1980-06-30           1         FALSE       Complete, independent
-#&gt; 2      2 1981-06-30           1         FALSE       Complete, independent
-#&gt; 3      2 1982-06-30           1         FALSE       Complete, independent
-#&gt; 4      2 1983-06-30           1         FALSE       Complete, independent
-#&gt; 5      2 1984-06-30           1         FALSE       Complete, independent
-#&gt; 6      2 1985-06-30           1          TRUE Missing values, independent</div><div class='input'>
+#&gt; 1      2 1980-01-01           1         FALSE       Complete, independent
+#&gt; 2      2 1981-01-01           1         FALSE       Complete, independent
+#&gt; 3      2 1982-01-01           1         FALSE       Complete, independent
+#&gt; 4      2 1983-01-01           1         FALSE       Complete, independent
+#&gt; 5      2 1984-01-01           1         FALSE       Complete, independent
+#&gt; 6      2 1985-01-01           1          TRUE Missing values, independent</div><div class='input'>
 <span class='co'># Check data also against G&amp;W list of independent states</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>missing_info</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
 #&gt; <span class='warning'>plot_missing(data, x, ...)</span>
 #&gt; <span class='warning'>missing_info(data, x, ...)</span></div><div class='output co'>#&gt;   gwcode       date independent missing_value                      status
-#&gt; 1      2 1980-06-30           1         FALSE       Complete, independent
-#&gt; 2      2 1981-06-30           1         FALSE       Complete, independent
-#&gt; 3      2 1982-06-30           1         FALSE       Complete, independent
-#&gt; 4      2 1983-06-30           1         FALSE       Complete, independent
-#&gt; 5      2 1984-06-30           1         FALSE       Complete, independent
-#&gt; 6      2 1985-06-30           1          TRUE Missing values, independent</div><div class='input'><span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
+#&gt; 1      2 1980-01-01           1         FALSE       Complete, independent
+#&gt; 2      2 1981-01-01           1         FALSE       Complete, independent
+#&gt; 3      2 1982-01-01           1         FALSE       Complete, independent
+#&gt; 4      2 1983-01-01           1         FALSE       Complete, independent
+#&gt; 5      2 1984-01-01           1         FALSE       Complete, independent
+#&gt; 6      2 1985-01-01           1          TRUE Missing values, independent</div><div class='input'><span class='fu'>plot_missing</span>(<span class='st'>"myvar"</span>, <span class='no'>cy</span>, <span class='st'>"gwcode"</span>, <span class='st'>"date"</span>, <span class='st'>"year"</span>, <span class='st'>"GW"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.</span>
 #&gt; <span class='warning'>plot_missing(data, x, ...)</span>
 #&gt; <span class='warning'>missing_info(data, x, ...)</span></div><div class='img'><img src='plot_missing-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># To check all variables:</span>
