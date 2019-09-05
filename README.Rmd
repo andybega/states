@@ -28,34 +28,42 @@ Create country-year/month/day panels consistent with the COW or Gleditsch & Ward
 What the package does:
 
 1. It contains the Gleditsch and Ward (G&W) as well as the Correlates of War (COW) state system membership lists. 
-    ```{r}
-    library("states")
+```{r}
+library("states")
     
-    data(gwstates)
-    data(cowstates)
-    ```
-    Search them with `sfind`, this can be helpful for manual coding:
-    ```{r}
-    sfind(260)[, 1:6]
-    sfind("German")[, 1:6]
-    ```
+data(gwstates)
+data(cowstates)
+```
+
+Search them with `sfind`, this can be helpful for manual coding:
+
+```{r}
+sfind(260)[, 1:6]
+sfind("German")[, 1:6]
+```
+
 2. You can use it to build a country-year template that matches either the COW or G&W state lists. 
-    ```{r}
-    countries <- state_panel("1991-01-01", "2010-01-01", by = "year")
+```{r}
+countries <- state_panel(1991, 2001)
     
-    str(countries)
-    ```
+str(countries)
+```
+
 3. Visualize missing/non-independent cases in your data. See this related [blog post for more details](https://andybeger.com/2016/09/14/data-management/).
-    ```{r, fig.height = 5}
-    data("polity")
-    str(polity)
-    polity$date <- as.Date(paste0(polity$year, "-12-31"))
+
+```{r, fig.height = 5}
+data("polity")
+str(polity)
+polity$date <- as.Date(paste0(polity$year, "-01-01"))
     
-    plot_missing(polity, "polity", "ccode", "date", "year", statelist = "COW")
-    
-    # for the underlying data
-    mm <- missing_info(polity, "polity", "ccode", "date", "year", statelist = "COW")
-    ```
+plot_missing(polity, "polity", "ccode", "date", "year", statelist = "COW")
+```
+
+For the underlying data:
+
+```{r}
+mm <- missing_info(polity, "polity", "ccode", "date", "year", statelist = "COW")
+```
 
 ## Install
 

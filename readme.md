@@ -27,67 +27,74 @@ What the package does:
 
 1.  It contains the Gleditsch and Ward (G\&W) as well as the Correlates
     of War (COW) state system membership lists.
+
+<!-- end list -->
+
+``` r
+library("states")
     
-    ``` r
-    library("states")
-    
-    data(gwstates)
-    data(cowstates)
-    ```
-    
-    Search them with `sfind`, this can be helpful for manual coding:
-    
-    ``` r
-    sfind(260)[, 1:6]
-    #>     list ccode code3c            country_name      start        end
-    #> 45    GW   260    GFR German Federal Republic 1949-09-21 9999-12-31
-    #> 299  COW   260    GFR German Federal Republic 1955-05-05 1990-10-02
-    sfind("German")[, 1:6]
-    #>     list ccode code3c               country_name      start        end
-    #> 44    GW   255    GMY          Germany (Prussia) 1816-01-01 1945-05-07
-    #> 45    GW   260    GFR    German Federal Republic 1949-09-21 9999-12-31
-    #> 46    GW   265    GDR German Democratic Republic 1949-10-05 1990-10-02
-    #> 297  COW   255    GMY                    Germany 1816-01-01 1945-05-08
-    #> 298  COW   255    GMY                    Germany 1990-10-03 2016-12-31
-    #> 299  COW   260    GFR    German Federal Republic 1955-05-05 1990-10-02
-    #> 300  COW   265    GDR German Democratic Republic 1954-03-25 1990-10-02
-    ```
+data(gwstates)
+data(cowstates)
+```
+
+Search them with `sfind`, this can be helpful for manual coding:
+
+``` r
+sfind(260)[, 1:6]
+#>     list ccode code3c            country_name      start        end
+#> 45    GW   260    GFR German Federal Republic 1949-09-21 9999-12-31
+#> 299  COW   260    GFR German Federal Republic 1955-05-05 1990-10-02
+sfind("German")[, 1:6]
+#>     list ccode code3c               country_name      start        end
+#> 44    GW   255    GMY          Germany (Prussia) 1816-01-01 1945-05-07
+#> 45    GW   260    GFR    German Federal Republic 1949-09-21 9999-12-31
+#> 46    GW   265    GDR German Democratic Republic 1949-10-05 1990-10-02
+#> 297  COW   255    GMY                    Germany 1816-01-01 1945-05-08
+#> 298  COW   255    GMY                    Germany 1990-10-03 9999-12-31
+#> 299  COW   260    GFR    German Federal Republic 1955-05-05 1990-10-02
+#> 300  COW   265    GDR German Democratic Republic 1954-03-25 1990-10-02
+```
 
 2.  You can use it to build a country-year template that matches either
     the COW or G\&W state lists.
+
+<!-- end list -->
+
+``` r
+countries <- state_panel(1991, 2001)
     
-    ``` r
-    countries <- state_panel("1991-01-01", "2010-01-01", by = "year")
-    
-    str(countries)
-    #> 'data.frame':    3808 obs. of  2 variables:
-    #>  $ gwcode: int  2 2 2 2 2 2 2 2 2 2 ...
-    #>  $ date  : Date, format: "1991-01-01" "1992-01-01" ...
-    ```
+str(countries)
+#> 'data.frame':    2091 obs. of  2 variables:
+#>  $ gwcode: int  2 2 2 2 2 2 2 2 2 2 ...
+#>  $ year  : int  1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 ...
+```
 
 3.  Visualize missing/non-independent cases in your data. See this
     related [blog post for more
     details](https://andybeger.com/2016/09/14/data-management/).
+
+<!-- end list -->
+
+``` r
+data("polity")
+str(polity)
+#> 'data.frame':    17228 obs. of  3 variables:
+#>  $ ccode : num  700 700 700 700 700 700 700 700 700 700 ...
+#>  $ year  : num  1800 1801 1802 1803 1804 ...
+#>  $ polity: num  -6 -6 -6 -6 -6 -6 -6 -6 -6 -6 ...
+polity$date <- as.Date(paste0(polity$year, "-01-01"))
     
-    ``` r
-    data("polity")
-    str(polity)
-    #> 'data.frame':    17228 obs. of  3 variables:
-    #>  $ ccode : num  700 700 700 700 700 700 700 700 700 700 ...
-    #>  $ year  : num  1800 1801 1802 1803 1804 ...
-    #>  $ polity: num  -6 -6 -6 -6 -6 -6 -6 -6 -6 -6 ...
-    polity$date <- as.Date(paste0(polity$year, "-12-31"))
-    
-    plot_missing(polity, "polity", "ccode", "date", "year", statelist = "COW")
-    ```
-    
-    <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
-    
-    ``` r
-    
-    # for the underlying data
-    mm <- missing_info(polity, "polity", "ccode", "date", "year", statelist = "COW")
-    ```
+plot_missing(polity, "polity", "ccode", "date", "year", statelist = "COW")
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
+For the underlying
+data:
+
+``` r
+mm <- missing_info(polity, "polity", "ccode", "date", "year", statelist = "COW")
+```
 
 ## Install
 
