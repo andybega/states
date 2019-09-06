@@ -54,15 +54,18 @@ str(countries)
 ```{r, fig.height = 5}
 data("polity")
 str(polity)
-polity$date <- as.Date(paste0(polity$year, "-01-01"))
     
-plot_missing(polity, "polity", "ccode", "date", "year", statelist = "COW")
+plot_missing(polity, x = "polity", ccode = "ccode", statelist = "COW")
 ```
 
-For the underlying data:
+For the underlying data (missing info requires date input):
 
 ```{r}
-mm <- missing_info(polity, "polity", "ccode", "date", "year", statelist = "COW")
+polity$date <- as.Date(paste0(polity$year, "-01-01"))
+mm <- missing_info(polity, x = "polity", ccode = "ccode", 
+                   time = "date", period = "year",
+                   statelist = "COW")
+head(mm)
 ```
 
 ## Install

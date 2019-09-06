@@ -41,12 +41,12 @@ compare <- function(df1, df2, state1 = "gwcode", time1 = "year",
             !any(is.na(df2[, time2])))
 
   # Summarize the data frames and discard vars
-  missval_df1      <- 1L - as.integer(complete.cases(df1))
+  missval_df1      <- 1L - as.integer(stats::complete.cases(df1))
   df1              <- df1[, c(state1, time1)]
   df1$case_in_df1  <- 1L
   df1$missval_df1  <- missval_df1
 
-  missval_df2      <- 1L - as.integer(complete.cases(df2))
+  missval_df2      <- 1L - as.integer(stats::complete.cases(df2))
   df2              <- df2[, c(state2, time2)]
   df2$case_in_df2  <- 1L
   df2$missval_df2  <- missval_df2

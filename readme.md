@@ -82,18 +82,27 @@ str(polity)
 #>  $ ccode : num  700 700 700 700 700 700 700 700 700 700 ...
 #>  $ year  : num  1800 1801 1802 1803 1804 ...
 #>  $ polity: num  -6 -6 -6 -6 -6 -6 -6 -6 -6 -6 ...
-polity$date <- as.Date(paste0(polity$year, "-01-01"))
     
-plot_missing(polity, "polity", "ccode", "date", "year", statelist = "COW")
+plot_missing(polity, x = "polity", ccode = "ccode", statelist = "COW")
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
-For the underlying
-data:
+For the underlying data (missing info requires date input):
 
 ``` r
-mm <- missing_info(polity, "polity", "ccode", "date", "year", statelist = "COW")
+polity$date <- as.Date(paste0(polity$year, "-01-01"))
+mm <- missing_info(polity, x = "polity", ccode = "ccode", 
+                   time = "date", period = "year",
+                   statelist = "COW")
+head(mm)
+#>   ccode       date independent missing_value                status
+#> 1     2 1816-01-01           1         FALSE Complete, independent
+#> 2     2 1817-01-01           1         FALSE Complete, independent
+#> 3     2 1818-01-01           1         FALSE Complete, independent
+#> 4     2 1819-01-01           1         FALSE Complete, independent
+#> 5     2 1820-01-01           1         FALSE Complete, independent
+#> 6     2 1821-01-01           1         FALSE Complete, independent
 ```
 
 ## Install

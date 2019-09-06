@@ -1,5 +1,8 @@
 # states 0.2.2.9000
 
+
+- plot_missing()'s "space" argument has been renamed "ccode". 
+
 ## Improved support for state_panel shortcuts
 
 `state_panel()` has further improved support for input shortcuts (#3):
