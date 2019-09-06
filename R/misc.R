@@ -38,7 +38,7 @@ id_date_sequence <- function(x, pd) {
 
 #' Country names
 #'
-#' @param x ([numeric])
+#' @param x ([numeric()])\cr
 #'   A vector of numeric country codes
 #' @param list (`logical(1)`)\cr
 #'   Which states list to use? Only "GW" at this time.
@@ -73,7 +73,7 @@ country_names <- function(x, list = "GW", shorten = FALSE) {
 
 #' Shorten country names
 #'
-#' @param x ([character])\cr
+#' @param x ([character()])\cr
 #'   Country names, e.g. from [country_names()].
 #'
 #' @examples
@@ -98,8 +98,8 @@ prettyc <- function(x) {
     "Korea, People's Republic of", "North Korea",
     "Korea, Republic of", "South Korea",
     "Lao People's Democratic Republic", "Laos",
-    "Macedonia, the former Yugoslav Republic of", "Macedonia",
-    "Macedonia \\(Former Yugoslav Republic of\\)", "Macedonia",
+    "Macedonia, the former Yugoslav Republic of", "North Macedonia",
+    "Macedonia \\(Former Yugoslav Republic of\\)", "North Macedonia",
     "Moldova, Republic of", "Moldova",
     "Myanmar \\(Burma\\)", "Myanmar",
     "Iran, Islamic Republic of", "Iran",
@@ -116,7 +116,10 @@ prettyc <- function(x) {
     "Vietnam, Republic of", "South Vietnam",
     "Yemen Arab Republic", "Yemen",
     "Yemen \\(Arab Republic of Yemen\\)", "Yemen",
-    "Yemen, People's Republic of", "South Yemen")
+    "Yemen, People's Republic of", "South Yemen",
+    "United Provinces of Central America", "FR Central America",
+    "Saint Vincent and the Grenadines", "Saint Vincent"
+    )
   )
   for (i in 1:nrow(dict)) {
     cn <- gsub(dict[i, 1], dict[i, 2], cn)

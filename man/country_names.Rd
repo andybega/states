@@ -7,7 +7,7 @@
 country_names(x, list = "GW", shorten = FALSE)
 }
 \arguments{
-\item{x}{(\link{numeric})
+\item{x}{(\code{\link[=numeric]{numeric()}})\cr
 A vector of numeric country codes}
 
 \item{list}{(\code{logical(1)})\cr

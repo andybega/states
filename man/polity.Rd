@@ -12,7 +12,7 @@
 }}
 \source{
 Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2017. ``Polity IV
-Project: Dataset Users' Manual.'' http://www.systemicpeace.org/inscr/p4manualv2016.pdf
+Project: Dataset Users' Manual.'' \url{http://www.systemicpeace.org/inscr/p4manualv2016.pdf}
 }
 \usage{
 polity

@@ -7,7 +7,7 @@
 prettyc(x)
 }
 \arguments{
-\item{x}{(\link{character})\cr
+\item{x}{(\code{\link[=character]{character()}})\cr
 Country names, e.g. from \code{\link[=country_names]{country_names()}}.}
 }
 \description{

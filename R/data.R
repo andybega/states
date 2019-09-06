@@ -19,10 +19,12 @@
 #'  \item{`microstate`}{Logical flag for whether state is a microstates with less than 250,000 population.}
 #'}
 #'
-#' @source
-#' Gleditsch, Kristian S. and Michael D. Ward. 1999. ``Interstate System
-#' Membership: A Revised List of the Independent States since 1816."
-#' International Interactions 25.
+#' @source [http://ksgleditsch.com/data-4.html](http://ksgleditsch.com/data-4.html)
+#'
+#' @references
+#' Gleditsch, Kristian S. and Michael D. Ward. 1999. "Interstate System
+#'   Membership: A Revised List of the Independent States since 1816."
+#'   *International Interactions* 25.
 #'
 #' @examples
 #' data(gwstates)
@@ -53,7 +55,7 @@
 #'
 #' @source
 #' Correlates of War Project. 2011. "State System Membership List, v2011."
-#' Online, http://correlatesofwar.org
+#'   Online, [http://correlatesofwar.org](http://correlatesofwar.org)
 #'
 #' @examples
 #' data(cowstates)
@@ -86,7 +88,7 @@
 #'
 #' @source
 #' Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2017. ``Polity IV
-#'   Project: Dataset Users' Manual.'' http://www.systemicpeace.org/inscr/p4manualv2016.pdf
+#'   Project: Dataset Users' Manual.'' [http://www.systemicpeace.org/inscr/p4manualv2016.pdf]( http://www.systemicpeace.org/inscr/p4manualv2016.pdf)
 #'
 #' @examples
 #' data("polity")

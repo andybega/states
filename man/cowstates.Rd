@@ -15,7 +15,7 @@
 }}
 \source{
 Correlates of War Project. 2011. "State System Membership List, v2011."
-Online, http://correlatesofwar.org
+Online, \url{http://correlatesofwar.org}
 }
 \usage{
 cowstates

@@ -14,9 +14,7 @@
 \item{\code{microstate}}{Logical flag for whether state is a microstates with less than 250,000 population.}
 }}
 \source{
-Gleditsch, Kristian S. and Michael D. Ward. 1999. ``Interstate System
-Membership: A Revised List of the Independent States since 1816."
-International Interactions 25.
+\url{http://ksgleditsch.com/data-4.html}
 }
 \usage{
 gwstates
@@ -28,5 +26,10 @@ Gleditsch and Ward
 \examples{
 data(gwstates)
 head(gwstates)
+}
+\references{
+Gleditsch, Kristian S. and Michael D. Ward. 1999. "Interstate System
+Membership: A Revised List of the Independent States since 1816."
+\emph{International Interactions} 25.
 }
 \keyword{datasets}
