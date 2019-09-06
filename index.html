@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9006</span>
       </span>
     </div>
 
@@ -123,10 +123,14 @@ str(countries)</code></pre>
 <ol>
 <li>Visualize missing/non-independent cases in your data. See this related <a href="https://andybeger.com/2016/09/14/data-management/">blog post for more details</a>.</li>
 </ol>
-<p>```{r, fig.height = 5} data(“polity”) str(polity) polity$date &lt;- as.Date(paste0(polity$year, “-01-01”))</p>
-<p>plot_missing(polity, “polity”, “ccode”, “date”, “year”, statelist = “COW”) ```</p>
-<p>For the underlying data:</p>
-<pre class="{r}"><code>mm &lt;- missing_info(polity, "polity", "ccode", "date", "year", statelist = "COW")</code></pre>
+<p>```{r, fig.height = 5} data(“polity”) str(polity)</p>
+<p>plot_missing(polity, x = “polity”, ccode = “ccode”, statelist = “COW”) ```</p>
+<p>For the underlying data (missing info requires date input):</p>
+<pre class="{r}"><code>polity$date &lt;- as.Date(paste0(polity$year, "-01-01"))
+mm &lt;- missing_info(polity, x = "polity", ccode = "ccode", 
+                   time = "date", period = "year",
+                   statelist = "COW")
+head(mm)</code></pre>
 <div id="install" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h2>

@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9006</span>
       </span>
     </div>
 
@@ -170,12 +170,22 @@
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt;  $ ccode : num  700 700 700 700 700 700 700 700 700 700 ...</span></a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt;  $ year  : num  1800 1801 1802 1803 1804 ...</span></a>
 <a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt;  $ polity: num  -6 -6 -6 -6 -6 -6 -6 -6 -6 -6 ...</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">polity<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(polity<span class="op">$</span>year, <span class="st">"-01-01"</span>))</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">    </a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="kw"><a href="reference/plot_missing.html">plot_missing</a></span>(polity, <span class="st">"polity"</span>, <span class="st">"ccode"</span>, <span class="st">"date"</span>, <span class="st">"year"</span>, <span class="dt">statelist =</span> <span class="st">"COW"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb4-7" data-line-number="7">    </a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw"><a href="reference/plot_missing.html">plot_missing</a></span>(polity, <span class="dt">x =</span> <span class="st">"polity"</span>, <span class="dt">ccode =</span> <span class="st">"ccode"</span>, <span class="dt">statelist =</span> <span class="st">"COW"</span>)</a></code></pre></div>
 <p><img src="man/figures/README-unnamed-chunk-4-1.png" width="100%"></p>
-<p>For the underlying data:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">mm &lt;-<span class="st"> </span><span class="kw"><a href="reference/plot_missing.html">missing_info</a></span>(polity, <span class="st">"polity"</span>, <span class="st">"ccode"</span>, <span class="st">"date"</span>, <span class="st">"year"</span>, <span class="dt">statelist =</span> <span class="st">"COW"</span>)</a></code></pre></div>
+<p>For the underlying data (missing info requires date input):</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">polity<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(polity<span class="op">$</span>year, <span class="st">"-01-01"</span>))</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">mm &lt;-<span class="st"> </span><span class="kw"><a href="reference/plot_missing.html">missing_info</a></span>(polity, <span class="dt">x =</span> <span class="st">"polity"</span>, <span class="dt">ccode =</span> <span class="st">"ccode"</span>, </a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">                   <span class="dt">time =</span> <span class="st">"date"</span>, <span class="dt">period =</span> <span class="st">"year"</span>,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">                   <span class="dt">statelist =</span> <span class="st">"COW"</span>)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(mm)</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;   ccode       date independent missing_value                status</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; 1     2 1816-01-01           1         FALSE Complete, independent</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 2     2 1817-01-01           1         FALSE Complete, independent</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 3     2 1818-01-01           1         FALSE Complete, independent</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 4     2 1819-01-01           1         FALSE Complete, independent</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 5     2 1820-01-01           1         FALSE Complete, independent</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; 6     2 1821-01-01           1         FALSE Complete, independent</span></a></code></pre></div>
 <div id="install" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h2>
