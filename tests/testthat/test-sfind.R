@@ -1,6 +1,3 @@
-library("states")
-
-context("Test `sfind()`")
 
 test_that("sfind treats character numeric input as numeric", {
 

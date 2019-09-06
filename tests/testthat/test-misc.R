@@ -1,4 +1,4 @@
-context("utilities")
+
 
 test_that("id_date_sequence works", {
   seq1 <- seq(as.Date("2018-01-01"), as.Date("2025-01-01"), by = "year")

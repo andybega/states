@@ -1,6 +1,4 @@
 
-context("country_names() and prettyc()")
-
 test_that("prettyc() works", {
 
   xin <- c("Congo, Democratic Republic of (Zaire)",
