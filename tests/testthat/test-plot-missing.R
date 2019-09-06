@@ -179,9 +179,39 @@ test_that("auto input recognition works", {
   expect_error(missing_info(cy, "myvar", ccode = NULL, time = "date", period = "year", statelist = "GW"), NA)
 
 
-  expect_error(missing_info(cy, statelist = "GW"), NA)
+  expect_warning(
+    missing_info(cy, statelist = "GW"),
+    "Found both \"date"
+  )
   expect_warning(
     plot_missing(cy, statelist = "GW"),
     "Found both \"date"
   )
+})
+
+test_that("exact date in put is correctly handled", {
+
+  data("polity")
+  # get data that reaches to 1816. Argentina became independent on 1816-07-09
+  # in GW list
+  polity <- head(polity, 17)
+
+  polity$date <- as.Date(paste0(polity$year, "-07-01"))
+  expect_error(
+    mm <- missing_info(polity, x = "polity", ccode = "ccode",
+                       time = "date", period = "year",
+                       statelist = "GW"),
+    NA
+  )
+  expect_false(160 %in% mm$ccode)
+
+  polity$date <- as.Date(paste0(polity$year, "-07-10"))
+  expect_error(
+    mm <- missing_info(polity, x = "polity", ccode = "ccode",
+                       time = "date", period = "year",
+                       statelist = "GW"),
+    NA
+  )
+  expect_true(160 %in% mm$ccode)
+
 })

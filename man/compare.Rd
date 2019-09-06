@@ -51,5 +51,6 @@ df2$x2[sample.int(nrow(df2), size = 20, replace = FALSE)] <- NA
 comp <- compare(df1, df2)
 comp
 
+report(comp)
 
 }

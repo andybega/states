@@ -22,7 +22,9 @@
 #'     ccode columns have the name "gwcode" or "cowcode", and "none" otherwise.
 #' @param partial Option for how to handle edge cases where a state is independent
 #'   for only part of a time period (year, month, etc.). Options include
-#'   "exact", and "any". See [state_panel()] for details.
+#'   "exact", and "any". See [state_panel()] for details. If NULL (default) and
+#'   the "time" column is a date, it will be set to "exact", for yearly
+#'   "time" columns it will be set to "any".
 #' @param skip_labels Only plot the label for every n-th country on the y-axis
 #'     to avoid overplotting.
 #' @param space Deprecated, use "ccode" argument instead.
@@ -66,7 +68,6 @@
 #' # Check data also against G&W list of independent states
 #' head(missing_info(cy, statelist = "GW"))
 #' plot_missing(cy, statelist = "GW")
-#'
 #'
 #' # Live example with Polity data
 #' data("polity")
@@ -119,6 +120,10 @@ plot_missing <- function(data, x = NULL, ccode = NULL, time = NULL,
   ccode     <- attr(mm, "ccode")
   time      <- attr(mm, "time")
 
+  # Reorder for ggplot2 plotting
+  mm[, ccode] <- factor(mm[, ccode], levels = rev(sort(unique(mm[, ccode]))))
+
+
   if (statelist %in% c("GW", "COW")) {
     fill_values <- c("Complete, independent" = hcl(195, 100, 65), "Complete, non-independent" = hcl(15, 100, 20),
                      "Missing values, independent"  = hcl(15, 100, 65), "Missing values, non-independent"  = hcl(15, 100, 45),
@@ -149,7 +154,7 @@ plot_missing <- function(data, x = NULL, ccode = NULL, time = NULL,
 #' @export
 #' @rdname plot_missing
 missing_info <- function(data, x = NULL, ccode = NULL, time = NULL,
-                         period = NULL, statelist = NULL, partial = "any",
+                         period = NULL, statelist = NULL, partial = NULL,
                          space = deprecated()) {
 
   # Temporary code for data, x argument order switch
@@ -199,6 +204,25 @@ missing_info <- function(data, x = NULL, ccode = NULL, time = NULL,
     }
   }
 
+  # check if the date input is character YYYY-MM-DD; we can convert to Date
+  if (typeof(data[[time]])=="character") {
+    if (all(grepl("^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$", data[[time]]))) {
+      data[[time]] <- as.Date(data[[time]], format = "%Y-%m-%d")
+    } else if (all(grepl("^[0-9]{4}$", data[[time]]))) {
+      data[[time]] <- as.integer(data[[time]])
+    } else {
+      stop("Could not convert character \"time\" column to date or year")
+    }
+  }
+
+  if (is.null(partial)) {
+    if (methods::is(data[[time]], "Date")) {
+      partial <- "exact"
+    } else {
+      partial <- "any"
+    }
+  }
+
   # missing_info requires date input, if "year" period with non-Date time
   # the partial argument will adjust the dates anyways, so we can just set
   # to arbitrary
@@ -230,7 +254,7 @@ missing_info <- function(data, x = NULL, ccode = NULL, time = NULL,
   }
 
   # Create missingness logical vector
-  data[, "missing_value"] <- !stats::complete.cases(data[, x])
+  data[, "missing_value"] <- !stats::complete.cases(data[, x, drop = FALSE])
   data <- data[, c(ccode, time, "missing_value")]
 
   if (statelist=="none") {
@@ -259,7 +283,13 @@ missing_info <- function(data, x = NULL, ccode = NULL, time = NULL,
     ind_states <- state_panel(min(data[, time]), max(data[, time]), by = period,
                               useGW = (statelist=="GW"), partial = partial)
     if (period=="year") {
-      ind_states$date <- as.Date(paste0(ind_states$year, "-01-01"))
+      if (partial=="exact") {
+        ind_states$date <- as.Date(paste0(ind_states$year,
+                                          unique(substr(data[, time], 5, 11))
+                                          ))
+      } else {
+        ind_states$date <- as.Date(paste0(ind_states$year, "-01-01"))
+      }
       ind_states$year <- NULL
     }
     colnames(ind_states)  <- c(ccode, time)
@@ -285,14 +315,16 @@ missing_info <- function(data, x = NULL, ccode = NULL, time = NULL,
     full_mat$status <- factor(full_mat$status, levels = lvls)
   }
 
-  # Reorder for ggplot2 plotting
-  full_mat[, ccode] <- factor(full_mat[, ccode], levels = rev(sort(unique(full_mat[, ccode]))))
+  # Arrange
+  full_mat <- full_mat[order(full_mat[[ccode]], full_mat[[time]]), ]
 
   # keep track of relevant settings
   attr(full_mat, "ccode")     <- ccode
   attr(full_mat, "time")      <- time
   attr(full_mat, "statelist") <- statelist
   attr(full_mat, "period")    <- period
+  attr(full_mat, "partial")   <- partial
+
   full_mat
 }
 

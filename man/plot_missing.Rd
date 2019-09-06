@@ -10,7 +10,7 @@ plot_missing(data, x = NULL, ccode = NULL, time = NULL,
   skip_labels = 5, space = deprecated())
 
 missing_info(data, x = NULL, ccode = NULL, time = NULL,
-  period = NULL, statelist = NULL, partial = "any",
+  period = NULL, statelist = NULL, partial = NULL,
   space = deprecated())
 }
 \arguments{
@@ -39,7 +39,9 @@ ccode columns have the name "gwcode" or "cowcode", and "none" otherwise.}
 
 \item{partial}{Option for how to handle edge cases where a state is independent
 for only part of a time period (year, month, etc.). Options include
-"exact", and "any". See \code{\link[=state_panel]{state_panel()}} for details.}
+"exact", and "any". See \code{\link[=state_panel]{state_panel()}} for details. If NULL (default) and
+the "time" column is a date, it will be set to "exact", for yearly
+"time" columns it will be set to "any".}
 
 \item{skip_labels}{Only plot the label for every n-th country on the y-axis
 to avoid overplotting.}
@@ -87,7 +89,6 @@ head(missing_info(cy, statelist = "GW"))
 # Check data also against G&W list of independent states
 head(missing_info(cy, statelist = "GW"))
 plot_missing(cy, statelist = "GW")
-
 
 # Live example with Polity data
 data("polity")

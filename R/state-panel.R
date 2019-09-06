@@ -145,6 +145,14 @@ utils::globalVariables(c("ccode", "cend", "cstart", "datestr"))
 #' @keywords internal
 state_panel_date <- function(start, end, by, partial, useGW) {
 
+  if (end < "1816-01-01") {
+    stop(sprintf("end date must be on or after 1816-01-01, not '%s'",
+                 as.character(end)))
+  }
+  if (start > end) {
+    stop(sprintf("start date ('%s') must be on or before end date ('%s')",
+                 as.character(start), as.character(end)))
+  }
   if (useGW) {
     statelist <- states::gwstates[, c("gwcode", "start", "end")]
   } else {
@@ -153,7 +161,8 @@ state_panel_date <- function(start, end, by, partial, useGW) {
   colnames(statelist) <- c("ccode", "cstart", "cend")
 
   # Filter records outside desired date range
-  statelist <- statelist[with(statelist, cend >= start & cstart <= end), ]
+  statelist <- statelist[with(statelist, cend >= start & cstart <= end), ,
+                         drop = FALSE]
 
   # For partial = "any", we can get the correct states by adjusting both the
   # input start and end date and state start and end dates to period index

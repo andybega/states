@@ -31,6 +31,7 @@
 #' comp <- compare(df1, df2)
 #' comp
 #'
+#' report(comp)
 #'
 #' @export
 compare <- function(df1, df2, state1 = "gwcode", time1 = "year",
