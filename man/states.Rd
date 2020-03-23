@@ -3,7 +3,6 @@
 \docType{package}
 \name{states}
 \alias{states}
-\alias{states-package}
 \title{State system membership}
 \description{
 Create data based on the Gleditsch & Ward (G&W) or Correlates of

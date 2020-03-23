@@ -4,15 +4,17 @@
 \name{gwstates}
 \alias{gwstates}
 \title{Gleditsch and Ward list of independent states}
-\format{Data frame
+\format{
+Data frame
 \describe{
 \item{\code{gwcode}}{Gleditsch and Ward country code.}
-\item{\code{iso3c}}{ISO 3 character country code.}
+\item{\code{gwc}}{G&W character country code. This is derived from the COW character codes.}
 \item{\code{country_name}}{Long form country name}
 \item{\code{start}}{Country start of independence.}
 \item{\code{end}}{Country end of independence.}
 \item{\code{microstate}}{Logical flag for whether state is a microstates with less than 250,000 population.}
-}}
+}
+}
 \source{
 \url{http://ksgleditsch.com/data-4.html}
 }

@@ -5,13 +5,28 @@
 \alias{missing_info}
 \title{Visualize missing and non-proper cases for state panel data}
 \usage{
-plot_missing(data, x = NULL, ccode = NULL, time = NULL,
-  period = NULL, statelist = NULL, partial = "any",
-  skip_labels = 5, space = deprecated())
+plot_missing(
+  data,
+  x = NULL,
+  ccode = NULL,
+  time = NULL,
+  period = NULL,
+  statelist = NULL,
+  partial = "any",
+  skip_labels = 5,
+  space = deprecated()
+)
 
-missing_info(data, x = NULL, ccode = NULL, time = NULL,
-  period = NULL, statelist = NULL, partial = NULL,
-  space = deprecated())
+missing_info(
+  data,
+  x = NULL,
+  ccode = NULL,
+  time = NULL,
+  period = NULL,
+  statelist = NULL,
+  partial = NULL,
+  space = deprecated()
+)
 }
 \arguments{
 \item{data}{State panel data frame}

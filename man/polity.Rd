@@ -4,12 +4,14 @@
 \name{polity}
 \alias{polity}
 \title{Polity IV combined Polity scores}
-\format{Data frame
+\format{
+Data frame
 \describe{
 \item{\code{ccode}}{Correlates of War (COW) country code.}
 \item{\code{year}}{Year of the observation.}
 \item{\code{polity}}{Combined Polity score.}
-}}
+}
+}
 \source{
 Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2017. ``Polity IV
 Project: Dataset Users' Manual.'' \url{http://www.systemicpeace.org/inscr/p4manualv2016.pdf}

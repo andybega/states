@@ -12,7 +12,7 @@
 #' @format Data frame
 #' \describe{
 #'  \item{`gwcode`}{Gleditsch and Ward country code.}
-#'  \item{`iso3c`}{ISO 3 character country code.}
+#'  \item{`gwc`}{G&W character country code. This is derived from the COW character codes.}
 #'  \item{`country_name`}{Long form country name}
 #'  \item{`start`}{Country start of independence.}
 #'  \item{`end`}{Country end of independence.}
@@ -46,7 +46,7 @@
 #' @format Data frame
 #' \describe{
 #'  \item{`ccode`}{Gleditsch and Ward country code.}
-#'  \item{`iso3c`}{ISO 3 character country code.}
+#'  \item{`cowc`}{ISO 3 character country code.}
 #'  \item{`country_name`}{Long form country name}
 #'  \item{`start`}{Country start of independence.}
 #'  \item{`end`}{Country end of independence.}

@@ -12,7 +12,7 @@ state_panel(start, end, by = NULL, partial = "any", useGW = TRUE)
 \item{end}{End date for data, see \code{\link[=parse_date]{parse_date()}} for format options.}
 
 \item{by}{Temporal resolution, "year", "month", or "day". If NULL, inferred
-from start and end input format, e.g. \code{start = 2006`` implies }by = "year"`.}
+from start and end input format, e.g. \verb{start = 2006`` implies }by = "year"`.}
 
 \item{partial}{Option for how to handle edge cases where a state is independent
 for only part of a time period (year, month, etc.). Options include

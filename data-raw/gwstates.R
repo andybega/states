@@ -10,9 +10,9 @@ ksg_microstates_url <- "http://ksgleditsch.com/data/microstatessystem.dat"
 gwstates <- readr::read_delim(
   ksg_states_url,
   delim = "\t",
-  col_names = c("gwcode", "iso3c", "country_name", "start", "end"),
+  col_names = c("gwcode", "gwc", "country_name", "start", "end"),
   col_types = cols(gwcode = col_integer(),
-                   iso3c = col_character(),
+                   gwc = col_character(),
                    country_name = col_character(),
                    start = col_date(format = "%d:%m:%Y"),
                    end = col_date(format = "%d:%m:%Y")))
@@ -20,9 +20,9 @@ gwstates <- readr::read_delim(
 gwmicrostates <- readr::read_delim(
   ksg_microstates_url,
   delim = "\t",
-  col_names = c("gwcode", "iso3c", "country_name", "start", "end"),
+  col_names = c("gwcode", "gwc", "country_name", "start", "end"),
   col_types = cols(gwcode = col_integer(),
-                   iso3c = col_character(),
+                   gwc = col_character(),
                    country_name = col_character(),
                    start = col_date(format = "%d:%m:%Y"),
                    end = col_date(format = "%d:%m:%Y")))

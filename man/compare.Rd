@@ -5,8 +5,14 @@
 \alias{report}
 \title{Compare two statelists}
 \usage{
-compare(df1, df2, state1 = "gwcode", time1 = "year",
-  state2 = "gwcode", time2 = "year")
+compare(
+  df1,
+  df2,
+  state1 = "gwcode",
+  time1 = "year",
+  state2 = "gwcode",
+  time2 = "year"
+)
 
 report(x)
 }

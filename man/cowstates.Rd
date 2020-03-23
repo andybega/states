@@ -4,15 +4,17 @@
 \name{cowstates}
 \alias{cowstates}
 \title{Correlates of War list of independent states}
-\format{Data frame
+\format{
+Data frame
 \describe{
 \item{\code{ccode}}{Gleditsch and Ward country code.}
-\item{\code{iso3c}}{ISO 3 character country code.}
+\item{\code{cowc}}{ISO 3 character country code.}
 \item{\code{country_name}}{Long form country name}
 \item{\code{start}}{Country start of independence.}
 \item{\code{end}}{Country end of independence.}
 \item{\code{microstate}}{Logical flag for whether state is a microstates with less than 250,000 population.}
-}}
+}
+}
 \source{
 Correlates of War Project. 2011. "State System Membership List, v2011."
 Online, \url{http://correlatesofwar.org}

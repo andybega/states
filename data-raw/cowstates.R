@@ -13,8 +13,8 @@ cowstates$end   <- with(cowstates, as.Date(paste(endyear, endmonth, endday, sep 
 cowstates$end[cowstates$end==max(cowstates$end)] <- as.Date("9999-12-31")
 
 cowstates <- cowstates %>%
-  rename(cow3c = stateabb, cowcode = ccode, country_name = statenme) %>%
-  select(cowcode, cow3c, country_name, start, end)
+  rename(cowc = stateabb, cowcode = ccode, country_name = statenme) %>%
+  select(cowcode, cowc, country_name, start, end)
 
 Encoding(cowstates$country_name) <- "UTF-8"
 

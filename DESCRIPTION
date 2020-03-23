@@ -27,7 +27,7 @@ Suggests:
     rmarkdown,
     covr,
     pkgdown
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 VignetteBuilder: knitr
 URL: https://github.com/andybega/states, https://andybeger.com/states
 BugReports: https://github.com/andybega/states/issues
