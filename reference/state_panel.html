@@ -210,8 +210,8 @@ the last date varies, hence the need for this option.</p></li>
 <span class='co'># Partials</span>
 <span class='co'># Focus on South Sudan--is there a record for 2011, first year of indendence?</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gwstates</span>)
-<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>gwstates</span>, <span class='no'>gwcode</span><span class='kw'>==</span><span class='fl'>626</span>)</div><div class='output co'>#&gt;   gwcode iso3c country_name      start        end microstate
-#&gt; 1    626   SSD  South Sudan 2011-07-09 9999-12-31      FALSE</div><div class='input'>
+<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>gwstates</span>, <span class='no'>gwcode</span><span class='kw'>==</span><span class='fl'>626</span>)</div><div class='output co'>#&gt;   gwcode gwc country_name      start        end microstate
+#&gt; 1    626 SSD  South Sudan 2011-07-09 9999-12-31      FALSE</div><div class='input'>
 <span class='co'># No 2011 because SSD was not indpendent on January 1st 2011</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>state_panel</span>(<span class='fl'>2011</span>, <span class='fl'>2013</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"first"</span>)
 <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>x</span>, <span class='no'>gwcode</span><span class='kw'>==</span><span class='fl'>626</span>)</div><div class='output co'>#&gt;   gwcode year
@@ -250,7 +250,7 @@ the last date varies, hence the need for this option.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

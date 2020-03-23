@@ -138,13 +138,14 @@ the Correlates of War project.</p>
 
     <p>Data frame</p><dl class='dl-horizontal'>
 <dt><code>ccode</code></dt><dd><p>Gleditsch and Ward country code.</p></dd>
-<dt><code>iso3c</code></dt><dd><p>ISO 3 character country code.</p></dd>
+<dt><code>cowc</code></dt><dd><p>ISO 3 character country code.</p></dd>
 <dt><code>country_name</code></dt><dd><p>Long form country name</p></dd>
 <dt><code>start</code></dt><dd><p>Country start of independence.</p></dd>
 <dt><code>end</code></dt><dd><p>Country end of independence.</p></dd>
 <dt><code>microstate</code></dt><dd><p>Logical flag for whether state is a microstates with less than 250,000 population.</p></dd>
 
 </dl>
+
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>Correlates of War Project. 2011. "State System Membership List, v2011."
@@ -152,13 +153,13 @@ Online, <a href='http://correlatesofwar.org'>http://correlatesofwar.org</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>cowstates</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>cowstates</span>)</div><div class='output co'>#&gt;   cowcode cow3c             country_name      start        end
-#&gt; 1       2   USA United States of America 1816-01-01 9999-12-31
-#&gt; 2      20   CAN                   Canada 1920-01-10 9999-12-31
-#&gt; 3      31   BHM                  Bahamas 1973-07-10 9999-12-31
-#&gt; 4      40   CUB                     Cuba 1902-05-20 1906-09-25
-#&gt; 5      40   CUB                     Cuba 1909-01-23 9999-12-31
-#&gt; 6      41   HAI                    Haiti 1859-01-01 1915-07-28</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>cowstates</span>)</div><div class='output co'>#&gt;   cowcode cowc             country_name      start        end
+#&gt; 1       2  USA United States of America 1816-01-01 9999-12-31
+#&gt; 2      20  CAN                   Canada 1920-01-10 9999-12-31
+#&gt; 3      31  BHM                  Bahamas 1973-07-10 9999-12-31
+#&gt; 4      40  CUB                     Cuba 1902-05-20 1906-09-25
+#&gt; 5      40  CUB                     Cuba 1909-01-23 9999-12-31
+#&gt; 6      41  HAI                    Haiti 1859-01-01 1915-07-28</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -178,7 +179,7 @@ Online, <a href='http://correlatesofwar.org'>http://correlatesofwar.org</a></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>
