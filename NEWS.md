@@ -1,6 +1,6 @@
 # states 0.2.2.9000
 
-
+- In the gwstates and cowstates data, the "iso3c" columns have been renamed to "gwn" and "cown", as they were not in fact ISO 3-character country abbreviations (#19).
 - plot_missing()'s "space" argument has been renamed "ccode". 
 
 ## Improved support for state_panel shortcuts
