@@ -23,16 +23,43 @@
 #' df
 #' ggplot(df, aes(x = date, y = y, group = cowcode)) + geom_line()
 #' ggplot(df, aes(x = date, y = y, group = id)) + geom_line()
-id_date_sequence <- function(x, pd) {
-  diff_days <- diff(x)
-  divisor <- NA
-  if (pd=="month") divisor <- 365.25/12
-  if (pd=="week") divisor <- 7
-  if (pd=="year") divisor <- 365.25
-  if (pd=="day") divisor <- 1
-  if (is.na(divisor)) stop("Did not recognize time period")
-  xx <- c(1, round(diff_days / divisor))
-  cumsum(xx!=1) + 1
+#'
+#' # Shortcut for integer years:
+#' yr <- c(2002:2005, 2007:2010)
+#' data.frame(year = yr, id = id_date_sequence(yr))
+id_date_sequence <- function(x, pd = NULL) {
+
+  # shortcut: if x is integer assume that it is years
+  if (!inherits(x, "Date")) {
+
+    stopifnot(
+      is.numeric(x),
+      all(x > 1815),
+      all(x < 10000)
+    )
+
+    # years should increase by 1, if there is a gap the step will be >1
+    diff_x <- c(1, diff(x))
+    # id gaps and use them to increment an integer ID
+    # the +1 at the end is so that the first ID starts at 1 (not 0)
+    return(cumsum(diff_x!=1) + 1)
+
+  } else {
+
+    if (is.null(pd)) {
+      stop("Please specify the time period for x")
+    }
+
+    diff_days <- diff(x)
+    divisor <- NA
+    if (pd=="month") divisor <- 365.25/12
+    if (pd=="week") divisor <- 7
+    if (pd=="year") divisor <- 365.25
+    if (pd=="day") divisor <- 1
+    if (is.na(divisor)) stop("Did not recognize time period")
+    xx <- c(1, round(diff_days / divisor))
+    return(cumsum(xx!=1) + 1)
+  }
 }
 
 

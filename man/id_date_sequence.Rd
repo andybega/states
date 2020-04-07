@@ -4,7 +4,7 @@
 \alias{id_date_sequence}
 \title{Identify date sequences}
 \usage{
-id_date_sequence(x, pd)
+id_date_sequence(x, pd = NULL)
 }
 \arguments{
 \item{x}{a Date sequence}
@@ -30,4 +30,8 @@ df$id <- paste0(df$cowcode, df$id)
 df
 ggplot(df, aes(x = date, y = y, group = cowcode)) + geom_line()
 ggplot(df, aes(x = date, y = y, group = id)) + geom_line()
+
+# Shortcut for integer years:
+yr <- c(2002:2005, 2007:2010)
+data.frame(year = yr, id = id_date_sequence(yr))
 }
