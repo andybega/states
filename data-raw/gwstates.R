@@ -42,7 +42,12 @@ gwstates <- gwstates %>%
   mutate(country_name = str_replace(country_name, "ü", "u"),
          country_name = str_replace(country_name, "’", "'"),
          country_name = str_replace(country_name, "ã", "a"),
-         country_name = str_replace(country_name, "é", "e"))
+         country_name = str_replace(country_name, "é", "e")) %>%
+  # fix Rumania
+  mutate(country_name = case_when(
+    country_name=="Rumania" ~ "Romania",
+    TRUE ~ country_name
+  ))
 table(stringi::stri_enc_mark(gwstates$country_name))
 
 gwstates <- as.data.frame(gwstates)
