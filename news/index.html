@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9008</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9009</span>
       </span>
     </div>
 
@@ -131,28 +131,29 @@
 <a href="#states-0-2-2-9000" class="anchor"></a>states 0.2.2.9000<small> Unreleased </small>
 </h1>
 <ul>
-<li>In the gwstates and cowstates data, the âiso3câ columns have been renamed to âgwnâ and âcownâ, as they were not in fact ISO 3-character country abbreviations (<a href='https://github.com/andybega/states/issues/19'>#19</a>).</li>
-<li>plot_missing()âs âspaceâ argument has been renamed âccodeâ.</li>
+<li>In the gwstates and cowstates data, the “iso3c” columns have been renamed to “gwn” and “cown”, as they were not in fact ISO 3-character country abbreviations (<a href='https://github.com/andybega/states/issues/19'>#19</a>).</li>
+<li>plot_missing()’s “space” argument has been renamed “ccode”.</li>
 <li>id_date_sequence() now works with integer years, there is no need to convert them to Date class anymore (<a href='https://github.com/andybega/states/issues/20'>#20</a>).</li>
+<li>fixed a mispelled country name, “Rumania” to “Romania”.</li>
 </ul>
 <div id="improved-support-for-state_panel-shortcuts" class="section level2">
 <h2 class="hasAnchor">
 <a href="#improved-support-for-state_panel-shortcuts" class="anchor"></a>Improved support for state_panel shortcuts</h2>
 <p><code><a href="../reference/state_panel.html">state_panel()</a></code> has further improved support for input shortcuts (<a href='https://github.com/andybega/states/issues/3'>#3</a>):</p>
 <ul>
-<li>Accepted formats for the âstartâ and âendâ arguments now incluce 2006, â2006â, â2000-06â, and â2006-06-01â. See <code><a href="../reference/parse_date.html">parse_date()</a></code> for details.</li>
-<li>The implied time period is now also inferred from shortcut input when âbyâ is left at the new default of NULL.</li>
-<li>The âpartialâ option has gained new âfirstâ and âlastâ values that also support shortcut input. Previously a shortcut input like 2006 could only be used with the âanyâ partial option, and to get country-years for states that were independent on the first day of a year one had to use <code><a href="../reference/state_panel.html">state_panel("YYYY-01-01", partial = "exact", ...)</a></code>. This can now instead be done with <code><a href="../reference/state_panel.html">state_panel(2006, partial = "first", ...)</a></code>.</li>
+<li>Accepted formats for the “start” and “end” arguments now incluce 2006, “2006”, “2000-06”, and “2006-06-01”. See <code><a href="../reference/parse_date.html">parse_date()</a></code> for details.</li>
+<li>The implied time period is now also inferred from shortcut input when “by” is left at the new default of NULL.</li>
+<li>The “partial” option has gained new “first” and “last” values that also support shortcut input. Previously a shortcut input like 2006 could only be used with the “any” partial option, and to get country-years for states that were independent on the first day of a year one had to use <code><a href="../reference/state_panel.html">state_panel("YYYY-01-01", partial = "exact", ...)</a></code>. This can now instead be done with <code><a href="../reference/state_panel.html">state_panel(2006, partial = "first", ...)</a></code>.</li>
 </ul>
 </div>
 <div id="new-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-functions" class="anchor"></a>New functions</h2>
 <ul>
-<li>Added <code><a href="../reference/country_names.html">country_names()</a></code> to translate country codes to country names and <code><a href="../reference/prettyc.html">prettyc()</a></code> to shorten some of the longer country names, like âMacedonia, the former Yugoslav Republic ofâ.</li>
+<li>Added <code><a href="../reference/country_names.html">country_names()</a></code> to translate country codes to country names and <code><a href="../reference/prettyc.html">prettyc()</a></code> to shorten some of the longer country names, like “Macedonia, the former Yugoslav Republic of”.</li>
 <li>Updated vignette on G&amp;W and COW differences to take into account when trying to translate between codes.</li>
 <li>Added <code><a href="../reference/compare.html">compare()</a></code> helper to compare two statelist data frames prior to merging.</li>
-<li>Added <code><a href="../reference/parse_date.html">parse_date()</a></code> to handle more flexible âstartâ and âendâ date input (<a href='https://github.com/andybega/states/issues/12'>#12</a>).</li>
+<li>Added <code><a href="../reference/parse_date.html">parse_date()</a></code> to handle more flexible “start” and “end” date input (<a href='https://github.com/andybega/states/issues/12'>#12</a>).</li>
 </ul>
 </div>
 </div>
@@ -164,19 +165,19 @@
 <li>Added option to use simpler input when generating a yearly panel, i.e. <code><a href="../reference/state_panel.html">state_panel(2001, 2005)</a></code> instead of <code><a href="../reference/state_panel.html">state_panel("2001-01-01", "2005-01-01", by = "year", partial = "any")</a></code>.</li>
 <li>Changed sfind() so that it ignores capitalization and treats character numbers as numbers. These pairs of queries now produce the same results, unlike before:
 <ul>
-<li>âGabonâ and âgabonâ,</li>
-<li>260 and â260â</li>
+<li>“Gabon” and “gabon”,</li>
+<li>260 and “260”</li>
 </ul>
 </li>
 <li>Changes in plot_missing() and missing_info():
 <ul>
-<li>make âdataâ the first argument and âxâ the second argument so that it works nicer in pipes.</li>
+<li>make “data” the first argument and “x” the second argument so that it works nicer in pipes.</li>
 <li>add more intelligent defaults so that not all arguments have to be explicitly specified.</li>
-<li>rename the âtime_unitâ argument to âperiodâ.</li>
-<li>added âpartialâ argument, it works the same as in <code><a href="../reference/state_panel.html">state_panel()</a></code>.</li>
+<li>rename the “time_unit” argument to “period”.</li>
+<li>added “partial” argument, it works the same as in <code><a href="../reference/state_panel.html">state_panel()</a></code>.</li>
 </ul>
 </li>
-<li>Fixed plot_missing() and missing_info() error when âdataâ is a tibble (âtbl_dfâ).</li>
+<li>Fixed plot_missing() and missing_info() error when “data” is a tibble (“tbl_df”).</li>
 </ul>
 </div>
     <div id="states-0-2-1" class="section level1">
@@ -187,7 +188,7 @@
 <li>
 <code>plot_missing</code> improvements: examples with Polity data, added a <code>skip_labels</code> option that will plot every n-th label for countries instead of all labels to avoid overplotting on the y-axis. The latter is inspired by <a href="https://github.com/xuyiqing/panelView" class="uri">https://github.com/xuyiqing/panelView</a>.</li>
 <li>Added Polity combined score as example data set.</li>
-<li>Fixed encoding issue for <code>gwstates$country_names</code> like Cote dâIvoire and WÃ¼ttemberg.</li>
+<li>Fixed encoding issue for <code>gwstates$country_names</code> like Cote d’Ivoire and Wüttemberg.</li>
 </ul>
 </div>
     <div id="states-0-2-0" class="section level1">
@@ -196,7 +197,7 @@
 </h1>
 <ul>
 <li>Initial version on CRAN.</li>
-<li>Refactor <code>state_panel</code> and add a partial option to allow including partial state-periods (as opposed to the default which is based on the exact start date, for all period resolutions in âbyâ).</li>
+<li>Refactor <code>state_panel</code> and add a partial option to allow including partial state-periods (as opposed to the default which is based on the exact start date, for all period resolutions in “by”).</li>
 <li>Rework <code>plot_missing</code>: fix a bug that would leave out independent states with no cases in the input data; add <code>missing_info</code> function that generates the data underlying the plots.</li>
 <li>Add <code>pkgdown</code> website for <code>states</code> package documentation.</li>
 </ul>
@@ -227,7 +228,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
