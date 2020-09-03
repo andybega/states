@@ -1,0 +1,38 @@
+---
+title: "COW and G&W state lists"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{COW and G&W state lists}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Searchable tables of the Gleditsch & Ward and COW lists of independent states. For something similar in R, see [sfind()](.../reference/sfind.html).
+
+```{r setup}
+library(states)
+library(DT)
+```
+
+## G&W
+
+```{r}
+data(gwstates)
+datatable(gwstates)
+```
+
+## COW
+
+```{r}
+data(cowstates)
+datatable(cowstates)
+```
+
