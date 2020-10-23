@@ -22,4 +22,18 @@ table(stringi::stri_enc_mark(gwstates$country_name))
 
 cowstates <- as.data.frame(cowstates)
 
+# add microstate coding
+data(gwstates)
+micro <- gwstates[gwstates$microstate %in% TRUE, ]
+cowstates$microstate = FALSE
+cowstates$microstate[cowstates$cowcode %in% micro$gwcode] <- TRUE
+cowstates$microstate[cowstates$country_name %in% micro$country_name] <- TRUE
+
+# COW doesn't have South Ossetia and Abkhazia, so -2 on rows, otherwise should
+# equal
+stopifnot(
+  nrow(cowstates[cowstates$microstate %in% TRUE, ])==(nrow(micro) - 2)
+)
+
+
 usethis::use_data(cowstates, overwrite = TRUE)

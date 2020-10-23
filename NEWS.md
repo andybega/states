@@ -1,6 +1,8 @@
-# states 0.2.2
 
-- In the gwstates and cowstates data, the "iso3c" columns have been renamed to "gwn" and "cown", as they were not in fact ISO 3-character country abbreviations (#19).
+# states 0.2.2.9011 (development version)
+
+- Although the original COW state list does not distinguish micro-states, like the G&W list does, the `cowstates` data now has a microstates coding derived from the G&W coding (#24). This makes it easier, for example, to filter out micro-states from a state panel dataset. 
+- In the gwstates and cowstates data, the "iso3c" columns have been renamed to "gwn" and "cown", as they are not in fact ISO 3-character country abbreviations (#19).
 - plot_missing()'s "space" argument has been renamed "ccode". 
 - id_date_sequence() now works with integer years, there is no need to convert them to Date class anymore (#20).
 - fixed a mispelled country name, "Rumania" to "Romania".

@@ -131,7 +131,7 @@ sfind <- function(x, list = "both") {
 
   slist <- rbind(
     cbind(list = "GW", gwstates),
-    cbind(list = "COW", cowstates, microstate = NA)
+    cbind(list = "COW", cowstates)
   )
   slist$search_string <- paste0(slist$code3c, ";", slist$country_name)
   slist$search_string <- tolower(slist$search_string)
