@@ -7,7 +7,7 @@
 index_date(x, period)
 }
 \arguments{
-\item{x}{a \code{\link[base:Date]{base::Date()}} vector}
+\item{x}{a \code{\link[base:Dates]{base::Date()}} vector}
 
 \item{period}{a time period, e.g. "year" or "month"}
 }

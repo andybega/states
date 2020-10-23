@@ -36,3 +36,12 @@ test_that("id_date_sequence works with integer year dates", {
 
 })
 
+
+test_that("country_names works with COW list (#23)", {
+
+  expect_equal(country_names(946, list = "COW"), "Kiribati")
+  expect_equal(country_names(970, list = "GW"), "Kiribati")
+  expect_equal(country_names(970, list = "COW"), "Nauru")
+
+})
+

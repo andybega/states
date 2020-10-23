@@ -45,7 +45,7 @@ present)}
 \item{period}{Time period in which the data are. NULL by default and inferred
 to be "year" if the "time" column has name "year" or contains integers with
 a range between 1799 and 2050. Required if the "time" column is a
-\code{\link[base:Date]{base::Date()}} vector to avoid ambiguity.}
+\code{\link[base:Dates]{base::Date()}} vector to avoid ambiguity.}
 
 \item{statelist}{Check not only missing values, but presence or absence of
 observations against a list of independent states? One of "GW", "COW" or

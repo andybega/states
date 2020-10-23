@@ -81,20 +81,27 @@ id_date_sequence <- function(x, pd = NULL) {
 #'
 #' @export
 country_names <- function(x, list = "GW", shorten = FALSE) {
-  # hack to avoid globals NOTE;
-  # for better, see https://dplyr.tidyverse.org/articles/programming.html
-  gwcode <- country_name <- NULL
-  cnames <- states::gwstates %>%
-    dplyr::group_by(gwcode) %>%
-    dplyr::summarize(country_name = tail(unique(country_name), 1))
+
+  if (list=="GW") {
+    cnames <- states::gwstates
+    cnames$countrycode = cnames$gwcode
+  } else {
+    cnames <- states::cowstates
+    cnames$countrycode = cnames$cowcode
+  }
+
+  cnames <- cnames %>%
+    dplyr::group_by(.data$countrycode) %>%
+    dplyr::summarize(country_name = tail(unique(.data$country_name), 1),
+                     .groups = "drop")
 
   if (isTRUE(shorten)) {
     cnames$country_name <- prettyc(cnames$country_name)
   }
 
-  data.frame(gwcode = x) %>%
-    dplyr::left_join(cnames, by = "gwcode") %>%
-    dplyr::pull(country_name)
+  data.frame(countrycode = x) %>%
+    dplyr::left_join(cnames, by = "countrycode") %>%
+    dplyr::pull(.data$country_name)
 }
 
 

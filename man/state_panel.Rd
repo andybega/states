@@ -29,7 +29,7 @@ information. The column names and types differ slightly based on the
 \item The first column will be "gwcode" if \code{useGW = TRUE} (the default), and
 "cowcode" otherwise.
 \item The second column is an integer vector with name "year" for country-year
-data (if \code{by} or the inferred \code{by} value is "year"), and a \code{\link[base:Date]{base::Date()}}
+data (if \code{by} or the inferred \code{by} value is "year"), and a \code{\link[base:Dates]{base::Date()}}
 vector with the name "date" otherwise.
 }
 }
