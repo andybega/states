@@ -91,6 +91,7 @@
 <div id="states" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#states" class="anchor"></a>states</h1></div>
+<!-- badges: start -->
 
 <p>Create country-year/month/day panels consistent with the COW or Gleditsch &amp; Ward lists of independent states. I mainly use this for merging different data sources:</p>
 <ol>
@@ -99,15 +100,17 @@
 <li>In the end, merge everything together. Since all the inputs are already normalized to a proper state panel list, there should be no issues.</li>
 </ol>
 <p>What the package does:</p>
-<ol>
+<ul>
 <li>It contains the Gleditsch and Ward (G&amp;W) as well as the Correlates of War (COW) state system membership lists.</li>
-</ol>
-<!-- end list --><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+</ul>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/andybega/states">"states"</a></span><span class="op">)</span>
     
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">gwstates</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">cowstates</span><span class="op">)</span></code></pre></div>
-<p>Search them with <code>sfind</code>, this can be helpful for manual coding:</p>
+<ul>
+<li>Search them with <code>sfind</code>, this can be helpful for manual coding:</li>
+</ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/sfind.html">sfind</a></span><span class="op">(</span><span class="fl">260</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
 <span class="co">#&gt;     list ccode code3c            country_name      start        end</span>
@@ -122,20 +125,20 @@
 <span class="co">#&gt; 298  COW   255    GMY                    Germany 1990-10-03 9999-12-31</span>
 <span class="co">#&gt; 299  COW   260    GFR    German Federal Republic 1955-05-05 1990-10-02</span>
 <span class="co">#&gt; 300  COW   265    GDR German Democratic Republic 1954-03-25 1990-10-02</span></code></pre></div>
-<ol>
+<ul>
 <li>You can use it to build a country-year template that matches either the COW or G&amp;W state lists.</li>
-</ol>
-<!-- end list --><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+</ul>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/state_panel.html">state_panel</a></span><span class="op">(</span><span class="fl">1991</span>, <span class="fl">2001</span><span class="op">)</span>
     
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">countries</span><span class="op">)</span>
 <span class="co">#&gt; 'data.frame':    2091 obs. of  2 variables:</span>
 <span class="co">#&gt;  $ gwcode: int  2 2 2 2 2 2 2 2 2 2 ...</span>
 <span class="co">#&gt;  $ year  : int  1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 ...</span></code></pre></div>
-<ol>
+<ul>
 <li>Visualize missing/non-independent cases in your data. See this related <a href="https://andybeger.com/2016/09/14/data-management/">blog post for more details</a>.</li>
-</ol>
-<!-- end list --><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+</ul>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"polity"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">polity</span><span class="op">)</span>
 <span class="co">#&gt; 'data.frame':    17228 obs. of  3 variables:</span>
@@ -211,7 +214,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.com/andybega/states"><img src="https://travis-ci.com/andybega/states.svg?branch=master" alt="Travis-CI Build Status"></a></li>
+<li><a href="https://github.com/andybega/states/actions"><img src="https://github.com/andybega/states/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://cran.r-project.org/package=states"><img src="http://www.r-pkg.org/badges/version/states" alt="CRAN versions"></a></li>
 <li><a href="https://codecov.io/github/andybega/states?branch=master"><img src="https://codecov.io/gh/andybega/states/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
 </ul>
