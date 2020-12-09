@@ -9,10 +9,10 @@
 .Rbuildignore
 ^docs$
 scratchpad.R
-^\.travis\.yml$
 ^_pkgdown\.yml$
 ^cran-comments\.md$
 ^README\.Rmd$
 ^README-.*\.png$
 ^dev$
 ^data-raw$
+^\.github$
