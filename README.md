@@ -3,12 +3,15 @@
 
 # states
 
-[![Travis-CI Build
-Status](https://travis-ci.com/andybega/states.svg?branch=master)](https://travis-ci.com/andybega/states)
+<!-- badges: start -->
+
+[![R build
+status](https://github.com/andybega/states/workflows/R-CMD-check/badge.svg)](https://github.com/andybega/states/actions)
 [![CRAN
 versions](http://www.r-pkg.org/badges/version/states)](https://cran.r-project.org/package=states)
 [![Coverage
 status](https://codecov.io/gh/andybega/states/branch/master/graph/badge.svg)](https://codecov.io/github/andybega/states?branch=master)
+<!-- badges: end -->
 
 Create country-year/month/day panels consistent with the COW or
 Gleditsch & Ward lists of independent states. I mainly use this for
@@ -25,10 +28,8 @@ merging different data sources:
 
 What the package does:
 
-1.  It contains the Gleditsch and Ward (G\&W) as well as the Correlates
+-   It contains the Gleditsch and Ward (G&W) as well as the Correlates
     of War (COW) state system membership lists.
-
-<!-- end list -->
 
 ``` r
 library("states")
@@ -37,7 +38,7 @@ data(gwstates)
 data(cowstates)
 ```
 
-Search them with `sfind`, this can be helpful for manual coding:
+-   Search them with `sfind`, this can be helpful for manual coding:
 
 ``` r
 sfind(260)[, 1:6]
@@ -55,10 +56,8 @@ sfind("German")[, 1:6]
 #> 300  COW   265    GDR German Democratic Republic 1954-03-25 1990-10-02
 ```
 
-2.  You can use it to build a country-year template that matches either
-    the COW or G\&W state lists.
-
-<!-- end list -->
+-   You can use it to build a country-year template that matches either
+    the COW or G&W state lists.
 
 ``` r
 countries <- state_panel(1991, 2001)
@@ -69,11 +68,9 @@ str(countries)
 #>  $ year  : int  1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 ...
 ```
 
-3.  Visualize missing/non-independent cases in your data. See this
+-   Visualize missing/non-independent cases in your data. See this
     related [blog post for more
     details](https://andybeger.com/2016/09/14/data-management/).
-
-<!-- end list -->
 
 ``` r
 data("polity")
@@ -122,7 +119,7 @@ remotes::install_github("andybega/states")
 
 ## Citations
 
-For the [Gleditsch and Ward (G\&W) state
+For the [Gleditsch and Ward (G&W) state
 data](http://privatewww.essex.ac.uk/~ksg/statelist.html):
 
 Gleditsch, Kristian S. & Michael D. Ward. 1999. “Interstate System
@@ -133,4 +130,5 @@ For the [Correlates of War (COW) state
 data](http://www.correlatesofwar.org/data-sets/state-system-membership):
 
 Correlates of War Project. 2017. “State System Membership List, v2016.”
-Online, <http://correlatesofwar.org>
+Online,
+<a href="http://correlatesofwar.org" class="uri">http://correlatesofwar.org</a>
