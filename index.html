@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9011</span>
       </span>
     </div>
 
@@ -100,18 +100,20 @@
 </ol>
 <p>What the package does:</p>
 <ol>
-<li>It contains the Gleditsch and Ward (G\&amp;W) as well as the Correlates of War (COW) state system membership lists.</li>
+<li>It contains the Gleditsch and Ward (G&amp;W) as well as the Correlates of War (COW) state system membership lists.</li>
 </ol>
-<!-- end list --><div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"states"</span>)
-
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">gwstates</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">cowstates</span>)</pre></div>
+<!-- end list --><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/andybega/states">"states"</a></span><span class="op">)</span>
+    
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">gwstates</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">cowstates</span><span class="op">)</span></code></pre></div>
 <p>Search them with <code>sfind</code>, this can be helpful for manual coding:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="reference/sfind.html">sfind</a></span>(<span class="fl">260</span>)[, <span class="fl">1</span>:<span class="fl">6</span>]
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/sfind.html">sfind</a></span><span class="op">(</span><span class="fl">260</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
 <span class="co">#&gt;     list ccode code3c            country_name      start        end</span>
 <span class="co">#&gt; 45    GW   260    GFR German Federal Republic 1949-09-21 9999-12-31</span>
 <span class="co">#&gt; 299  COW   260    GFR German Federal Republic 1955-05-05 1990-10-02</span>
-<span class="fu"><a href="reference/sfind.html">sfind</a></span>(<span class="st">"German"</span>)[, <span class="fl">1</span>:<span class="fl">6</span>]
+<span class="fu"><a href="reference/sfind.html">sfind</a></span><span class="op">(</span><span class="st">"German"</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
 <span class="co">#&gt;     list ccode code3c               country_name      start        end</span>
 <span class="co">#&gt; 44    GW   255    GMY          Germany (Prussia) 1816-01-01 1945-05-07</span>
 <span class="co">#&gt; 45    GW   260    GFR    German Federal Republic 1949-09-21 9999-12-31</span>
@@ -119,54 +121,59 @@
 <span class="co">#&gt; 297  COW   255    GMY                    Germany 1816-01-01 1945-05-08</span>
 <span class="co">#&gt; 298  COW   255    GMY                    Germany 1990-10-03 9999-12-31</span>
 <span class="co">#&gt; 299  COW   260    GFR    German Federal Republic 1955-05-05 1990-10-02</span>
-<span class="co">#&gt; 300  COW   265    GDR German Democratic Republic 1954-03-25 1990-10-02</span></pre></div>
+<span class="co">#&gt; 300  COW   265    GDR German Democratic Republic 1954-03-25 1990-10-02</span></code></pre></div>
 <ol>
-<li>You can use it to build a country-year template that matches either the COW or G\&amp;W state lists.</li>
+<li>You can use it to build a country-year template that matches either the COW or G&amp;W state lists.</li>
 </ol>
-<!-- end list --><div class="sourceCode" id="cb3"><pre class="r"><span class="no">countries</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/state_panel.html">state_panel</a></span>(<span class="fl">1991</span>, <span class="fl">2001</span>)
-
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">countries</span>)
+<!-- end list --><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/state_panel.html">state_panel</a></span><span class="op">(</span><span class="fl">1991</span>, <span class="fl">2001</span><span class="op">)</span>
+    
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">countries</span><span class="op">)</span>
 <span class="co">#&gt; 'data.frame':    2091 obs. of  2 variables:</span>
 <span class="co">#&gt;  $ gwcode: int  2 2 2 2 2 2 2 2 2 2 ...</span>
-<span class="co">#&gt;  $ year  : int  1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 ...</span></pre></div>
+<span class="co">#&gt;  $ year  : int  1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 ...</span></code></pre></div>
 <ol>
 <li>Visualize missing/non-independent cases in your data. See this related <a href="https://andybeger.com/2016/09/14/data-management/">blog post for more details</a>.</li>
 </ol>
-<!-- end list --><div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"polity"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">polity</span>)
+<!-- end list --><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"polity"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">polity</span><span class="op">)</span>
 <span class="co">#&gt; 'data.frame':    17228 obs. of  3 variables:</span>
 <span class="co">#&gt;  $ ccode : num  700 700 700 700 700 700 700 700 700 700 ...</span>
 <span class="co">#&gt;  $ year  : num  1800 1801 1802 1803 1804 ...</span>
 <span class="co">#&gt;  $ polity: num  -6 -6 -6 -6 -6 -6 -6 -6 -6 -6 ...</span>
-
-<span class="fu"><a href="reference/plot_missing.html">plot_missing</a></span>(<span class="no">polity</span>, <span class="kw">x</span> <span class="kw">=</span> <span class="st">"polity"</span>, <span class="kw">ccode</span> <span class="kw">=</span> <span class="st">"ccode"</span>, <span class="kw">statelist</span> <span class="kw">=</span> <span class="st">"COW"</span>)</pre></div>
+    
+<span class="fu"><a href="reference/plot_missing.html">plot_missing</a></span><span class="op">(</span><span class="va">polity</span>, x <span class="op">=</span> <span class="st">"polity"</span>, ccode <span class="op">=</span> <span class="st">"ccode"</span>, statelist <span class="op">=</span> <span class="st">"COW"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="100%"></p>
 <p>For the underlying data (missing info requires date input):</p>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="no">polity</span>$<span class="no">date</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">polity</span>$<span class="no">year</span>, <span class="st">"-01-01"</span>))
-<span class="no">mm</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/plot_missing.html">missing_info</a></span>(<span class="no">polity</span>, <span class="kw">x</span> <span class="kw">=</span> <span class="st">"polity"</span>, <span class="kw">ccode</span> <span class="kw">=</span> <span class="st">"ccode"</span>,
-                   <span class="kw">time</span> <span class="kw">=</span> <span class="st">"date"</span>, <span class="kw">period</span> <span class="kw">=</span> <span class="st">"year"</span>,
-                   <span class="kw">statelist</span> <span class="kw">=</span> <span class="st">"COW"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">mm</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">polity</span><span class="op">$</span><span class="va">date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">polity</span><span class="op">$</span><span class="va">year</span>, <span class="st">"-01-01"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">mm</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_missing.html">missing_info</a></span><span class="op">(</span><span class="va">polity</span>, x <span class="op">=</span> <span class="st">"polity"</span>, ccode <span class="op">=</span> <span class="st">"ccode"</span>, 
+                   time <span class="op">=</span> <span class="st">"date"</span>, period <span class="op">=</span> <span class="st">"year"</span>,
+                   statelist <span class="op">=</span> <span class="st">"COW"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span>
 <span class="co">#&gt;       ccode       date independent missing_value                    status</span>
 <span class="co">#&gt; 18671     2 1800-01-01           0         FALSE Complete, non-independent</span>
 <span class="co">#&gt; 18672     2 1801-01-01           0         FALSE Complete, non-independent</span>
 <span class="co">#&gt; 18673     2 1802-01-01           0         FALSE Complete, non-independent</span>
 <span class="co">#&gt; 18674     2 1803-01-01           0         FALSE Complete, non-independent</span>
 <span class="co">#&gt; 18675     2 1804-01-01           0         FALSE Complete, non-independent</span>
-<span class="co">#&gt; 18676     2 1805-01-01           0         FALSE Complete, non-independent</span></pre></div>
+<span class="co">#&gt; 18676     2 1805-01-01           0         FALSE Complete, non-independent</span></code></pre></div>
 <div id="install" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h2>
 <p>The package is on CRAN and can be installed with:</p>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"states"</span>)</pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"states"</span><span class="op">)</span></code></pre></div>
 <p>Or to install from GitHub:</p>
-<div class="sourceCode" id="cb7"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"remotes"</span>)
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"andybega/states"</span>)</pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://remotes.r-lib.org">"remotes"</a></span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"andybega/states"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="citations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#citations" class="anchor"></a>Citations</h2>
-<p>For the <a href="http://privatewww.essex.ac.uk/~ksg/statelist.html">Gleditsch and Ward (G\&amp;W) state data</a>:</p>
+<p>For the <a href="http://privatewww.essex.ac.uk/~ksg/statelist.html">Gleditsch and Ward (G&amp;W) state data</a>:</p>
 <p>Gleditsch, Kristian S. &amp; Michael D. Ward. 1999. “Interstate System Membership: A Revised List of the Independent States since 1816.” International Interactions 25: 393-413.</p>
 <p>For the <a href="http://www.correlatesofwar.org/data-sets/state-system-membership">Correlates of War (COW) state data</a>:</p>
 <p>Correlates of War Project. 2017. “State System Membership List, v2016.” Online, <a href="http://correlatesofwar.org" class="uri">http://correlatesofwar.org</a></p>
@@ -218,7 +225,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9011</span>
       </span>
     </div>
 
@@ -129,12 +129,13 @@
       <small>Source: <a href='https://github.com/andybega/states/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="states-0-2-2-9000" class="section level1">
-<h1 class="page-header" data-toc-text="0.2.2.9000">
-<a href="#states-0-2-2-9000" class="anchor"></a>states 0.2.2.9000<small> Unreleased </small>
+    <div id="states-0229011-development-version" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.2.9011">
+<a href="#states-0229011-development-version" class="anchor"></a>states 0.2.2.9011 (development version)<small> Unreleased </small>
 </h1>
 <ul>
-<li>In the gwstates and cowstates data, the “iso3c” columns have been renamed to “gwn” and “cown”, as they were not in fact ISO 3-character country abbreviations (<a href='https://github.com/andybega/states/issues/19'>#19</a>).</li>
+<li>Although the original COW state list does not distinguish micro-states, like the G&amp;W list does, the <code>cowstates</code> data now has a microstates coding derived from the G&amp;W coding (<a href='https://github.com/andybega/states/issues/24'>#24</a>). This makes it easier, for example, to filter out micro-states from a state panel dataset.</li>
+<li>In the gwstates and cowstates data, the “iso3c” columns have been renamed to “gwn” and “cown”, as they are not in fact ISO 3-character country abbreviations (<a href='https://github.com/andybega/states/issues/19'>#19</a>).</li>
 <li>plot_missing()’s “space” argument has been renamed “ccode”.</li>
 <li>id_date_sequence() now works with integer years, there is no need to convert them to Date class anymore (<a href='https://github.com/andybega/states/issues/20'>#20</a>).</li>
 <li>fixed a mispelled country name, “Rumania” to “Romania”.</li>
@@ -160,12 +161,12 @@
 </ul>
 </div>
 </div>
-    <div id="states-0-2-2" class="section level1">
+    <div id="states-022" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.2">
-<a href="#states-0-2-2" class="anchor"></a>states 0.2.2<small> 2019-01-11 </small>
+<a href="#states-022" class="anchor"></a>states 0.2.2<small> 2019-01-11 </small>
 </h1>
 <ul>
-<li>Added option to use simpler input when generating a yearly panel, i.e. <code><a href="../reference/state_panel.html">state_panel(2001, 2005)</a></code> instead of <code><a href="../reference/state_panel.html">state_panel("2001-01-01", "2005-01-01", by = "year", partial = "any")</a></code>.</li>
+<li>Added option to use simpler input when generating a yearly panel, i.e. <code><a href="../reference/state_panel.html">state_panel(2001, 2005)</a></code> instead of <code><a href="../reference/state_panel.html">state_panel("2001-01-01", "2005-01-01", by = "year", partial = "any")</a></code>.</li>
 <li>Changed sfind() so that it ignores capitalization and treats character numbers as numbers. These pairs of queries now produce the same results, unlike before:
 <ul>
 <li>“Gabon” and “gabon”,</li>
@@ -183,9 +184,9 @@
 <li>Fixed plot_missing() and missing_info() error when “data” is a tibble (“tbl_df”).</li>
 </ul>
 </div>
-    <div id="states-0-2-1" class="section level1">
+    <div id="states-021" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.1">
-<a href="#states-0-2-1" class="anchor"></a>states 0.2.1<small> 2018-05-04 </small>
+<a href="#states-021" class="anchor"></a>states 0.2.1<small> 2018-05-04 </small>
 </h1>
 <ul>
 <li>
@@ -194,9 +195,9 @@
 <li>Fixed encoding issue for <code>gwstates$country_names</code> like Cote d’Ivoire and Wüttemberg.</li>
 </ul>
 </div>
-    <div id="states-0-2-0" class="section level1">
+    <div id="states-020" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.0">
-<a href="#states-0-2-0" class="anchor"></a>states 0.2.0<small> 2018-02-23 </small>
+<a href="#states-020" class="anchor"></a>states 0.2.0<small> 2018-02-23 </small>
 </h1>
 <ul>
 <li>Initial version on CRAN.</li>
@@ -205,9 +206,9 @@
 <li>Add <code>pkgdown</code> website for <code>states</code> package documentation.</li>
 </ul>
 </div>
-    <div id="states-0-1-0" class="section level1">
+    <div id="states-010" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.0">
-<a href="#states-0-1-0" class="anchor"></a>states 0.1.0<small> Unreleased </small>
+<a href="#states-010" class="anchor"></a>states 0.1.0<small> Unreleased </small>
 </h1>
 <ul>
 <li>Initial version on Github.</li>
@@ -231,7 +232,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

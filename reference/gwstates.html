@@ -73,7 +73,7 @@ Gleditsch and Ward" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9011</span>
       </span>
     </div>
 
@@ -137,12 +137,12 @@ Gleditsch and Ward" />
 Gleditsch and Ward</p>
     </div>
 
-    <pre class="usage"><span class='no'>gwstates</span></pre>
+    <pre class="usage"><span class='va'>gwstates</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>Data frame</p><dl'>
+    <p>Data frame</p><dl>
 <dt><code>gwcode</code></dt><dd><p>Gleditsch and Ward country code.</p></dd>
 <dt><code>gwc</code></dt><dd><p>G&amp;W character country code. This is derived from the COW character codes.</p></dd>
 <dt><code>country_name</code></dt><dd><p>Long form country name</p></dd>
@@ -162,8 +162,9 @@ Membership: A Revised List of the Independent States since 1816."
 <em>International Interactions</em> 25.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gwstates</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>gwstates</span>)</div><div class='output co'>#&gt;   gwcode gwc             country_name      start        end microstate
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>gwstates</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>gwstates</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   gwcode gwc             country_name      start        end microstate
 #&gt; 1      2 USA United States of America 1816-01-01 9999-12-31      FALSE
 #&gt; 2     20 CAN                   Canada 1867-07-01 9999-12-31      FALSE
 #&gt; 3     31 BHM                  Bahamas 1973-07-10 9999-12-31      FALSE
@@ -185,7 +186,7 @@ Membership: A Revised List of the Independent States since 1816."
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

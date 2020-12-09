@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9011</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@
     <p>Helper to look up state list entries by country code or name</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sfind</span>(<span class='no'>x</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</pre>
+    <pre class="usage"><span class='fu'>sfind</span><span class='op'>(</span><span class='va'>x</span>, list <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,20 +153,25 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Works with either integer or strings</span>
-<span class='fu'>sfind</span>(<span class='fl'>325</span>)</div><div class='output co'>#&gt;     list ccode code3c   country_name      start        end microstate
+<span class='fu'>sfind</span><span class='op'>(</span><span class='fl'>325</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     list ccode code3c   country_name      start        end microstate
 #&gt; 60    GW   325    ITA Italy/Sardinia 1816-01-01 9999-12-31      FALSE
-#&gt; 317  COW   325    ITA          Italy 1816-01-01 9999-12-31         NA</div><div class='input'><span class='fu'>sfind</span>(<span class='st'>"ALG"</span>)</div><div class='output co'>#&gt;     list ccode code3c country_name      start        end microstate
+#&gt; 317  COW   325    ITA          Italy 1816-01-01 9999-12-31      FALSE</div><div class='input'><span class='fu'>sfind</span><span class='op'>(</span><span class='st'>"ALG"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     list ccode code3c country_name      start        end microstate
 #&gt; 151   GW   615    ALG      Algeria 1816-01-01 1830-07-05      FALSE
 #&gt; 152   GW   615    ALG      Algeria 1962-07-05 9999-12-31      FALSE
-#&gt; 411  COW   615    ALG      Algeria 1962-07-05 9999-12-31         NA</div><div class='input'><span class='fu'>sfind</span>(<span class='st'>"Algeria"</span>)</div><div class='output co'>#&gt;     list ccode code3c country_name      start        end microstate
+#&gt; 411  COW   615    ALG      Algeria 1962-07-05 9999-12-31      FALSE</div><div class='input'><span class='fu'>sfind</span><span class='op'>(</span><span class='st'>"Algeria"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     list ccode code3c country_name      start        end microstate
 #&gt; 151   GW   615    ALG      Algeria 1816-01-01 1830-07-05      FALSE
 #&gt; 152   GW   615    ALG      Algeria 1962-07-05 9999-12-31      FALSE
-#&gt; 411  COW   615    ALG      Algeria 1962-07-05 9999-12-31         NA</div><div class='input'>
+#&gt; 411  COW   615    ALG      Algeria 1962-07-05 9999-12-31      FALSE</div><div class='input'>
 <span class='co'># Search strings are treated as regular expressions (see stringr::str_detect)</span>
-<span class='fu'>sfind</span>(<span class='st'>"Germany"</span>)</div><div class='output co'>#&gt;     list ccode code3c      country_name      start        end microstate
+<span class='fu'>sfind</span><span class='op'>(</span><span class='st'>"Germany"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     list ccode code3c      country_name      start        end microstate
 #&gt; 44    GW   255    GMY Germany (Prussia) 1816-01-01 1945-05-07      FALSE
-#&gt; 297  COW   255    GMY           Germany 1816-01-01 1945-05-08         NA
-#&gt; 298  COW   255    GMY           Germany 1990-10-03 9999-12-31         NA</div><div class='input'><span class='fu'>sfind</span>(<span class='st'>"German"</span>)</div><div class='output co'>#&gt;     list ccode code3c               country_name      start        end
+#&gt; 297  COW   255    GMY           Germany 1816-01-01 1945-05-08      FALSE
+#&gt; 298  COW   255    GMY           Germany 1990-10-03 9999-12-31      FALSE</div><div class='input'><span class='fu'>sfind</span><span class='op'>(</span><span class='st'>"German"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     list ccode code3c               country_name      start        end
 #&gt; 44    GW   255    GMY          Germany (Prussia) 1816-01-01 1945-05-07
 #&gt; 45    GW   260    GFR    German Federal Republic 1949-09-21 9999-12-31
 #&gt; 46    GW   265    GDR German Democratic Republic 1949-10-05 1990-10-02
@@ -178,10 +183,10 @@
 #&gt; 44       FALSE
 #&gt; 45       FALSE
 #&gt; 46       FALSE
-#&gt; 297         NA
-#&gt; 298         NA
-#&gt; 299         NA
-#&gt; 300         NA</div></pre>
+#&gt; 297      FALSE
+#&gt; 298      FALSE
+#&gt; 299      FALSE
+#&gt; 300      FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -197,7 +202,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

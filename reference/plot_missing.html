@@ -73,7 +73,7 @@ cases that do or do not match an independent state list." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9011</span>
       </span>
     </div>
 
@@ -137,28 +137,28 @@ cases that do or do not match an independent state list." />
 cases that do or do not match an independent state list.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_missing</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ccode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>period</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
-  <span class='kw'>skip_labels</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Deprecated.html'>deprecated</a></span>()
-)
+    <pre class="usage"><span class='fu'>plot_missing</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  x <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ccode <span class='op'>=</span> <span class='cn'>NULL</span>,
+  time <span class='op'>=</span> <span class='cn'>NULL</span>,
+  period <span class='op'>=</span> <span class='cn'>NULL</span>,
+  statelist <span class='op'>=</span> <span class='cn'>NULL</span>,
+  partial <span class='op'>=</span> <span class='st'>"any"</span>,
+  skip_labels <span class='op'>=</span> <span class='fl'>5</span>,
+  space <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Deprecated.html'>deprecated</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>missing_info</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ccode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>period</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Deprecated.html'>deprecated</a></span>()
-)</pre>
+<span class='fu'>missing_info</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  x <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ccode <span class='op'>=</span> <span class='cn'>NULL</span>,
+  time <span class='op'>=</span> <span class='cn'>NULL</span>,
+  period <span class='op'>=</span> <span class='cn'>NULL</span>,
+  statelist <span class='op'>=</span> <span class='cn'>NULL</span>,
+  partial <span class='op'>=</span> <span class='cn'>NULL</span>,
+  space <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Deprecated.html'>deprecated</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -235,19 +235,22 @@ with other ggplot functions as usual.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Create an example data frame with missing values</span>
-<span class='no'>cy</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='state_panel.html'>state_panel</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"1980-06-30"</span>), <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2015-06-30"</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"year"</span>,
-<span class='kw'>useGW</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='no'>cy</span>$<span class='no'>myvar</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>cy</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1234</span>)
-<span class='no'>cy</span>$<span class='no'>myvar</span>[<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>cy</span>), <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>cy</span>)*<span class='fl'>.1</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)] <span class='kw'>&lt;-</span> <span class='fl'>NA</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>cy</span>)</div><div class='output co'>#&gt; 'data.frame':	6680 obs. of  3 variables:
+<span class='va'>cy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='state_panel.html'>state_panel</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"1980-06-30"</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2015-06-30"</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='st'>"year"</span>,
+useGW <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>cy</span><span class='op'>$</span><span class='va'>myvar</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>cy</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1234</span><span class='op'>)</span>
+<span class='va'>cy</span><span class='op'>$</span><span class='va'>myvar</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>cy</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>cy</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>.1</span>, replace <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>cy</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 'data.frame':	6680 obs. of  3 variables:
 #&gt;  $ gwcode: int  2 2 2 2 2 2 2 2 2 2 ...
 #&gt;  $ year  : int  1980 1981 1982 1983 1984 1985 1986 1987 1988 1989 ...
 #&gt;  $ myvar : num  0.3801 -0.0674 0.2801 0.3303 0.2848 ...</div><div class='input'>
 <span class='co'># Visualize missing values:</span>
-<span class='fu'>plot_missing</span>(<span class='no'>cy</span>, <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='st'>"none"</span>)</div><div class='img'><img src='plot_missing-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>plot_missing</span><span class='op'>(</span><span class='va'>cy</span>, statelist <span class='op'>=</span> <span class='st'>"none"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot_missing-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># missing_info() generates the data underlying plot_missing():</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>missing_info</span>(<span class='no'>cy</span>, <span class='kw'>statelist</span> <span class='kw'>=</span>  <span class='st'>"none"</span>))</div><div class='output co'>#&gt;      gwcode       year independent missing_value   status
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>missing_info</span><span class='op'>(</span><span class='va'>cy</span>, statelist <span class='op'>=</span>  <span class='st'>"none"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      gwcode       year independent missing_value   status
 #&gt; 1         2 1980-01-01          NA         FALSE Complete
 #&gt; 202       2 1981-01-01          NA         FALSE Complete
 #&gt; 403       2 1982-01-01          NA         FALSE Complete
@@ -256,7 +259,8 @@ with other ggplot functions as usual.</p>
 #&gt; 1006      2 1985-01-01          NA         FALSE Complete</div><div class='input'>
 <span class='co'># if we specify a statelist to check against, 'independent' will have values</span>
 <span class='co'># now:</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>missing_info</span>(<span class='no'>cy</span>, <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='st'>"GW"</span>))</div><div class='output co'>#&gt;   gwcode       year independent missing_value                status
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>missing_info</span><span class='op'>(</span><span class='va'>cy</span>, statelist <span class='op'>=</span> <span class='st'>"GW"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   gwcode       year independent missing_value                status
 #&gt; 1      2 1980-01-01           1         FALSE Complete, independent
 #&gt; 2      2 1981-01-01           1         FALSE Complete, independent
 #&gt; 3      2 1982-01-01           1         FALSE Complete, independent
@@ -264,36 +268,42 @@ with other ggplot functions as usual.</p>
 #&gt; 5      2 1984-01-01           1         FALSE Complete, independent
 #&gt; 6      2 1985-01-01           1         FALSE Complete, independent</div><div class='input'>
 <span class='co'># Check data also against G&amp;W list of independent states</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>missing_info</span>(<span class='no'>cy</span>, <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='st'>"GW"</span>))</div><div class='output co'>#&gt;   gwcode       year independent missing_value                status
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>missing_info</span><span class='op'>(</span><span class='va'>cy</span>, statelist <span class='op'>=</span> <span class='st'>"GW"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   gwcode       year independent missing_value                status
 #&gt; 1      2 1980-01-01           1         FALSE Complete, independent
 #&gt; 2      2 1981-01-01           1         FALSE Complete, independent
 #&gt; 3      2 1982-01-01           1         FALSE Complete, independent
 #&gt; 4      2 1983-01-01           1         FALSE Complete, independent
 #&gt; 5      2 1984-01-01           1         FALSE Complete, independent
-#&gt; 6      2 1985-01-01           1         FALSE Complete, independent</div><div class='input'><span class='fu'>plot_missing</span>(<span class='no'>cy</span>, <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='st'>"GW"</span>)</div><div class='img'><img src='plot_missing-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; 6      2 1985-01-01           1         FALSE Complete, independent</div><div class='input'><span class='fu'>plot_missing</span><span class='op'>(</span><span class='va'>cy</span>, statelist <span class='op'>=</span> <span class='st'>"GW"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot_missing-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Live example with Polity data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"polity"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>polity</span>)</div><div class='output co'>#&gt;   ccode year polity
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"polity"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>polity</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   ccode year polity
 #&gt; 1   700 1800     -6
 #&gt; 2   700 1801     -6
 #&gt; 3   700 1802     -6
 #&gt; 4   700 1803     -6
 #&gt; 5   700 1804     -6
-#&gt; 6   700 1805     -6</div><div class='input'><span class='fu'>plot_missing</span>(<span class='no'>polity</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"polity"</span>, <span class='kw'>ccode</span> <span class='kw'>=</span> <span class='st'>"ccode"</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"year"</span>,
-             <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='st'>"COW"</span>)</div><div class='img'><img src='plot_missing-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># COW starts in 1816; Polity has excess data for several non-independent</span>
+#&gt; 6   700 1805     -6</div><div class='input'><span class='fu'>plot_missing</span><span class='op'>(</span><span class='va'>polity</span>, x <span class='op'>=</span> <span class='st'>"polity"</span>, ccode <span class='op'>=</span> <span class='st'>"ccode"</span>, time <span class='op'>=</span> <span class='st'>"year"</span>,
+             statelist <span class='op'>=</span> <span class='st'>"COW"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot_missing-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># COW starts in 1816; Polity has excess data for several non-independent</span>
 <span class='co'># states after that date, and is missing coverage for several countries.</span>
 
 <span class='co'># The date option is relevant for years in which states gain or lose</span>
 <span class='co'># independence, so this will be slighlty different:</span>
-<span class='no'>polity</span>$<span class='no'>date</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='no'>polity</span>$<span class='no'>year</span>, <span class='st'>"-01-01"</span>))
-<span class='no'>polity</span>$<span class='no'>year</span> <span class='kw'>&lt;-</span> <span class='kw'>NULL</span>
-<span class='fu'>plot_missing</span>(<span class='no'>polity</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"polity"</span>, <span class='kw'>ccode</span> <span class='kw'>=</span> <span class='st'>"ccode"</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"date"</span>,
-             <span class='kw'>period</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='st'>"COW"</span>)</div><div class='img'><img src='plot_missing-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>polity</span><span class='op'>$</span><span class='va'>date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>polity</span><span class='op'>$</span><span class='va'>year</span>, <span class='st'>"-01-01"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>polity</span><span class='op'>$</span><span class='va'>year</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+<span class='fu'>plot_missing</span><span class='op'>(</span><span class='va'>polity</span>, x <span class='op'>=</span> <span class='st'>"polity"</span>, ccode <span class='op'>=</span> <span class='st'>"ccode"</span>, time <span class='op'>=</span> <span class='st'>"date"</span>,
+             period <span class='op'>=</span> <span class='st'>"year"</span>, statelist <span class='op'>=</span> <span class='st'>"COW"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot_missing-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># plot_missing returns a ggplot2 object, so you can do anything you want</span>
-<span class='no'>polity</span>$<span class='no'>year</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substr</a></span>(<span class='no'>polity</span>$<span class='no'>date</span>, <span class='fl'>1</span>, <span class='fl'>4</span>))
-<span class='no'>polity</span>$<span class='no'>date</span> <span class='kw'>&lt;-</span> <span class='kw'>NULL</span>
-<span class='fu'>plot_missing</span>(<span class='no'>polity</span>, <span class='kw'>ccode</span> <span class='kw'>=</span> <span class='st'>"ccode"</span>, <span class='kw'>statelist</span> <span class='kw'>=</span> <span class='st'>"COW"</span>) +
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_flip.html'>coord_flip</a></span>()</div><div class='img'><img src='plot_missing-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>polity</span><span class='op'>$</span><span class='va'>year</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substr</a></span><span class='op'>(</span><span class='va'>polity</span><span class='op'>$</span><span class='va'>date</span>, <span class='fl'>1</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>polity</span><span class='op'>$</span><span class='va'>date</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+<span class='fu'>plot_missing</span><span class='op'>(</span><span class='va'>polity</span>, ccode <span class='op'>=</span> <span class='st'>"ccode"</span>, statelist <span class='op'>=</span> <span class='st'>"COW"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_flip.html'>coord_flip</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='plot_missing-5.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -310,7 +320,7 @@ with other ggplot functions as usual.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

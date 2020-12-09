@@ -73,7 +73,7 @@ the Correlates of War project." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2.9011</span>
       </span>
     </div>
 
@@ -137,12 +137,12 @@ the Correlates of War project." />
 the Correlates of War project.</p>
     </div>
 
-    <pre class="usage"><span class='no'>cowstates</span></pre>
+    <pre class="usage"><span class='va'>cowstates</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>Data frame</p><dl'>
+    <p>Data frame</p><dl>
 <dt><code>ccode</code></dt><dd><p>Gleditsch and Ward country code.</p></dd>
 <dt><code>cowc</code></dt><dd><p>ISO 3 character country code.</p></dd>
 <dt><code>country_name</code></dt><dd><p>Long form country name</p></dd>
@@ -158,14 +158,15 @@ the Correlates of War project.</p>
 Online, <a href='http://correlatesofwar.org'>http://correlatesofwar.org</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>cowstates</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>cowstates</span>)</div><div class='output co'>#&gt;   cowcode cowc             country_name      start        end
-#&gt; 1       2  USA United States of America 1816-01-01 9999-12-31
-#&gt; 2      20  CAN                   Canada 1920-01-10 9999-12-31
-#&gt; 3      31  BHM                  Bahamas 1973-07-10 9999-12-31
-#&gt; 4      40  CUB                     Cuba 1902-05-20 1906-09-25
-#&gt; 5      40  CUB                     Cuba 1909-01-23 9999-12-31
-#&gt; 6      41  HAI                    Haiti 1859-01-01 1915-07-28</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>cowstates</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>cowstates</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   cowcode cowc             country_name      start        end microstate
+#&gt; 1       2  USA United States of America 1816-01-01 9999-12-31      FALSE
+#&gt; 2      20  CAN                   Canada 1920-01-10 9999-12-31      FALSE
+#&gt; 3      31  BHM                  Bahamas 1973-07-10 9999-12-31      FALSE
+#&gt; 4      40  CUB                     Cuba 1902-05-20 1906-09-25      FALSE
+#&gt; 5      40  CUB                     Cuba 1909-01-23 9999-12-31      FALSE
+#&gt; 6      41  HAI                    Haiti 1859-01-01 1915-07-28      FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -181,7 +182,7 @@ Online, <a href='http://correlatesofwar.org'>http://correlatesofwar.org</a></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
