@@ -111,7 +111,8 @@ test_that("mssng_mat throws errors for missing ID values", {
 test_that("plot_missing works with tibbles", {
   expect_equal(
     plot_missing(cy, "myvar", "gwcode", "date", "year", "GW"),
-    plot_missing(dplyr::as_tibble(cy), "myvar", "gwcode", "date", "year", "GW")
+    plot_missing(dplyr::as_tibble(cy), "myvar", "gwcode", "date", "year", "GW"),
+    check.environment = FALSE
   )
 
   expect_equal(
