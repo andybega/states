@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-Searchable tables of the Gleditsch & Ward and COW lists of independent states. For something similar in R, see [sfind()](.../reference/sfind.html).
+Searchable tables of the Gleditsch & Ward and COW lists of independent states. For something similar in R, see [sfind()](../reference/sfind.html).
 
 ```{r setup}
 library(states)

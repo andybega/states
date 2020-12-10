@@ -16,3 +16,4 @@ scratchpad.R
 ^dev$
 ^data-raw$
 ^\.github$
+^release-prep.md$

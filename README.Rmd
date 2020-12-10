@@ -51,7 +51,7 @@ countries <- state_panel(1991, 2001)
 str(countries)
 ```
 
-- Visualize missing/non-independent cases in your data. See this related [blog post for more details](https://andybeger.com/2016/09/14/data-management/).
+- Visualize missing/non-independent cases in your data. See this related [blog post for more details](https://www.andybeger.com/2016/09/14/data-management-and-missing-data/).
 
 ```{r, fig.height = 5}
 data("polity")

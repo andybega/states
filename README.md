@@ -70,7 +70,7 @@ str(countries)
 
 -   Visualize missing/non-independent cases in your data. See this
     related [blog post for more
-    details](https://andybeger.com/2016/09/14/data-management/).
+    details](https://www.andybeger.com/2016/09/14/data-management-and-missing-data/).
 
 ``` r
 data("polity")

@@ -5,7 +5,6 @@
 - In the gwstates and cowstates data, the "iso3c" columns have been renamed to "gwn" and "cown", as they are not in fact ISO 3-character country abbreviations (#19).
 - plot_missing()'s "space" argument has been renamed "ccode". 
 - id_date_sequence() now works with integer years, there is no need to convert them to Date class anymore (#20).
-- fixed a mispelled country name, "Rumania" to "Romania".
 
 ## Improved support for state_panel shortcuts
 
@@ -21,6 +20,11 @@
 - Updated vignette on G&W and COW differences to take into account when trying to translate between codes.
 - Added `compare()` helper to compare two statelist data frames prior to merging. 
 - Added `parse_date()` to handle more flexible "start" and "end" date input (#12). 
+
+## Bux fixes
+
+- `all.equal()` in R 4.1.x (R-devel at this point) will check environments for equivalence as well. This breaks one test since 2e **testthat** relies on `all.equal()` for `expect_equal()`. (#26)
+- fixed a mispelled country name, "Rumania" to "Romania"
 
 # states 0.2.2
 
