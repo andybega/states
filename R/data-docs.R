@@ -55,7 +55,7 @@
 #'
 #' @source
 #' Correlates of War Project. 2011. "State System Membership List, v2011."
-#'   Online, [http://correlatesofwar.org](http://correlatesofwar.org)
+#'   Online, [https://correlatesofwar.org](https://correlatesofwar.org)
 #'
 #' @examples
 #' data(cowstates)

@@ -1,5 +1,5 @@
 
-# states 0.2.2.9011 (development version)
+# states 0.3.0
 
 - Although the original COW state list does not distinguish micro-states, like the G&W list does, the `cowstates` data now has a microstates coding derived from the G&W coding (#24). This makes it easier, for example, to filter out micro-states from a state panel dataset. 
 - In the gwstates and cowstates data, the "iso3c" columns have been renamed to "gwn" and "cown", as they are not in fact ISO 3-character country abbreviations (#19).

@@ -127,8 +127,8 @@ Membership: A Revised List of the Independent States since 1816.”
 International Interactions 25: 393-413.
 
 For the [Correlates of War (COW) state
-data](http://www.correlatesofwar.org/data-sets/state-system-membership):
+data](https://correlatesofwar.org/data-sets/state-system-membership):
 
 Correlates of War Project. 2017. “State System Membership List, v2016.”
 Online,
-<a href="http://correlatesofwar.org" class="uri">http://correlatesofwar.org</a>
+<a href="https://correlatesofwar.org" class="uri">https://correlatesofwar.org</a>

@@ -11,4 +11,7 @@ list_package_checks()
 
 # eventually:
 ch$cran_summary()
+
+# finally:
+devtools::release()
 ```

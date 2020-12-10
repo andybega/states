@@ -1,7 +1,7 @@
 Package: states
 Type: Package
 Title: Create Panels of Independent States
-Version: 0.2.2.9011
+Version: 0.3.0
 Authors@R: person("Andreas", "Beger", role = c("cre", "aut"), email =
     "adbeger@gmail.com", comment = c(ORCID = "0000-0003-1883-3169"))
 Maintainer: Andreas Beger <adbeger@gmail.com>
@@ -30,6 +30,6 @@ Suggests:
     DT
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
-URL: https://github.com/andybega/states, https://andybeger.com/states
+URL: https://github.com/andybega/states, https://www.andybeger.com/states
 BugReports: https://github.com/andybega/states/issues
 Roxygen: list(markdown = TRUE)
