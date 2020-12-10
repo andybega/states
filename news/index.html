@@ -138,7 +138,6 @@
 <li>In the gwstates and cowstates data, the “iso3c” columns have been renamed to “gwn” and “cown”, as they are not in fact ISO 3-character country abbreviations (<a href='https://github.com/andybega/states/issues/19'>#19</a>).</li>
 <li>plot_missing()’s “space” argument has been renamed “ccode”.</li>
 <li>id_date_sequence() now works with integer years, there is no need to convert them to Date class anymore (<a href='https://github.com/andybega/states/issues/20'>#20</a>).</li>
-<li>fixed a mispelled country name, “Rumania” to “Romania”.</li>
 </ul>
 <div id="improved-support-for-state_panel-shortcuts" class="section level2">
 <h2 class="hasAnchor">
@@ -158,6 +157,15 @@
 <li>Updated vignette on G&amp;W and COW differences to take into account when trying to translate between codes.</li>
 <li>Added <code><a href="../reference/compare.html">compare()</a></code> helper to compare two statelist data frames prior to merging.</li>
 <li>Added <code><a href="../reference/parse_date.html">parse_date()</a></code> to handle more flexible “start” and “end” date input (<a href='https://github.com/andybega/states/issues/12'>#12</a>).</li>
+</ul>
+</div>
+<div id="bux-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bux-fixes" class="anchor"></a>Bux fixes</h2>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> in R 4.1.x (R-devel at this point) will check environments for equivalence as well. This breaks one test since 2e <strong>testthat</strong> relies on <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> for <code>expect_equal()</code>. (<a href='https://github.com/andybega/states/issues/26'>#26</a>)</li>
+<li>fixed a mispelled country name, “Rumania” to “Romania”</li>
 </ul>
 </div>
 </div>
