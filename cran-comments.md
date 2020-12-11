@@ -21,4 +21,4 @@ On R-Hub:
 
 **********
 
-This fixes the current ERRORs on the CRAN Package Checks with R-devel due to the change in `all.equal()` (which in R-devel compares environments now). 
+Among other changes, this fixes the current ERRORs on the CRAN Package Checks with R-devel due to the change in `all.equal()` to compare environments now as well.
