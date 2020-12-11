@@ -144,7 +144,7 @@
 <a href="#improved-support-for-state_panel-shortcuts" class="anchor"></a>Improved support for state_panel shortcuts</h2>
 <p><code><a href="../reference/state_panel.html">state_panel()</a></code> has further improved support for input shortcuts (<a href='https://github.com/andybega/states/issues/3'>#3</a>):</p>
 <ul>
-<li>Accepted formats for the “start” and “end” arguments now incluce 2006, “2006”, “2000-06”, and “2006-06-01”. See <code><a href="../reference/parse_date.html">parse_date()</a></code> for details.</li>
+<li>Accepted formats for the “start” and “end” arguments now include 2006, “2006”, “2000-06”, and “2006-06-01”. See <code><a href="../reference/parse_date.html">parse_date()</a></code> for details.</li>
 <li>The implied time period is now also inferred from shortcut input when “by” is left at the new default of NULL.</li>
 <li>The “partial” option has gained new “first” and “last” values that also support shortcut input. Previously a shortcut input like 2006 could only be used with the “any” partial option, and to get country-years for states that were independent on the first day of a year one had to use <code><a href="../reference/state_panel.html">state_panel("YYYY-01-01", partial = "exact", ...)</a></code>. This can now instead be done with <code><a href="../reference/state_panel.html">state_panel(2006, partial = "first", ...)</a></code>.</li>
 </ul>
@@ -159,13 +159,13 @@
 <li>Added <code><a href="../reference/parse_date.html">parse_date()</a></code> to handle more flexible “start” and “end” date input (<a href='https://github.com/andybega/states/issues/12'>#12</a>).</li>
 </ul>
 </div>
-<div id="bux-fixes" class="section level2">
+<div id="bug-fixes" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bux-fixes" class="anchor"></a>Bux fixes</h2>
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>
 <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> in R 4.1.x (R-devel at this point) will check environments for equivalence as well. This breaks one test since 2e <strong>testthat</strong> relies on <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> for <code>expect_equal()</code>. (<a href='https://github.com/andybega/states/issues/26'>#26</a>)</li>
-<li>fixed a mispelled country name, “Rumania” to “Romania”</li>
+<li>fixed a misspelled country name, “Rumania” to “Romania”</li>
 </ul>
 </div>
 </div>
