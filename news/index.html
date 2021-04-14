@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -129,6 +129,24 @@
       <small>Source: <a href='https://github.com/andybega/states/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="states-0309000" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.0.9000">
+<a href="#states-0309000" class="anchor"></a>states 0.3.0.9000<small> Unreleased </small>
+</h1>
+<ul>
+<li>Strip <strong>readr</strong> “spec” attribute from the <em>cowstates</em> and <em>gwstates</em> data. They are both now plain data frames with no attributes. (<a href='https://github.com/andybega/states/issues/22'>#22</a>)</li>
+<li>Expand list of short country names in <code><a href="../reference/prettyc.html">prettyc()</a></code>, e.g. instead of “Belarus (Byelorussia)”, just “Belarus”.</li>
+<li>Move to <strong>testthat</strong> 3rd edition (<strong>3e</strong>).</li>
+</ul>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> in R 4.1.x (R-devel at this point) will check environments for equivalence as well. This breaks one test since 2e <strong>testthat</strong> relies on <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> for <code>expect_equal()</code>. Moving to testthat 3e fixes this bug. (<a href='https://github.com/andybega/states/issues/26'>#26</a>)</li>
+</ul>
+</div>
+</div>
     <div id="states-030" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.0">
 <a href="#states-030" class="anchor"></a>states 0.3.0<small> 2020-12-11 </small>
@@ -159,12 +177,10 @@
 <li>Added <code><a href="../reference/parse_date.html">parse_date()</a></code> to handle more flexible “start” and “end” date input (<a href='https://github.com/andybega/states/issues/12'>#12</a>).</li>
 </ul>
 </div>
-<div id="bug-fixes" class="section level2">
+<div id="bug-fixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
 <ul>
-<li>
-<code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> in R 4.1.x (R-devel at this point) will check environments for equivalence as well. This breaks one test since 2e <strong>testthat</strong> relies on <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> for <code>expect_equal()</code>. (<a href='https://github.com/andybega/states/issues/26'>#26</a>)</li>
 <li>fixed a misspelled country name, “Rumania” to “Romania”</li>
 </ul>
 </div>

@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -142,7 +142,11 @@
 <span class="va">ch</span><span class="op">$</span><span class="fu">cran_summary</span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># finally:</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">release</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">release</span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># once accepted, </span>
+<span class="co"># 1. tag the release commit on GH</span>
+<span class="co"># 2. Attach to that a tarball built with devtools::build()</span></code></pre></div>
 </div>
 
   </div>
