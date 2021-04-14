@@ -1,6 +1,6 @@
 ## Test environments
 
-- local R installation (macOS), R 4.0.3
+- local R installation (macOS), R 4.0.5
 - win-builder (release)
 - win-builder (devel)
 
@@ -12,8 +12,9 @@ On GitHub Actions:
 
 On R-Hub:
 
-- Ubuntu, R-release
-- Fedora, R-devel
+- windows-x86_64-devel (r-devel)
+- ubuntu-gcc-release (r-release)
+- fedora-clang-devel (r-devel)
 
 ## R CMD check results
 
@@ -21,4 +22,10 @@ On R-Hub:
 
 **********
 
-Among other changes, this fixes the current ERRORs on the CRAN Package Checks with R-devel due to the change in `all.equal()` to compare environments now as well.
+Various minor updates.
+
+There are 3 WARNINGS right now in the CRAN checks, related to building one of the package Rmarkdown vignettes that depends on the DT package:
+
+`there is no package called 'webshot'`
+
+I'm not getting them anywhere else. Not sure what to do about this. 

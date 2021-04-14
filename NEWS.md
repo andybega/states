@@ -1,5 +1,5 @@
 
-# states 0.3.0.9000
+# states 0.3.1
 
 - Strip **readr** "spec" attribute from the _cowstates_ and _gwstates_ data. They are both now plain data frames with no attributes. (#22)
 - Expand list of short country names in `prettyc()`, e.g. instead of "Belarus (Byelorussia)", just "Belarus". 
