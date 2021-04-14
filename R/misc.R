@@ -144,6 +144,8 @@ prettyc <- function(x) {
     "Tanzania, United Republic of", "Tanzania",
     "Tanzania/Tanganyika", "Tanzania",
     "Turkey \\(Ottoman Empire\\)", "Turkey",
+    "United Kingdom", "UK",
+    "United States of America", "USA",
     "Venezuela, Bolivarian Republic of", "Venezuela",
     "Vietnam \\(Annam/Cochin China/Tonkin\\)", "Vietnam",
     "Vietnam, Democratic Republic of", "Vietnam",
@@ -152,7 +154,10 @@ prettyc <- function(x) {
     "Yemen \\(Arab Republic of Yemen\\)", "Yemen",
     "Yemen, People's Republic of", "South Yemen",
     "United Provinces of Central America", "FR Central America",
-    "Saint Vincent and the Grenadines", "Saint Vincent"
+    "Saint Vincent and the Grenadines", "Saint Vincent",
+    "Belarus \\(Byelorussia\\)", "Belarus",
+    "Kyrgyz Republic", "Kyrgyzstan",
+    "Zimbabwe \\(Rhodesia\\)", "Zimbabwe"
     )
   )
   for (i in 1:nrow(dict)) {
