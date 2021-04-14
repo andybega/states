@@ -52,6 +52,9 @@ table(stringi::stri_enc_mark(gwstates$country_name))
 
 gwstates <- as.data.frame(gwstates)
 
+# drop readr spec attribute (#22)
+attr(gwstates, "spec") <- NULL
+
 usethis::use_data(gwstates, overwrite = TRUE)
 
 

@@ -35,5 +35,7 @@ stopifnot(
   nrow(cowstates[cowstates$microstate %in% TRUE, ])==(nrow(micro) - 2)
 )
 
+# drop readr spec attribute (#22)
+attr(cowstates, "spec") <- NULL
 
 usethis::use_data(cowstates, overwrite = TRUE)
