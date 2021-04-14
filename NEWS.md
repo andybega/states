@@ -1,4 +1,14 @@
 
+# states 0.3.0.9000
+
+- Strip **readr** "spec" attribute from the _cowstates_ and _gwstates_ data. They are both now plain data frames with no attributes. (#22)
+- Expand list of short country names in `prettyc()`, e.g. instead of "Belarus (Byelorussia)", just "Belarus". 
+- Move to **testthat** 3rd edition (**3e**). 
+
+## Bug fixes
+
+- `all.equal()` in R 4.1.x (R-devel at this point) will check environments for equivalence as well. This breaks one test since 2e **testthat** relies on `all.equal()` for `expect_equal()`. Moving to testthat 3e fixes this bug. (#26)
+
 # states 0.3.0
 
 - Although the original COW state list does not distinguish micro-states, like the G&W list does, the `cowstates` data now has a microstates coding derived from the G&W coding (#24). This makes it easier, for example, to filter out micro-states from a state panel dataset. 
@@ -23,7 +33,6 @@
 
 ## Bug fixes
 
-- `all.equal()` in R 4.1.x (R-devel at this point) will check environments for equivalence as well. This breaks one test since 2e **testthat** relies on `all.equal()` for `expect_equal()`. (#26)
 - fixed a misspelled country name, "Rumania" to "Romania"
 
 # states 0.2.2
