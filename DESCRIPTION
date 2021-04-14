@@ -33,3 +33,5 @@ VignetteBuilder: knitr
 URL: https://github.com/andybega/states, https://www.andybeger.com/states/
 BugReports: https://github.com/andybega/states/issues
 Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
+
