@@ -334,6 +334,7 @@ missing_info <- function(data, x = NULL, ccode = NULL, time = NULL,
 #'
 #' @param data data.frame
 #' @param x string
+#' @keywords internal
 .warner <- function(data, x) {
   if (inherits(x, "data.frame") & class(data)[1]=="character") {
     warning("The order of the 'data' and 'x' arguments has switched, please adjust code accordingly.\nplot_missing(data, x, ...)\nmissing_info(data, x, ...)")

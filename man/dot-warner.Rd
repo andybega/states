@@ -14,3 +14,4 @@
 \description{
 Temporary helper function to warn about argument order change
 }
+\keyword{internal}

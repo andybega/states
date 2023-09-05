@@ -90,14 +90,6 @@ print.state_sets <- function(x, ...) {
 }
 
 
-#' @param cases ("both", "in df1", "in df2")
-#' @noRd
-subset.state_sets <- function(x, cases = "both", missvals = "either") {
-
-  NULL
-
-}
-
 
 #' @export
 #' @rdname compare
