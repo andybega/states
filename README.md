@@ -10,7 +10,7 @@ status](https://github.com/andybega/states/workflows/R-CMD-check/badge.svg)](htt
 [![CRAN
 versions](http://www.r-pkg.org/badges/version/states)](https://cran.r-project.org/package=states)
 [![Coverage
-status](https://codecov.io/gh/andybega/states/branch/master/graph/badge.svg)](https://codecov.io/github/andybega/states?branch=master)
+status](https://codecov.io/gh/andybega/states/branch/master/graph/badge.svg)](https://app.codecov.io/github/andybega/states?branch=master)
 <!-- badges: end -->
 
 Create country-year/month/day panels consistent with the COW or
@@ -70,7 +70,7 @@ str(countries)
 
 - Visualize missing/non-independent cases in your data. See this related
   [blog post for more
-  details](https://www.andybeger.com/2016/09/14/data-management-and-missing-data/).
+  details](https://www.andybeger.com/blog/2016-09-13-data-management/).
 
 ``` r
 data("polity")
@@ -120,14 +120,14 @@ remotes::install_github("andybega/states")
 ## Citations
 
 For the [Gleditsch and Ward (G&W) state
-data](http://privatewww.essex.ac.uk/~ksg/statelist.html):
+data](http://ksgleditsch.com/statelist.html):
 
 Gleditsch, Kristian S. & Michael D. Ward. 1999. “Interstate System
 Membership: A Revised List of the Independent States since 1816.”
 International Interactions 25: 393-413.
 
 For the [Correlates of War (COW) state
-data](https://correlatesofwar.org/data-sets/state-system-membership):
+data](https://correlatesofwar.org/data-sets/state-system-membership/):
 
 Correlates of War Project. 2017. “State System Membership List, v2016.”
 Online, <https://correlatesofwar.org>

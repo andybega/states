@@ -8,6 +8,7 @@ Several small fixes.
 - Manually add a "states-packge" alias for the package doc since **roxygen2** does not do this by default anymore. 
 - Switch from the deprecated `ggplot2::aes_string()` to `ggplot2::aes()` + the `.data` pronoun in `plot_missing()`. 
 - Fix a **dplyr** join warning in `state_panel()` due to the new "relationship" argument.
+- Update old URLs in README and other documentation.
 
 
 # states 0.3.1
