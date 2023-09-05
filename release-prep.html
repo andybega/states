@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2</span>
       </span>
     </div>
 
@@ -62,7 +62,10 @@
 <div id="notes-to-prep-for-release" class="section level1">
 
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span>remote <span class="op">=</span> <span class="cn">TRUE</span>, manual <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">urlchecker</span><span class="fu">::</span><span class="fu">url_check</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">build_readme</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span>remote <span class="op">=</span> <span class="cn">TRUE</span>, manual <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check_win_devel</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check_win_release</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">ch</span> <span class="op">&lt;-</span> <span class="fu">rhub</span><span class="fu">::</span><span class="fu">check_for_cran</span><span class="op">(</span><span class="op">)</span></span>

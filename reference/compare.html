@@ -18,7 +18,7 @@ prior to merging them."><!-- mathjax --><script src="https://cdnjs.cloudflare.co
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">states</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2</span>
       </span>
     </div>
 
@@ -137,11 +137,11 @@ differences in case sets could be because of country code differences.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   case_in_df1 case_in_df2 missval_df1 missval_df2     n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>           1           0 0           unknown        40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>           1           0 1           unknown         7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>           1           1 0           0             118</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>           1           0 0           unknown        41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>           1           0 1           unknown         6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>           1           1 0           0             117</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>           1           1 0           1              19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>           1           1 1           0              12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>           1           1 1           0              13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>           1           1 1           1               1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">report</span><span class="op">(</span><span class="va">comp</span><span class="op">)</span></span></span>
@@ -149,23 +149,23 @@ differences in case sets could be because of country code differences.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 197 rows in df1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150 rows in df2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 118 rows match and have no missing values</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20-2018, 41-2018, 42-2018, 52-2018, 53-2018, 55-2018, 57-2018, 60-2018, 80-2018, 90-2018, and 108 more</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117 rows match and have no missing values</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2-2018, 41-2018, 42-2018, 51-2018, 56-2018, 58-2018, 60-2018, 70-2018, 80-2018, 90-2018, and 107 more</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 rows match but have missing values in both</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 210-2018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40-2018</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 19 rows match but have missing values in df2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2-2018, 54-2018, 58-2018, 93-2018, 95-2018, 221-2018, 225-2018, 232-2018, 305-2018, 370-2018, and 9 more</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 150-2018, 343-2018, 346-2018, 365-2018, 375-2018, 385-2018, 402-2018, 436-2018, 437-2018, 439-2018, and 9 more</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 rows match but have missing values in df1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 92-2018, 230-2018, 355-2018, 359-2018, 367-2018, 436-2018, 461-2018, 475-2018, 516-2018, 565-2018, and 2 more</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 rows match but have missing values in df1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52-2018, 130-2018, 230-2018, 290-2018, 373-2018, 420-2018, 570-2018, 640-2018, 660-2018, 670-2018, and 3 more</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40 rows in df1 (no missing values) but not df2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40-2018, 51-2018, 70-2018, 130-2018, 150-2018, 155-2018, 160-2018, 165-2018, 205-2018, 223-2018, and 30 more</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41 rows in df1 (no missing values) but not df2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20-2018, 31-2018, 53-2018, 55-2018, 57-2018, 92-2018, 93-2018, 95-2018, 115-2018, 135-2018, and 31 more</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7 rows in df1 (with missing values) but not df2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31-2018, 56-2018, 101-2018, 346-2018, 403-2018, 760-2018, 770-2018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 rows in df1 (with missing values) but not df2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54-2018, 212-2018, 560-2018, 615-2018, 750-2018, 780-2018</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
