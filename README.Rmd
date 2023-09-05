@@ -94,5 +94,3 @@ Gleditsch, Kristian S. & Michael D. Ward. 1999. "Interstate System Membership: A
 For the [Correlates of War (COW) state data](https://correlatesofwar.org/data-sets/state-system-membership):
 
 Correlates of War Project. 2017. "State System Membership List, v2016." Online, https://correlatesofwar.org
-
-

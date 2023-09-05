@@ -138,7 +138,8 @@ plot_missing <- function(data, x = NULL, ccode = NULL, time = NULL,
   brks <- sort(unique(mm[, ccode]), decreasing = T)
   brks <- brks[seq(1, length(brks), by = skip_labels)]
 
-  p <- ggplot2::ggplot(mm, ggplot2::aes_string(x = time, y = ccode, fill = "status")) +
+  p <- ggplot2::ggplot(mm, ggplot2::aes(x = .data[[time]], y = .data[[ccode]],
+                                        fill = "status")) +
     ggplot2::geom_tile() +
     ggplot2::scale_y_discrete(breaks = brks) +
     ggplot2::scale_x_date(expand=c(0, 0)) +

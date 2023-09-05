@@ -2,6 +2,7 @@ Notes to prep for release
 =========================
 
 ```r
+devtools::check(remote = TRUE, manual = TRUE)
 devtools::check_win_devel()
 devtools::check_win_release()
 ch <- rhub::check_for_cran()

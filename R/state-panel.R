@@ -188,7 +188,8 @@ state_panel_date <- function(start, end, by, partial, useGW) {
   dates <- data.frame(date = seq(start, end, by = by), dummy = 1)
 
   statelist$dummy <- 1
-  super_panel     <- dplyr::full_join(statelist, dates, by = "dummy")
+  super_panel     <- dplyr::full_join(statelist, dates, by = "dummy",
+                                      relationship = "many-to-many")
   super_panel$dummy <- NULL
 
   # Cut excess non-independent country-years from panel

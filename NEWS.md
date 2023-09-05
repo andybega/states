@@ -1,4 +1,15 @@
 
+# states 0.3.1.9000
+
+Several small fixes. 
+
+## Bug fixes
+
+- Manually add a "states-packge" alias for the package doc since **roxygen2** does not do this by default anymore. 
+- Switch from the deprecated `ggplot2::aes_string()` to `ggplot2::aes()` + the `.data` pronoun in `plot_missing()`. 
+- Fix a **dplyr** join warning in `state_panel()` due to the new "relationship" argument.
+
+
 # states 0.3.1
 
 - Strip **readr** "spec" attribute from the _cowstates_ and _gwstates_ data. They are both now plain data frames with no attributes. (#22)
@@ -8,6 +19,7 @@
 ## Bug fixes
 
 - `all.equal()` in R 4.1.x (R-devel at this point) will check environments for equivalence as well. This breaks one test since 2e **testthat** relies on `all.equal()` for `expect_equal()`. Moving to testthat 3e fixes this bug. (#26)
+
 
 # states 0.3.0
 

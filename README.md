@@ -28,8 +28,8 @@ merging different data sources:
 
 What the package does:
 
--   It contains the Gleditsch and Ward (G&W) as well as the Correlates
-    of War (COW) state system membership lists.
+- It contains the Gleditsch and Ward (G&W) as well as the Correlates of
+  War (COW) state system membership lists.
 
 ``` r
 library("states")
@@ -38,7 +38,7 @@ data(gwstates)
 data(cowstates)
 ```
 
--   Search them with `sfind`, this can be helpful for manual coding:
+- Search them with `sfind`, this can be helpful for manual coding:
 
 ``` r
 sfind(260)[, 1:6]
@@ -56,8 +56,8 @@ sfind("German")[, 1:6]
 #> 300  COW   265    GDR German Democratic Republic 1954-03-25 1990-10-02
 ```
 
--   You can use it to build a country-year template that matches either
-    the COW or G&W state lists.
+- You can use it to build a country-year template that matches either
+  the COW or G&W state lists.
 
 ``` r
 countries <- state_panel(1991, 2001)
@@ -68,9 +68,9 @@ str(countries)
 #>  $ year  : int  1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 ...
 ```
 
--   Visualize missing/non-independent cases in your data. See this
-    related [blog post for more
-    details](https://www.andybeger.com/2016/09/14/data-management-and-missing-data/).
+- Visualize missing/non-independent cases in your data. See this related
+  [blog post for more
+  details](https://www.andybeger.com/2016/09/14/data-management-and-missing-data/).
 
 ``` r
 data("polity")
@@ -130,5 +130,4 @@ For the [Correlates of War (COW) state
 data](https://correlatesofwar.org/data-sets/state-system-membership):
 
 Correlates of War Project. 2017. “State System Membership List, v2016.”
-Online,
-<a href="https://correlatesofwar.org" class="uri">https://correlatesofwar.org</a>
+Online, <https://correlatesofwar.org>

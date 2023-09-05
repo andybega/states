@@ -3,6 +3,7 @@
 \docType{package}
 \name{states}
 \alias{states}
+\alias{states-package}
 \title{State system membership}
 \description{
 Create data based on the Gleditsch & Ward (G&W) or Correlates of
@@ -14,11 +15,11 @@ See static docs at https://andybeger.com/states and the source code
 at https://www.github.com/andybega/states
 }
 \references{
-\preformatted{Gleditsch, Kristian S. & Michael D. Ward. 1999. ``Interstate System
+\if{html}{\out{<div class="sourceCode">}}\preformatted{Gleditsch, Kristian S. & Michael D. Ward. 1999. ``Interstate System
   Membership: A Revised List of the Independent States since 1816.''
   International Interactions 25: 393-413.
 
 Correlates of War Project. 2017. ``State System Membership List, v2016.''
   Online, http://correlatesofwar.org
-}
+}\if{html}{\out{</div>}}
 }

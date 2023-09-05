@@ -17,7 +17,10 @@
 #'
 #' @name states
 #' @docType package
+#' @aliases states-package
 #'
 #' @importFrom utils tail
+#' @importFrom rlang .data
 NULL
+
 globalVariables(c("gwstates", "cowstates"))
