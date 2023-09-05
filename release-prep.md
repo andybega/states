@@ -2,6 +2,9 @@ Notes to prep for release
 =========================
 
 ```r
+urlchecker::url_check()
+devtools::build_readme()
+
 devtools::check(remote = TRUE, manual = TRUE)
 devtools::check_win_devel()
 devtools::check_win_release()

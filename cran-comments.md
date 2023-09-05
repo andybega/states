@@ -1,14 +1,14 @@
 ## Test environments
 
-- local R installation (macOS), R 4.0.5
+- local R installation (macOS), R 4.3.1
 - win-builder (release)
 - win-builder (devel)
 
 On GitHub Actions:
 
-- macOS R-release 
-- Windows R-release
-- Ubuntu R-release, R-devel
+- macOS release 
+- Windows release
+- Ubuntu release, devel, oldrel-1
 
 On R-Hub:
 
@@ -20,12 +20,12 @@ On R-Hub:
 
 0 errors | 0 warnings | 0 notes
 
+## Reverse dependencies
+
+Listed in Suggests for 1 package, demcon
+
+There are no additional test errors introduced by states, but I did find other unrelated test errors. 
+
 **********
 
-Various minor updates.
-
-There are 3 WARNINGS right now in the CRAN checks, related to building one of the package Rmarkdown vignettes that depends on the DT package:
-
-`there is no package called 'webshot'`
-
-I'm not getting them anywhere else. Not sure what to do about this. 
+Various minor updates, including adding a state-package alias for the package doc.

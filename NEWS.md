@@ -1,5 +1,5 @@
 
-# states 0.3.1.9000
+# states 0.3.2
 
 Several small fixes. 
 
