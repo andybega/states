@@ -69,26 +69,29 @@ cy$year <- NULL
 
 test_that("plot_missing accepts all input options", {
 
-  expect_type(
-    plot_missing(data = cy, "myvar", ccode = "gwcode", time = "date",
-                 period = "year", statelist = "none"),
-    "list")
+  expect_true(
+    ggplot2::is_ggplot(
+      plot_missing(data = cy, "myvar", ccode = "gwcode", time = "date",
+                   period = "year", statelist = "none")
+    ))
 
-  expect_type(
-    plot_missing(data = cy, "myvar", ccode = "gwcode", time = "date",
-                 period = "year", statelist = "GW"),
-    "list")
+  expect_true(
+    ggplot2::is_ggplot(
+      plot_missing(data = cy, "myvar", ccode = "gwcode", time = "date",
+                   period = "year", statelist = "GW")
+    ))
 
-  expect_type(
-    plot_missing(data = cy, "myvar", ccode = "gwcode", time = "date",
-                 period = "year", statelist = "COW"),
-    "list")
+  expect_true(
+    ggplot2::is_ggplot(
+      plot_missing(data = cy, "myvar", ccode = "gwcode", time = "date",
+                   period = "year", statelist = "COW")
+    ))
 
   # not a valid statelist argument
   expect_error(
     plot_missing(data = cy, "myvar", ccode = "gwcode", time = "date",
                  period = "year", statelist = "Foo")
-    )
+  )
 })
 
 test_that("mssng_mat throws errors for missing ID values", {
