@@ -7,9 +7,9 @@
 
 [![CRAN
 versions](http://www.r-pkg.org/badges/version/states)](https://cran.r-project.org/package=states)
-[![Coverage
-status](https://codecov.io/gh/andybega/states/branch/master/graph/badge.svg)](https://app.codecov.io/github/andybega/states?branch=master)
 [![R-CMD-check](https://github.com/andybega/states/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/andybega/states/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/andybega/states/graph/badge.svg)](https://app.codecov.io/gh/andybega/states)
 <!-- badges: end -->
 
 Create country-year/month/day panels consistent with the COW or
