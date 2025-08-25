@@ -16,11 +16,10 @@
 #'       Online, http://correlatesofwar.org
 #'
 #' @name states
-#' @docType package
 #' @aliases states-package
 #'
 #' @importFrom utils tail
 #' @importFrom rlang .data
-NULL
+"_PACKAGE"
 
 globalVariables(c("gwstates", "cowstates"))

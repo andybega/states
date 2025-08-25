@@ -23,3 +23,16 @@ Correlates of War Project. 2017. ``State System Membership List, v2016.''
   Online, http://correlatesofwar.org
 }\if{html}{\out{</div>}}
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/andybega/states}
+  \item \url{https://www.andybeger.com/states/}
+  \item Report bugs at \url{https://github.com/andybega/states/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Andreas Beger \email{adbeger@gmail.com} (\href{https://orcid.org/0000-0003-1883-3169}{ORCID})
+
+}

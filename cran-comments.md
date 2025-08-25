@@ -1,31 +1,15 @@
-## Test environments
-
-- local R installation (macOS), R 4.3.1
-- win-builder (release)
-- win-builder (devel)
-
-On GitHub Actions:
-
-- macOS release 
-- Windows release
-- Ubuntu release, devel, oldrel-1
-
-On R-Hub:
-
-- windows-x86_64-devel (r-devel)
-- ubuntu-gcc-release (r-release)
-- fedora-clang-devel (r-devel)
 
 ## R CMD check results
 
 0 errors | 0 warnings | 0 notes
 
-## Reverse dependencies
+* Patch to fix testing issue related to fugure ggplot2 release. 
 
-Listed in Suggests for 1 package, demcon
 
-There are no additional test errors introduced by states, but I did find other unrelated test errors. 
+There is 1 NOTE on winbuilder with R 4.4 (old release), related to ORCID records.
+See below...looks like one version has "ORCID: " keys and the other doesn't. 
+Doesn't show up on any of the other platforms/R versions. 
 
-**********
-
-Various minor updates, including adding a state-package alias for the package doc.
+Author field differs from that derived from Authors@R
+  Author:    'Andreas Beger [cre, aut] (ORCID: <https://orcid.org/0000-0003-1883-3169>)'
+  Authors@R: 'Andreas Beger [cre, aut] (<https://orcid.org/0000-0003-1883-3169>)'

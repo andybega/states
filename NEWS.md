@@ -1,3 +1,6 @@
+# states 0.3.3
+
+- Fixes an issue with testing `plot_missing()` with the future **ggplot2** release (#28).
 
 # states 0.3.2
 

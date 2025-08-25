@@ -8,7 +8,7 @@
 .Rhistory
 .Rbuildignore
 ^docs$
-scratchpad.R
+dev-process.R
 ^_pkgdown\.yml$
 ^cran-comments\.md$
 ^README\.Rmd$
@@ -17,3 +17,4 @@ scratchpad.R
 ^data-raw$
 ^\.github$
 ^release-prep.md$
+^CRAN-SUBMISSION$

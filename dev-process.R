@@ -26,36 +26,33 @@ pkgdown::build_site()
 
 
 # Package release ---------------------------------------------------------
-
-library("devtools")
-
-#   Update NEWS
 #
-#   Update date and version in DESCRIPTION:
-#     [major][minor][patch][dev]
-#       - major: not backwards compatible
-#       - minor: feature enhancements
-#       - patch: fixes bugs
-#       - dev (9000): working version
+#   See See https://r-pkgs.org/release.html
+#   Updated August 2025
 
-devtools::check()
-devtools::build()
+use_release_issue()
 
+# - Check current CRAN check results
+# - Check if any deprecation processes should be advanced
+# - Polish NEWS
+# - Check URLs
+urlchecker::url_check()
+# - Update README
+devtools::build_readme()
+# - Local check
+devtools::check(remote = TRUE, manual = TRUE)
+# - Check on Windows
 check_win_release()
 check_win_devel()
+check_win_oldrelease()
 
-# commit to git for travis
-# https://travis-ci.org
+# If all issues have been addressed:
+# - Update cran-comments.md
 
-#   once emails are in and travis is done:
-#
-#   Update cran-comments.md
-
-R.Version()$version.string
-
-devtools::spell_check()
-devtools::check_rhub()
-devtools::release()
+# - Release
+usethis::use_version('patch')
+devtools::submit_cran()
+# - Check email
 
 # update local install
 desc <- readLines("DESCRIPTION")
